@@ -7,7 +7,7 @@ echo "========================================="
 echo
 
 # Create output directory
-OUTPUT_DIR="benchmark-results"
+OUTPUT_DIR="${PWD}/benchmark-results"
 mkdir -p "$OUTPUT_DIR"
 
 REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
@@ -17,6 +17,8 @@ TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Clean up old report
 rm -f "$REPORT_FILE"
+
+pushd tmp
 
 echo "========================================="
 echo "1. Running simd-json benchmarks"
@@ -38,7 +40,9 @@ cd simd-json
 cp tmp/*.txt "$OUTPUT_DIR/simd-json.result.txt" 2>/dev/null || true
 cp tmp/*.svg "$OUTPUT_DIR/simd-json.graph.svg" 2>/dev/null || true
 
-cd ..
+popd
+
+pushd tmp
 
 echo
 echo "========================================="
@@ -61,7 +65,7 @@ cd rebar
 cp tmp/*.txt "$OUTPUT_DIR/rebar.result.txt" 2>/dev/null || true
 cp tmp/*.svg "$OUTPUT_DIR/rebar.graph.svg" 2>/dev/null || true
 
-cd ..
+popd
 
 echo
 echo "========================================="
