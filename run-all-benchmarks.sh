@@ -138,24 +138,17 @@ Work-loads:
 
 ## Summary
 
-Both benchmarks show allocator performance impact on real-world Rust applications:
+Both benchmarks show allocator performance impact in real-world Rust applications:
 
 - **simd-json** tests memory allocation patterns in JSON parsing workloads
 - **rebar** tests memory allocation patterns in regex compilation and matching
 
-### Key Findings
-
-Compare the graphs above to see:
-1. Which allocators consistently perform well across different workload types
-2. Whether certain allocators excel at specific types of memory usage patterns
-3. The magnitude of performance differences (typically 1-10% range)
-
 ### Methodology
 
 - Each allocator is tested using identical code with only the global allocator changed
-- Benchmarks calculate geometric mean of normalized performance ratios across all tests
+- Summary is the mean of normalized performance ratios across all tests
 - Results show percentage differences from baseline (system allocator)
-- Lower percentages = better performance (less overhead)
+- Lower percentages = better performance (less time)
 
 ### How to Read the Graphs
 
