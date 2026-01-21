@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <style>
+    .bar { stroke: none; }
+    .axis { stroke: #333; stroke-width: 1; }
+    .grid { stroke: #ddd; stroke-width: 0.5; }
+    .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 12px; fill: #333; }
+    .value { font-family: monospace; font-size: 11px; fill: #999; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
+    .metadata { font-family: monospace; font-size: 10px; fill: #666; }
+  </style>
+  <text x="400.0" y="30" class="title" text-anchor="middle">rust/regex Performance with Different Allocators (lower is better)</text>
+  <line x1="80" y1="60" x2="80" y2="400" class="axis"/>
+  <line x1="80" y1="400" x2="760" y2="400" class="axis"/>
+  <line x1="80" y1="400.0" x2="760" y2="400.0" class="grid"/>
+  <text x="70" y="404.0" class="label" text-anchor="end">0%</text>
+  <line x1="80" y1="343.33333333333337" x2="760" y2="343.33333333333337" class="grid"/>
+  <text x="70" y="347.33333333333337" class="label" text-anchor="end">20%</text>
+  <line x1="80" y1="286.6666666666667" x2="760" y2="286.6666666666667" class="grid"/>
+  <text x="70" y="290.6666666666667" class="label" text-anchor="end">40%</text>
+  <line x1="80" y1="230.0" x2="760" y2="230.0" class="grid"/>
+  <text x="70" y="234.0" class="label" text-anchor="end">60%</text>
+  <line x1="80" y1="173.33333333333334" x2="760" y2="173.33333333333334" class="grid"/>
+  <text x="70" y="177.33333333333334" class="label" text-anchor="end">80%</text>
+  <line x1="80" y1="116.66666666666666" x2="760" y2="116.66666666666666" class="grid"/>
+  <text x="70" y="120.66666666666666" class="label" text-anchor="end">100%</text>
+  <line x1="80" y1="60.0" x2="760" y2="60.0" class="grid"/>
+  <text x="70" y="64.0" class="label" text-anchor="end">120%</text>
+  <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#4285f4"/>
+  <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
+  <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
+  <rect x="204.66666666666666" y="122.58282098954356" width="90.66666666666666" height="277.41717901045644" class="bar" fill="#ea4335"/>
+  <text x="250.0" y="117.58282098954356" class="value" text-anchor="middle">-2%</text>
+  <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
+  <rect x="317.99999999999994" y="136.16140830142564" width="90.66666666666666" height="263.83859169857436" class="bar" fill="#fbbc04"/>
+  <text x="363.33333333333326" y="131.16140830142564" class="value" text-anchor="middle">-7%</text>
+  <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
+  <rect x="431.3333333333333" y="130.78912509599854" width="90.66666666666666" height="269.21087490400146" class="bar" fill="#34a853"/>
+  <text x="476.66666666666663" y="125.78912509599854" class="value" text-anchor="middle">-5%</text>
+  <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
+  <rect x="544.6666666666666" y="134.09452155461213" width="90.66666666666666" height="265.90547844538787" class="bar" fill="#9333ea"/>
+  <text x="590.0" y="129.09452155461213" class="value" text-anchor="middle">-6%</text>
+  <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
+  <rect x="658.0" y="132.68889108053418" width="90.66666666666666" height="267.3111089194658" class="bar" fill="#ff6b9d"/>
+  <text x="703.3333333333334" y="127.68889108053418" class="value" text-anchor="middle">-6%</text>
+  <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar</text>
+  <text x="400.0" y="465" class="metadata" text-anchor="middle">Based on 52 curated benchmarks</text>
+</svg>
