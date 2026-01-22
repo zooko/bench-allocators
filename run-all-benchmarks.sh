@@ -42,7 +42,7 @@ run_loc_benchmark() {
     echo "========================================"
 
     # Clone the allocator source repos that count-locs.sh needs
-    cd "$WORK_DIR"
+    pushd "$WORK_DIR"
 
     echo "Cloning allocator sources for LOC comparison..."
 
@@ -68,9 +68,9 @@ run_loc_benchmark() {
         --graph "../$OUTPUT_DIR/locs.graph.svg"
 
     # Copy results
-    cp "loc-output.txt" "../locs.result.txt" 2>/dev/null || true
+    cp "loc-output.txt" "../$OUTPUT_DIR/locs.result.txt"
 
-    cd - > /dev/null
+    popd
 }
 
 # Function to run benchmark in a repo
@@ -87,26 +87,26 @@ run_benchmark() {
     # Clone or update
     if [ -d "$dir" ]; then
         echo "Updating $dir..."
-        cd "$dir"
+        pushd "$dir"
         git pull
     else
         echo "Cloning $repo to $dir..."
         git clone "$repo" "$dir"
-        cd "$dir"
+        pushd "$dir"
     fi
     
     # Run benchmark
     ./bench-allocators.sh
-
+    
+    popd
     
     # Copy results
-    cp tmp/*.txt "$OUTPUT_DIR/${name}.result.txt" 2>/dev/null || true
-    cp tmp/*.svg "$OUTPUT_DIR/${name}.graph.svg" 2>/dev/null || true
-    
-    cd - > /dev/null
+    cp $dir/tmp/*.txt "$OUTPUT_DIR/${name}.result.txt"
+    cp $dir/tmp/*.svg "$OUTPUT_DIR/${name}.graph.svg"
 }
 
-# Run both benchmarks
+# Run benchmarks
+run_loc_benchmark
 run_benchmark "simd-json" "$SIMD_JSON_REPO"
 run_benchmark "rebar" "$REBAR_REPO"
 

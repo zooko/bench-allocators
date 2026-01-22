@@ -27,8 +27,7 @@ Work-loads:
 - [rebar](https://github.com/BurntSushi/rebar): Regex engine benchmark harness ([fork for
   benchmarking](https://github.com/zooko/simd-json))
 
-**CPU:** Apple M4 Max  
-**OS:** darwin25  
+**CPU:**  IntelR XeonR Gold 6152 CPU  2.10GHz **OS:** linux-gnu  
 
 ---
 
@@ -104,6 +103,6 @@ Both benchmarks show allocator performance impact in real-world Rust application
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** 4c97366bbae1a9a941fc29375167f6f221f39568  
-**git clean status:** Uncommitted changes  
-**generated:** 2026-01-21 23:42:54 UTC  
+**git commit:** c6aacc7abbf1baf57b563ec5aa000205bc7fef4b  
+**git clean status:** Clean  
+**generated:** 2026-01-22 00:48:06 UTC  
