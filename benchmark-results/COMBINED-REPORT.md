@@ -104,5 +104,5 @@ Both benchmarks show allocator performance impact in real-world Rust application
 Source: https://github.com/zooko/bench-allocators
 
 **git commit:** c6aacc7abbf1baf57b563ec5aa000205bc7fef4b  
-**git clean status:** Clean  
-**generated:** 2026-01-22 00:48:06 UTC  
+**git clean status:** Uncommitted changes  
+**generated:** 2026-01-22 04:36:32 UTC  
