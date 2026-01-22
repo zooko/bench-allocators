@@ -23,27 +23,24 @@
   <text x="70" y="151.2727272727273" class="label" text-anchor="end">80%</text>
   <line x1="80" y1="89.09090909090914" x2="760" y2="89.09090909090914" class="grid"/>
   <text x="70" y="93.09090909090914" class="label" text-anchor="end">100%</text>
-  <rect x="91.33333333333333" y="89.09090909090912" width="90.66666666666666" height="290.9090909090909" class="bar" fill="#4285f4"/>
+  <rect x="91.33333333333333" y="89.09090909090912" width="90.66666666666666" height="290.9090909090909" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="84.09090909090912" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="400" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="154.167579206241" width="90.66666666666666" height="225.832420793759" class="bar" fill="#ea4335"/>
-  <text x="250.0" y="149.167579206241" class="value" text-anchor="middle">78%</text>
+  <rect x="204.66666666666666" y="94.01388221049967" width="90.66666666666666" height="285.9861177895003" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="89.01388221049967" class="value" text-anchor="middle">98%</text>
   <text x="250.0" y="400" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="166.01414757037594" width="90.66666666666666" height="213.98585242962406" class="bar" fill="#fbbc04"/>
-  <text x="363.33333333333326" y="161.01414757037594" class="value" text-anchor="middle">74%</text>
+  <rect x="317.99999999999994" y="112.0657486073635" width="90.66666666666666" height="267.9342513926365" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="107.0657486073635" class="value" text-anchor="middle">92%</text>
   <text x="363.33333333333326" y="400" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="172.0206003926021" width="90.66666666666666" height="207.9793996073979" class="bar" fill="#34a853"/>
-  <text x="476.66666666666663" y="167.0206003926021" class="value" text-anchor="middle">71%</text>
+  <rect x="431.3333333333333" y="134.2396957603653" width="90.66666666666666" height="245.7603042396347" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="129.2396957603653" class="value" text-anchor="middle">84%</text>
   <text x="476.66666666666663" y="400" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="164.2244360928891" width="90.66666666666666" height="215.7755639071109" class="bar" fill="#9333ea"/>
-  <text x="590.0" y="159.2244360928891" class="value" text-anchor="middle">74%</text>
+  <rect x="544.6666666666666" y="136.59800071538746" width="90.66666666666666" height="243.40199928461254" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="131.59800071538746" class="value" text-anchor="middle">84%</text>
   <text x="590.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="159.8852785381107" width="90.66666666666666" height="220.1147214618893" class="bar" fill="#ff6b9d"/>
-  <text x="703.3333333333334" y="154.8852785381107" class="value" text-anchor="middle">76%</text>
+  <rect x="658.0" y="143.93097907442348" width="90.66666666666666" height="236.06902092557652" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="138.93097907442348" class="value" text-anchor="middle">81%</text>
   <text x="703.3333333333334" y="400" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="430" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json</text>
-  <text x="400.0" y="445" class="metadata" text-anchor="middle">Commit: 02f6e71f049f</text>
-  <text x="400.0" y="460" class="metadata" text-anchor="middle">Git status: "Clean"</text>
-  <text x="400.0" y="475" class="metadata" text-anchor="middle">CPU: IntelRXeonRGold6152CPU210GHz</text>
-  <text x="400.0" y="490" class="metadata" text-anchor="middle">OS: linux-gnu</text>
+  <text x="400.0" y="430" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 365e8a6a7824 · Git status: "Clean"</text>
+  <text x="400.0" y="444" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
 </svg>

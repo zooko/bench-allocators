@@ -1,7 +1,5 @@
 smalloc
 ~/playground/bench-allocators/benchmark-workspace/smalloc/smalloc ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -12,8 +10,6 @@ Try 'rm --help' for more information.
  Total                     2          650          351          155          144
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 smalloc-ffi
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -28,8 +24,6 @@ Try 'rm --help' for more information.
 ~/playground/bench-allocators/benchmark-workspace
 rpmalloc
 ~/playground/bench-allocators/benchmark-workspace/rpmalloc/rpmalloc ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -41,8 +35,6 @@ Try 'rm --help' for more information.
 ~/playground/bench-allocators/benchmark-workspace
 glibc
 ~/playground/bench-allocators/benchmark-workspace/glibc/malloc ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -54,8 +46,6 @@ Try 'rm --help' for more information.
 ~/playground/bench-allocators/benchmark-workspace
 mimalloc
 ~/playground/bench-allocators/benchmark-workspace/mimalloc/src ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -67,8 +57,6 @@ Try 'rm --help' for more information.
 ~/playground/bench-allocators/benchmark-workspace
 snmalloc
 ~/playground/bench-allocators/benchmark-workspace/snmalloc/src ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -79,8 +67,6 @@ Try 'rm --help' for more information.
 ~/playground/bench-allocators/benchmark-workspace
 jemalloc
 ~/playground/bench-allocators/benchmark-workspace/jemalloc/src ~/playground/bench-allocators/benchmark-workspace
-rm: missing operand
-Try 'rm --help' for more information.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

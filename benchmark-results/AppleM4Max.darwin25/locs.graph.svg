@@ -46,9 +46,6 @@
   <text x="665.0" y="363.62666666666667" class="value" text-anchor="middle">785</text>
   <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
   <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
-  <text x="375.0" y="435" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators</text>
-  <text x="375.0" y="449" class="metadata" text-anchor="middle">Commit: c6aacc7abbf1</text>
-  <text x="375.0" y="463" class="metadata" text-anchor="middle">Git status: Uncommitted changes</text>
-  <text x="375.0" y="477" class="metadata" text-anchor="middle">CPU:  IntelR XeonR Gold 6152 CPU  2.10GHz</text>
-  <text x="375.0" y="491" class="metadata" text-anchor="middle">OS: linuxgnu</text>
+  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 5e6a449c2d24 · Git status: Uncommitted changes</text>
+  <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25</text>
 </svg>

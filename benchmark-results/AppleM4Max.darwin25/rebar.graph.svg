@@ -8,7 +8,7 @@
     .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
     .metadata { font-family: monospace; font-size: 10px; fill: #666; }
   </style>
-  <text x="400.0" y="30" class="title" text-anchor="middle">rust/regex Performance with Different Allocators (lower is better)</text>
+  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—time (lower is better)</text>
   <line x1="80" y1="60" x2="80" y2="400" class="axis"/>
   <line x1="80" y1="400" x2="760" y2="400" class="axis"/>
   <line x1="80" y1="400.0" x2="760" y2="400.0" class="grid"/>
@@ -25,27 +25,24 @@
   <text x="70" y="120.66666666666666" class="label" text-anchor="end">100%</text>
   <line x1="80" y1="60.0" x2="760" y2="60.0" class="grid"/>
   <text x="70" y="64.0" class="label" text-anchor="end">120%</text>
-  <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#4285f4"/>
+  <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="142.9735726419343" width="90.66666666666666" height="257.0264273580657" class="bar" fill="#ea4335"/>
-  <text x="250.0" y="137.9735726419343" class="value" text-anchor="middle">-9%</text>
+  <rect x="204.66666666666666" y="121.65410637432262" width="90.66666666666666" height="278.3458936256774" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="116.65410637432262" class="value" text-anchor="middle">-2%</text>
   <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="147.78074663261825" width="90.66666666666666" height="252.21925336738175" class="bar" fill="#fbbc04"/>
-  <text x="363.33333333333326" y="142.78074663261825" class="value" text-anchor="middle">-11%</text>
+  <rect x="317.99999999999994" y="136.49063153101713" width="90.66666666666666" height="263.50936846898287" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="131.49063153101713" class="value" text-anchor="middle">-7%</text>
   <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="135.56596952973734" width="90.66666666666666" height="264.43403047026266" class="bar" fill="#34a853"/>
-  <text x="476.66666666666663" y="130.56596952973734" class="value" text-anchor="middle">-7%</text>
+  <rect x="431.3333333333333" y="130.98239045572734" width="90.66666666666666" height="269.01760954427266" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="125.98239045572734" class="value" text-anchor="middle">-5%</text>
   <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="134.90181461202224" width="90.66666666666666" height="265.09818538797776" class="bar" fill="#9333ea"/>
-  <text x="590.0" y="129.90181461202224" class="value" text-anchor="middle">-6%</text>
+  <rect x="544.6666666666666" y="133.2216309544266" width="90.66666666666666" height="266.7783690455734" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="128.2216309544266" class="value" text-anchor="middle">-6%</text>
   <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="133.67365824369836" width="90.66666666666666" height="266.32634175630164" class="bar" fill="#ff6b9d"/>
-  <text x="703.3333333333334" y="128.67365824369836" class="value" text-anchor="middle">-6%</text>
+  <rect x="658.0" y="132.4554740056621" width="90.66666666666666" height="267.5445259943379" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="127.4554740056621" class="value" text-anchor="middle">-6%</text>
   <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar</text>
-  <text x="400.0" y="465" class="metadata" text-anchor="middle">Commit: 5fa8fc171264</text>
-  <text x="400.0" y="480" class="metadata" text-anchor="middle">Git status: "Clean"</text>
-  <text x="400.0" y="495" class="metadata" text-anchor="middle">CPU: IntelRXeonRGold6152CPU210GHz</text>
-  <text x="400.0" y="510" class="metadata" text-anchor="middle">OS: linuxgnu</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 83f8713590c9 · Git status: "Clean"</text>
+  <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
 </svg>

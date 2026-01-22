@@ -27,40 +27,21 @@ Work-loads:
 - [rebar](https://github.com/BurntSushi/rebar): Regex engine benchmark harness ([fork for
   benchmarking](https://github.com/zooko/simd-json))
 
-**CPU:**  IntelR XeonR Gold 6152 CPU  2.10GHz **OS:** linux-gnu  
+**CPU:** Apple M4 Max **OS:** darwin25  
 
 ---
 
 ## Lines of Code Comparison
 
-### Code Size Graph
-
-![Lines of code by allocator](locs.graph.svg)
-
-### Detailed Results
+![](locs.graph.svg)
 
 [View detailed LOC results](locs.result.txt)
 
 ---
 
-## Summary
-
-All three analyses show different aspects of allocator characteristics:
-
-- **Lines of Code** compares implementation complexity (excluding debug assertions)
-- **simd-json** tests memory allocation performance in JSON parsing workloads
-- **rebar** tests memory allocation performance in regex compilation and matching  
-
----
-
 ## simd-json Results
 
-
-### Performance Graph
-
-![simd-json allocator performance](simd-json.graph.svg)
-
-### Detailed Results
+![](simd-json.graph.svg)
 
 [View detailed simd-json results](simd-json.result.txt)
 
@@ -68,11 +49,7 @@ All three analyses show different aspects of allocator characteristics:
 
 ## rebar Results
 
-### Performance Graph
-
-![rebar allocator performance](rebar.graph.svg)
-
-### Detailed Results
+![](rebar.graph.svg)
 
 [View detailed rebar results](rebar.result.txt)
 
@@ -80,10 +57,9 @@ All three analyses show different aspects of allocator characteristics:
 
 ## Summary
 
-Both benchmarks show allocator performance impact in real-world Rust applications:
-
-- **simd-json** tests memory allocation patterns in JSON parsing workloads
-- **rebar** tests memory allocation patterns in regex compilation and matching
+- **Lines of Code** compares implementation complexity (excluding debug assertions)  
+- **simd-json** tests memory allocation performance in simd-json (JSON parsing)  
+- **rebar** tests memory allocation performance in rebar (regex compilation and matching)  
 
 ### Methodology
 
@@ -97,12 +73,12 @@ Both benchmarks show allocator performance impact in real-world Rust application
 - **Baseline (default)**: The system allocator, shown at 100%
 - **Negative percentages**: Faster than baseline (e.g., -3% means 3% faster)
 - **Positive percentages**: Slower than baseline (e.g., +5% means 5% slower)
-- **Bar height**: Directly proportional to execution time
+- **Bar height**: Proportional to execution time
 
 ---
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** c6aacc7abbf1baf57b563ec5aa000205bc7fef4b  
+**git commit:** 5e6a449c2d24199b500625ed746a447cc6b0f888  
 **git clean status:** Uncommitted changes  
-**generated:** 2026-01-22 04:36:32 UTC  
+**generated:** 2026-01-22 06:14:08 UTC  
