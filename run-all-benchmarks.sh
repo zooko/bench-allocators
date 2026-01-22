@@ -2,7 +2,6 @@
 
 # Configuration
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
-OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
 
@@ -14,8 +13,11 @@ CPUTYPE=$(grep "model name" /proc/cpuinfo 2>/dev/null | uniq | cut -d':' -f2-)
 if [ -z "${CPUTYPE}" ] ; then
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null || echo "Unknown")
 fi
-CPUTYPE="${CPUTYPE//[^[:alnum:]_. -]/}"
+CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
+
+CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
+OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
@@ -63,7 +65,7 @@ run_loc_benchmark() {
         "loc-output.txt" \
         --commit "$GITCOMMIT" \
         --git-status "$GITCLEANSTATUS" \
-        --cpu "$CPUTYPE" \
+        --cpu "$CPUTYPESTR" \
         --os "$OSTYPESTR" \
         --graph "../$OUTPUT_DIR/locs.graph.svg"
 
@@ -101,8 +103,8 @@ run_benchmark() {
     popd
     
     # Copy results
-    cp $dir/tmp/*.txt "$OUTPUT_DIR/${name}.result.txt"
-    cp $dir/tmp/*.svg "$OUTPUT_DIR/${name}.graph.svg"
+    cp $dir/tmp/${name}.result.${CPUSTR_DOT_OSSTR}.txt "$OUTPUT_DIR/${name}.result.txt"
+    cp $dir/tmp/${name}.graph.${CPUSTR_DOT_OSSTR}.svg "$OUTPUT_DIR/${name}.graph.svg"
 }
 
 # Run benchmarks
@@ -154,34 +156,15 @@ Work-loads:
 
 ## Lines of Code Comparison
 
-### Code Size Graph
-
-![Lines of code by allocator](locs.graph.svg)
-
-### Detailed Results
+![](locs.graph.svg)
 
 [View detailed LOC results](locs.result.txt)
 
 ---
 
-## Summary
-
-All three analyses show different aspects of allocator characteristics:
-
-- **Lines of Code** compares implementation complexity (excluding debug assertions)
-- **simd-json** tests memory allocation performance in JSON parsing workloads
-- **rebar** tests memory allocation performance in regex compilation and matching  
-
----
-
 ## simd-json Results
 
-
-### Performance Graph
-
-![simd-json allocator performance](simd-json.graph.svg)
-
-### Detailed Results
+![](simd-json.graph.svg)
 
 [View detailed simd-json results](simd-json.result.txt)
 
@@ -189,11 +172,7 @@ All three analyses show different aspects of allocator characteristics:
 
 ## rebar Results
 
-### Performance Graph
-
-![rebar allocator performance](rebar.graph.svg)
-
-### Detailed Results
+![](rebar.graph.svg)
 
 [View detailed rebar results](rebar.result.txt)
 
@@ -201,10 +180,9 @@ All three analyses show different aspects of allocator characteristics:
 
 ## Summary
 
-Both benchmarks show allocator performance impact in real-world Rust applications:
-
-- **simd-json** tests memory allocation patterns in JSON parsing workloads
-- **rebar** tests memory allocation patterns in regex compilation and matching
+- **Lines of Code** compares implementation complexity (excluding debug assertions)  
+- **simd-json** tests memory allocation performance in simd-json (JSON parsing)  
+- **rebar** tests memory allocation performance in rebar (regex compilation and matching)  
 
 ### Methodology
 
@@ -218,7 +196,7 @@ Both benchmarks show allocator performance impact in real-world Rust application
 - **Baseline (default)**: The system allocator, shown at 100%
 - **Negative percentages**: Faster than baseline (e.g., -3% means 3% faster)
 - **Positive percentages**: Slower than baseline (e.g., +5% means 5% slower)
-- **Bar height**: Directly proportional to execution time
+- **Bar height**: Proportional to execution time
 
 ---
 

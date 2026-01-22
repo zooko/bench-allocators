@@ -19,14 +19,16 @@ ALLOCATOR_ORDER = ['glibc', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'sma
 
 # Colors for each allocator
 ALLOCATOR_COLORS = {
-    'glibc': '#5c6bc0',      # indigo
-    'jemalloc': '#42a5f5',   # blue
-    'snmalloc': '#26a69a',   # teal
-    'mimalloc': '#ffca28',   # amber
-    'rpmalloc': '#ff7043',   # deep orange
-    'smalloc': '#66bb6a',    # green
-    'smalloc + ffi': '#a5d6a7',  # light green
+    'default': '#ab47bc',       # purple
+    'glibc': '#5c6bc0',         # indigo
+    'jemalloc': '#42a5f5',      # blue
+    'snmalloc': '#26a69a',      # teal
+    'mimalloc': '#ffca28',      # amber
+    'rpmalloc': '#ff7043',      # deep orange
+    'smalloc': '#66bb6a',       # green
+    'smalloc + ffi': '#a5d6a7', # light green
 }
+UNKNOWN_ALLOCATOR_COLOR = '#fbbc04' # yellow
 
 def parse_tokei_output(content):
     """Parse tokei output sections and extract total code lines."""
@@ -158,7 +160,7 @@ if args.graph:
         bar_height = (val / scale_max) * chart_height
         y = margin_top + chart_height - bar_height
 
-        color = ALLOCATOR_COLORS.get(allocator, '#4285f4')
+        color = ALLOCATOR_COLORS.get(allocator, UNKNOWN_ALLOCATOR_COLOR)
 
         # Bar with rounded top corners
         svg_parts.append(f'  <rect x="{x}" y="{y}" width="{actual_bar_width}" height="{bar_height}" rx="3" ry="3" class="bar" fill="{color}"/>\n')
@@ -174,22 +176,25 @@ if args.graph:
         else:
             svg_parts.append(f'  <text x="{x + actual_bar_width/2}" y="{text_y}" class="label" text-anchor="middle">{allocator}</text>\n')
 
-    # Metadata at bottom
-    metadata_y = margin_top + chart_height + 55
-    metadata_lines = []
-    metadata_lines.append("Source: https://github.com/zooko/bench-allocators")
-    if args.commit:
-        metadata_lines.append(f"Commit: {args.commit[:12]}")
-    if args.git_status:
-        metadata_lines.append(f"Git status: {args.git_status}")
-    if args.cpu:
-        metadata_lines.append(f"CPU: {args.cpu}")
-    if args.os:
-        metadata_lines.append(f"OS: {args.os}")
+    metadata_y = height - 25
 
-    for i, line in enumerate(metadata_lines):
-        y = metadata_y + i * 14
-        svg_parts.append(f'  <text x="{width/2}" y="{y}" class="metadata" text-anchor="middle">{line}</text>\n')
+    line1_parts = []
+    line1_parts.append(f"Source: https://github.com/zooko/bench-allocators")
+    if args.commit:
+        line1_parts.append(f"Commit: {args.commit[:12]}")
+    if args.git_status:
+        line1_parts.append(f"Git status: {args.git_status}")
+
+    line2_parts = []
+    if args.cpu:
+        line2_parts.append(f"CPU: {args.cpu}")
+    if args.os:
+        line2_parts.append(f"OS: {args.os}")
+
+    if line1_parts:
+        svg_parts.append(f'  <text x="{width/2}" y="{metadata_y}" class="metadata" text-anchor="middle">{" · ".join(line1_parts)}</text>\n')
+    if line2_parts:
+        svg_parts.append(f'  <text x="{width/2}" y="{metadata_y + 14}" class="metadata" text-anchor="middle">{" · ".join(line2_parts)}</text>\n')
 
     svg_parts.append('</svg>')
 
