@@ -1,5 +1,4 @@
-﻿#!/bin/bash
-set -e
+#!/bin/bash
 
 # Configuration
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -7,16 +6,16 @@ OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
 
-# Collect system info
-CPUTYPE=$(grep "model name" /proc/cpuinfo 2>/dev/null | uniq | cut -d':' -f2- | xargs)
+# Collect metadata
+GITCOMMIT=$(git log -1 | head -1 | cut -d' ' -f2)
+GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo "Clean" || echo "Uncommitted changes" )
+TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+CPUTYPE=$(grep "model name" /proc/cpuinfo 2>/dev/null | uniq | cut -d':' -f2-)
 if [ -z "${CPUTYPE}" ] ; then
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null || echo "Unknown")
 fi
 CPUTYPE="${CPUTYPE//[^[:alnum:]_. -]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
-GITCOMMIT=$(git log -1 | head -1 | cut -d' ' -f2)
-GITCLEANSTATUS=$([ -z \"$(git status --porcelain)\" ] && echo "Clean" || echo "Uncommitted changes")
-TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
@@ -34,6 +33,45 @@ echo
 # Create directories
 mkdir -p "$WORK_DIR"
 mkdir -p "$OUTPUT_DIR"
+
+# Add this function
+run_loc_benchmark() {
+    echo
+    echo "========================================"
+    echo "Running lines-of-code comparison..."
+    echo "========================================"
+
+    # Clone the allocator source repos that count-locs.sh needs
+    cd "$WORK_DIR"
+
+    echo "Cloning allocator sources for LOC comparison..."
+
+    [ -d "glibc" ] || git clone --depth 1 https://sourceware.org/git/glibc.git
+    [ -d "jemalloc" ] || git clone --depth 1 https://github.com/jemalloc/jemalloc
+    [ -d "snmalloc" ] || git clone --depth 1 https://github.com/microsoft/snmalloc
+    [ -d "mimalloc" ] || git clone --depth 1 https://github.com/microsoft/mimalloc
+    [ -d "rpmalloc" ] || git clone --depth 1 https://github.com/mjansson/rpmalloc
+    [ -d "smalloc" ] || git clone --depth 1 https://github.com/zooko/smalloc
+
+    # Run count-locs.sh and capture output
+    echo "Counting lines of code..."
+    "../count-locs.sh" > "loc-output.txt" 2>&1
+
+    # Generate graph using Python script
+    # (You can put locs-graph.py in bench-allocators repo or smalloc repo)
+    python3 "../locs-graph.py" \
+        "loc-output.txt" \
+        --commit "$GITCOMMIT" \
+        --git-status "$GITCLEANSTATUS" \
+        --cpu "$CPUTYPE" \
+        --os "$OSTYPESTR" \
+        --graph "../$OUTPUT_DIR/locs.graph.svg"
+
+    # Copy results
+    cp "loc-output.txt" "../locs.result.txt" 2>/dev/null || true
+
+    cd - > /dev/null
+}
 
 # Function to run benchmark in a repo
 run_benchmark() {
@@ -99,6 +137,10 @@ Allocators:
   [rpmalloc-rs](https://github.com/EmbarkStudios/rpmalloc-rs) Rust wrappers
 - [smalloc](https://github.com/zooko/smalloc): (written in Rust)
 
+Count Lines-of-Code:
+
+- the number of lines of source code (excluding debug assertions) in the allocator implementation
+
 Work-loads:
 
 - [simd-json](https://github.com/simd-lite/simd-json): High-performance JSON parser ([fork for
@@ -106,8 +148,29 @@ Work-loads:
 - [rebar](https://github.com/BurntSushi/rebar): Regex engine benchmark harness ([fork for
   benchmarking](https://github.com/zooko/simd-json))
 
-**CPU:** $CPUTYPE  
-**OS:** $OSTYPE  
+**CPU:** $CPUTYPE **OS:** $OSTYPE  
+
+---
+
+## Lines of Code Comparison
+
+### Code Size Graph
+
+![Lines of code by allocator](locs.graph.svg)
+
+### Detailed Results
+
+[View detailed LOC results](locs.result.txt)
+
+---
+
+## Summary
+
+All three analyses show different aspects of allocator characteristics:
+
+- **Lines of Code** compares implementation complexity (excluding debug assertions)
+- **simd-json** tests memory allocation performance in JSON parsing workloads
+- **rebar** tests memory allocation performance in regex compilation and matching  
 
 ---
 
@@ -150,7 +213,7 @@ Both benchmarks show allocator performance impact in real-world Rust application
 - Results show percentage differences from baseline (system allocator)
 - Lower percentages = better performance (less time)
 
-### How to Read the Graphs
+### How to Read the Performance Graphs
 
 - **Baseline (default)**: The system allocator, shown at 100%
 - **Negative percentages**: Faster than baseline (e.g., -3% means 3% faster)

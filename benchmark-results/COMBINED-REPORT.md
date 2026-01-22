@@ -16,6 +16,10 @@ Allocators:
   [rpmalloc-rs](https://github.com/EmbarkStudios/rpmalloc-rs) Rust wrappers
 - [smalloc](https://github.com/zooko/smalloc): (written in Rust)
 
+Count Lines-of-Code:
+
+- the number of lines of source code (excluding debug assertions) in the allocator implementation
+
 Work-loads:
 
 - [simd-json](https://github.com/simd-lite/simd-json): High-performance JSON parser ([fork for
@@ -25,6 +29,28 @@ Work-loads:
 
 **CPU:** Apple M4 Max  
 **OS:** darwin25  
+
+---
+
+## Lines of Code Comparison
+
+### Code Size Graph
+
+![Lines of code by allocator](locs.graph.svg)
+
+### Detailed Results
+
+[View detailed LOC results](locs.result.txt)
+
+---
+
+## Summary
+
+All three analyses show different aspects of allocator characteristics:
+
+- **Lines of Code** compares implementation complexity (excluding debug assertions)
+- **simd-json** tests memory allocation performance in JSON parsing workloads
+- **rebar** tests memory allocation performance in regex compilation and matching  
 
 ---
 
@@ -55,26 +81,19 @@ Work-loads:
 
 ## Summary
 
-Both benchmarks show allocator performance impact on real-world Rust applications:
+Both benchmarks show allocator performance impact in real-world Rust applications:
 
 - **simd-json** tests memory allocation patterns in JSON parsing workloads
 - **rebar** tests memory allocation patterns in regex compilation and matching
 
-### Key Findings
-
-Compare the graphs above to see:
-1. Which allocators consistently perform well across different workload types
-2. Whether certain allocators excel at specific types of memory usage patterns
-3. The magnitude of performance differences (typically 1-10% range)
-
 ### Methodology
 
 - Each allocator is tested using identical code with only the global allocator changed
-- Benchmarks calculate geometric mean of normalized performance ratios across all tests
+- Summary is the mean of normalized performance ratios across all tests
 - Results show percentage differences from baseline (system allocator)
-- Lower percentages = better performance (less overhead)
+- Lower percentages = better performance (less time)
 
-### How to Read the Graphs
+### How to Read the Performance Graphs
 
 - **Baseline (default)**: The system allocator, shown at 100%
 - **Negative percentages**: Faster than baseline (e.g., -3% means 3% faster)
@@ -85,6 +104,6 @@ Compare the graphs above to see:
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** 79176879dd1b1954522b029e40497ed186379f32  
+**git commit:** 4c97366bbae1a9a941fc29375167f6f221f39568  
 **git clean status:** Uncommitted changes  
-**generated:** 2026-01-21 05:11:50 UTC  
+**generated:** 2026-01-21 23:42:54 UTC  
