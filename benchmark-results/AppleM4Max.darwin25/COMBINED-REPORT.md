@@ -57,7 +57,7 @@ Work-loads:
 
 ## Summary
 
-- **Lines of Code** compares implementation complexity (excluding debug assertions)  
+- **Lines of Code** compares implementation size (excluding debug assertions)  
 - **simd-json** tests memory allocation performance in simd-json (JSON parsing)  
 - **rebar** tests memory allocation performance in rebar (regex compilation and matching)  
 
@@ -79,6 +79,6 @@ Work-loads:
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** 5e6a449c2d24199b500625ed746a447cc6b0f888  
-**git clean status:** Uncommitted changes  
-**generated:** 2026-01-22 06:14:08 UTC  
+**git commit:** e0a8dfa798a73be005820a3f7c677d9196d9bf3c  
+**git clean status:** Clean  
+**generated:** 2026-01-23 06:42:53 UTC  

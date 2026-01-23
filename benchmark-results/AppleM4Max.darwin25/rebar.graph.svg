@@ -28,21 +28,21 @@
   <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="121.65410637432262" width="90.66666666666666" height="278.3458936256774" class="bar" fill="#42a5f5"/>
-  <text x="250.0" y="116.65410637432262" class="value" text-anchor="middle">-2%</text>
+  <rect x="204.66666666666666" y="122.83828091835346" width="90.66666666666666" height="277.16171908164654" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="117.83828091835346" class="value" text-anchor="middle">-2%</text>
   <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="136.49063153101713" width="90.66666666666666" height="263.50936846898287" class="bar" fill="#26a69a"/>
-  <text x="363.33333333333326" y="131.49063153101713" class="value" text-anchor="middle">-7%</text>
+  <rect x="317.99999999999994" y="135.32606376632464" width="90.66666666666666" height="264.67393623367536" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="130.32606376632464" class="value" text-anchor="middle">-7%</text>
   <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="130.98239045572734" width="90.66666666666666" height="269.01760954427266" class="bar" fill="#ffca28"/>
-  <text x="476.66666666666663" y="125.98239045572734" class="value" text-anchor="middle">-5%</text>
+  <rect x="431.3333333333333" y="130.99216876965215" width="90.66666666666666" height="269.00783123034785" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="125.99216876965215" class="value" text-anchor="middle">-5%</text>
   <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="133.2216309544266" width="90.66666666666666" height="266.7783690455734" class="bar" fill="#ff7043"/>
-  <text x="590.0" y="128.2216309544266" class="value" text-anchor="middle">-6%</text>
+  <rect x="544.6666666666666" y="132.69081034971157" width="90.66666666666666" height="267.30918965028843" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="127.69081034971157" class="value" text-anchor="middle">-6%</text>
   <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="132.4554740056621" width="90.66666666666666" height="267.5445259943379" class="bar" fill="#66bb6a"/>
-  <text x="703.3333333333334" y="127.4554740056621" class="value" text-anchor="middle">-6%</text>
+  <rect x="658.0" y="133.1600254778009" width="90.66666666666666" height="266.8399745221991" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="128.1600254778009" class="value" text-anchor="middle">-6%</text>
   <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 83f8713590c9 · Git status: "Clean"</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 907c4d09d2b1 · Git status: "Clean"</text>
   <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
 </svg>

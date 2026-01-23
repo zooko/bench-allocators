@@ -1,23 +1,23 @@
 Engine               Version  Geometric mean of speed ratios  Benchmark count
 ------               -------  ------------------------------  ---------------
-rust/regex-snmalloc  1.12.2   1.01                            52
-rust/regex-rpmalloc  1.12.2   1.02                            52
-rust/regex-smalloc   1.12.2   1.03                            52
+rust/regex-snmalloc  1.12.2   1.02                            52
+rust/regex-smalloc   1.12.2   1.02                            52
+rust/regex-rpmalloc  1.12.2   1.03                            52
 rust/regex-mimalloc  1.12.2   1.03                            52
-rust/regex-jemalloc  1.12.2   1.07                            52
+rust/regex-jemalloc  1.12.2   1.06                            52
 rust/regex           1.12.2   1.09                            52
 Allocator      Geo Mean Ratio   Geo Mean Delta   Test Count
 ------------------------------------------------------------
 default                1.0000           +0.00%           52
-jemalloc               0.9824           -1.76%           52
-snmalloc               0.9300           -7.00%           52
-mimalloc               0.9495           -5.05%           52
-rpmalloc               0.9416           -5.84%           52
-smalloc                0.9443           -5.57%           52
+jemalloc               0.9782           -2.18%           52
+snmalloc               0.9341           -6.59%           52
+mimalloc               0.9494           -5.06%           52
+rpmalloc               0.9434           -5.66%           52
+smalloc                0.9418           -5.82%           52
 
 Interpretation:
 - Geo Mean Ratio: If baseline takes 1.0s, candidate takes this many seconds (geometric mean)
 - Geo Mean Delta: Percentage difference from baseline (geometric mean)
 - Lower ratios/deltas are better (less overhead)
 
-📊 Graph saved to: tmp/rebar.graph.AppleM4Max.darwin25.svg
+📊 Graph saved to: ./benchmark-results/AppleM4Max.darwin25/rebar.graph.svg
