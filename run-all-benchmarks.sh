@@ -180,7 +180,7 @@ Work-loads:
 
 ## Summary
 
-- **Lines of Code** compares implementation complexity (excluding debug assertions)  
+- **Lines of Code** compares implementation size (excluding debug assertions)  
 - **simd-json** tests memory allocation performance in simd-json (JSON parsing)  
 - **rebar** tests memory allocation performance in rebar (regex compilation and matching)  
 
