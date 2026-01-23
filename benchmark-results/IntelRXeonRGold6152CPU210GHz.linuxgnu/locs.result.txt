@@ -1,0 +1,26 @@
+smalloc
+~/playground/bench-allocators/benchmark-workspace/smalloc/smalloc ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 7: tokei: command not found
+smalloc-ffi
+../count-locs.sh: line 15: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace
+rpmalloc
+~/playground/bench-allocators/benchmark-workspace/rpmalloc/rpmalloc ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 23: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace
+glibc
+~/playground/bench-allocators/benchmark-workspace/glibc/malloc ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 31: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace
+mimalloc
+~/playground/bench-allocators/benchmark-workspace/mimalloc/src ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 39: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace
+snmalloc
+~/playground/bench-allocators/benchmark-workspace/snmalloc/src ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 47: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace
+jemalloc
+~/playground/bench-allocators/benchmark-workspace/jemalloc/src ~/playground/bench-allocators/benchmark-workspace
+../count-locs.sh: line 55: tokei: command not found
+~/playground/bench-allocators/benchmark-workspace

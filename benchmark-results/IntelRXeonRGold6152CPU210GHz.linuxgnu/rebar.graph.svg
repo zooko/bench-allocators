@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <style>
+    .bar { stroke: none; }
+    .axis { stroke: #333; stroke-width: 1; }
+    .grid { stroke: #ddd; stroke-width: 0.5; }
+    .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 12px; fill: #333; }
+    .value { font-family: monospace; font-size: 11px; fill: #999; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
+    .metadata { font-family: monospace; font-size: 10px; fill: #666; }
+  </style>
+  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—time (lower is better)</text>
+  <line x1="80" y1="60" x2="80" y2="400" class="axis"/>
+  <line x1="80" y1="400" x2="760" y2="400" class="axis"/>
+  <line x1="80" y1="400.0" x2="760" y2="400.0" class="grid"/>
+  <text x="70" y="404.0" class="label" text-anchor="end">0%</text>
+  <line x1="80" y1="343.33333333333337" x2="760" y2="343.33333333333337" class="grid"/>
+  <text x="70" y="347.33333333333337" class="label" text-anchor="end">20%</text>
+  <line x1="80" y1="286.6666666666667" x2="760" y2="286.6666666666667" class="grid"/>
+  <text x="70" y="290.6666666666667" class="label" text-anchor="end">40%</text>
+  <line x1="80" y1="230.0" x2="760" y2="230.0" class="grid"/>
+  <text x="70" y="234.0" class="label" text-anchor="end">60%</text>
+  <line x1="80" y1="173.33333333333334" x2="760" y2="173.33333333333334" class="grid"/>
+  <text x="70" y="177.33333333333334" class="label" text-anchor="end">80%</text>
+  <line x1="80" y1="116.66666666666666" x2="760" y2="116.66666666666666" class="grid"/>
+  <text x="70" y="120.66666666666666" class="label" text-anchor="end">100%</text>
+  <line x1="80" y1="60.0" x2="760" y2="60.0" class="grid"/>
+  <text x="70" y="64.0" class="label" text-anchor="end">120%</text>
+  <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#ab47bc"/>
+  <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
+  <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
+  <rect x="204.66666666666666" y="149.96146599419518" width="90.66666666666666" height="250.03853400580482" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="144.96146599419518" class="value" text-anchor="middle">-12%</text>
+  <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
+  <rect x="317.99999999999994" y="151.02376543188552" width="90.66666666666666" height="248.97623456811448" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="146.02376543188552" class="value" text-anchor="middle">-12%</text>
+  <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
+  <rect x="431.3333333333333" y="140.62232984156424" width="90.66666666666666" height="259.37767015843576" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="135.62232984156424" class="value" text-anchor="middle">-8%</text>
+  <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
+  <rect x="544.6666666666666" y="140.392907136977" width="90.66666666666666" height="259.607092863023" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="135.392907136977" class="value" text-anchor="middle">-8%</text>
+  <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
+  <rect x="658.0" y="140.7188794118125" width="90.66666666666666" height="259.2811205881875" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="135.7188794118125" class="value" text-anchor="middle">-8%</text>
+  <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 907c4d09d2b1 · Git status: "Clean"</text>
+  <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU:  Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz · OS: linuxgnu</text>
+</svg>
