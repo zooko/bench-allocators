@@ -9,13 +9,15 @@ REBAR_REPO="https://github.com/zooko/rebar"
 GITCOMMIT=$(git log -1 | head -1 | cut -d' ' -f2)
 GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo "Clean" || echo "Uncommitted changes" )
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+# CPU type on linuxy
 CPUTYPE=$(grep "model name" /proc/cpuinfo 2>/dev/null | uniq | cut -d':' -f2-)
 if [ -z "${CPUTYPE}" ] ; then
+    # CPU type on macos
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null || echo "Unknown")
 fi
 CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
-
 CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
 
@@ -59,8 +61,6 @@ run_loc_benchmark() {
     echo "Counting lines of code..."
     "../count-locs.sh" > "loc-output.txt" 2>&1
 
-    # Generate graph using Python script
-    # (You can put locs-graph.py in bench-allocators repo or smalloc repo)
     python3 "../locs-graph.py" \
         "loc-output.txt" \
         --commit "$GITCOMMIT" \
@@ -103,8 +103,8 @@ run_benchmark() {
     popd
     
     # Copy results
-    cp $dir/tmp/${name}.result.${CPUSTR_DOT_OSSTR}.txt "$OUTPUT_DIR/${name}.result.txt"
-    cp $dir/tmp/${name}.graph.${CPUSTR_DOT_OSSTR}.svg "$OUTPUT_DIR/${name}.graph.svg"
+    cp $dir/${OUTPUT_DIR}/${name}.result.txt "$OUTPUT_DIR/${name}.result.txt"
+    cp $dir/${OUTPUT_DIR}/${name}.graph.svg "$OUTPUT_DIR/${name}.graph.svg"
 }
 
 # Run benchmarks
