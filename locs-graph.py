@@ -17,18 +17,18 @@ args = parser.parse_args()
 # Desired output order
 ALLOCATOR_ORDER = ['glibc', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'smalloc', 'smalloc + ffi']
 
-# Colors for each allocator
+# Allocator colors
 ALLOCATOR_COLORS = {
-    'default': '#ab47bc',       # purple
-    'glibc': '#5c6bc0',         # indigo
-    'jemalloc': '#42a5f5',      # blue
-    'snmalloc': '#26a69a',      # teal
-    'mimalloc': '#ffca28',      # amber
-    'rpmalloc': '#ff7043',      # deep orange
-    'smalloc': '#66bb6a',       # green
-    'smalloc + ffi': '#a5d6a7', # light green
+    'default': '#78909c',   # blue-grey (distinct from smalloc green)
+    'glibc': '#5c6bc0',     # indigo
+    'jemalloc': '#66bb6a',  # green
+    'snmalloc': '#ab47bc',  # purple
+    'mimalloc': '#ffca28',  # amber
+    'rpmalloc': '#ff7043',  # deep orange
+    'smalloc': '#42a5f5',   # blue
+    'smalloc + ffi': '#93c2f9', # light blue
 }
-UNKNOWN_ALLOCATOR_COLOR = '#fbbc04' # yellow
+UNKNOWN_ALLOCATOR_COLOR = '#9e9e9e'  # gray
 
 def parse_tokei_output(content):
     """Parse tokei output sections and extract total code lines."""
