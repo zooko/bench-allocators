@@ -1,5 +1,5 @@
-GITCOMMIT: 3ea4fc31f62a9b4f5f47641ddf79f49f58cd109b
-GITCLEANSTATUS: "Clean"
+GITCOMMIT: cbd9e19fe6a126ad8dd3da9c9a7c10ab742eb3eb
+GITCLEANSTATUS: "Uncommitted changes"
 CPUTYPE: Apple M4 Max
 OSTYPE: darwin25
 test                                                                            default                jemalloc                snmalloc                mimalloc                rpmalloc                 smalloc
@@ -26,20 +26,19 @@ twitter/simd_json::to_borrowed_value                                 413.60 µs 
 twitter/simd_json::to_borrowed_value_with_buffers                    424.03 µs (  0.0%)      402.95 µs ( -5.0%)      432.24 µs ( +1.9%)      372.64 µs (-12.1%)      365.78 µs (-13.7%)      377.96 µs (-10.9%)
 twitter/simd_json::to_owned_value                                    695.69 µs (  0.0%)      670.54 µs ( -3.6%)      570.60 µs (-18.0%)      507.32 µs (-27.1%)      463.64 µs (-33.4%)      474.84 µs (-31.7%)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-NORMALIZED (1s of baseline work per test)                              21.0 s  (      )        20.7 s  (      )        19.0 s  (      )        17.6 s  (      )        17.5 s  (      )        17.0 s  (      )
+NORMALIZED (1s of baseline work per test)                               21.0 s  (     )         20.7 s  (     )         19.0 s  (     )         17.6 s  (     )         17.5 s  (     )         17.0 s  (     )
 RELATIVE TO BASELINE                                                           ( +0.0%)                ( -1.6%)                ( -9.7%)                (-16.3%)                (-16.8%)                (-19.0%)
 
-====================================================
-COMPACT SUMMARY
-====================================================
+============================================================
+BENCHMARK SUMMARY
+============================================================
 
-Allocator     Total Time (1s per test)   vs Baseline
+Allocator    Total Time (1s per test)  vs Baseline
 ----------------------------------------------------
-default                         21.0 s      baseline
-jemalloc                        20.7 s         -1.6%
-snmalloc                        19.0 s         -9.7%
-mimalloc                        17.6 s        -16.3%
-rpmalloc                        17.5 s        -16.8%
-smalloc                         17.0 s        -19.0%
-
+default                        21.0 s     baseline
+jemalloc                       20.7 s        -1.6%
+snmalloc                       19.0 s        -9.7%
+mimalloc                       17.6 s       -16.3%
+rpmalloc                       17.5 s       -16.8%
+smalloc                        17.0 s       -19.0%
 📊 Graph saved to: ./benchmark-results/AppleM4Max.darwin25/simd-json.graph.svg
