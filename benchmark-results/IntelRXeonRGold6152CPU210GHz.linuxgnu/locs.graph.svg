@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+  <rect width="750" height="500" fill="#fafafa"/>
+  <style>
+    .bar { stroke: #fff; stroke-width: 1; }
+    .axis { stroke: #333; stroke-width: 1; }
+    .grid { stroke: #e0e0e0; stroke-width: 0.5; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #333; }
+    .value { font-family: monospace; font-size: 11px; fill: #555; }
+    .title { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
+    .metadata { font-family: monospace; font-size: 9px; fill: #888; }
+  </style>
+  <text x="375.0" y="35" class="title" text-anchor="middle">Lines of code by allocator (excluding assertions)</text>
+  <line x1="80" y1="60" x2="80" y2="380" class="axis"/>
+  <line x1="80" y1="380" x2="710" y2="380" class="axis"/>
+  <line x1="80" y1="380.0" x2="710" y2="380.0" class="grid"/>
+  <text x="70" y="384.0" class="label" text-anchor="end">0</text>
+  <line x1="80" y1="316.0" x2="710" y2="316.0" class="grid"/>
+  <text x="70" y="320.0" class="label" text-anchor="end">6,000</text>
+  <line x1="80" y1="252.0" x2="710" y2="252.0" class="grid"/>
+  <text x="70" y="256.0" class="label" text-anchor="end">12,000</text>
+  <line x1="80" y1="188.0" x2="710" y2="188.0" class="grid"/>
+  <text x="70" y="192.0" class="label" text-anchor="end">18,000</text>
+  <line x1="80" y1="124.0" x2="710" y2="124.0" class="grid"/>
+  <text x="70" y="128.0" class="label" text-anchor="end">24,000</text>
+  <line x1="80" y1="60.0" x2="710" y2="60.0" class="grid"/>
+  <text x="70" y="64.0" class="label" text-anchor="end">30,000</text>
+  <rect x="89.0" y="301.2373333333333" width="72.0" height="78.76266666666668" rx="3" ry="3" class="bar" fill="#5c6bc0"/>
+  <text x="125.0" y="293.2373333333333" class="value" text-anchor="middle">7,384</text>
+  <text x="125.0" y="400" class="label" text-anchor="middle">glibc</text>
+  <rect x="179.0" y="105.72800000000001" width="72.0" height="274.272" rx="3" ry="3" class="bar" fill="#42a5f5"/>
+  <text x="215.0" y="97.72800000000001" class="value" text-anchor="middle">25,713</text>
+  <text x="215.0" y="400" class="label" text-anchor="middle">jemalloc</text>
+  <rect x="269.0" y="244.23466666666667" width="72.0" height="135.76533333333333" rx="3" ry="3" class="bar" fill="#26a69a"/>
+  <text x="305.0" y="236.23466666666667" class="value" text-anchor="middle">12,728</text>
+  <text x="305.0" y="400" class="label" text-anchor="middle">snmalloc</text>
+  <rect x="359.0" y="272.88533333333334" width="72.0" height="107.11466666666666" rx="3" ry="3" class="bar" fill="#ffca28"/>
+  <text x="395.0" y="264.88533333333334" class="value" text-anchor="middle">10,042</text>
+  <text x="395.0" y="400" class="label" text-anchor="middle">mimalloc</text>
+  <rect x="449.0" y="353.2373333333333" width="72.0" height="26.762666666666668" rx="3" ry="3" class="bar" fill="#ff7043"/>
+  <text x="485.0" y="345.2373333333333" class="value" text-anchor="middle">2,509</text>
+  <text x="485.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
+  <rect x="539.0" y="376.36266666666666" width="72.0" height="3.6373333333333333" rx="3" ry="3" class="bar" fill="#66bb6a"/>
+  <text x="575.0" y="368.36266666666666" class="value" text-anchor="middle">341</text>
+  <text x="575.0" y="400" class="label" text-anchor="middle">smalloc</text>
+  <rect x="629.0" y="371.75466666666665" width="72.0" height="8.245333333333333" rx="3" ry="3" class="bar" fill="#a5d6a7"/>
+  <text x="665.0" y="363.75466666666665" class="value" text-anchor="middle">773</text>
+  <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
+  <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
+  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 2dfdcdb48082 · Git status: Clean</text>
+  <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: IntelRXeonRGold6152CPU210GHz · OS: linuxgnu</text>
+</svg>

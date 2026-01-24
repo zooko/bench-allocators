@@ -1,19 +1,30 @@
+GITCOMMIT: bf559ffc41a3c113e566254ca968c5ca661f8676
+GITCLEANSTATUS: Uncommitted changes
+CPUTYPE: Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz
+OSTYPE: linux-gnu
+
+========================================
+COMPILE BENCHMARKS ONLY
+========================================
 Engine               Version  Geometric mean of speed ratios  Benchmark count
 ------               -------  ------------------------------  ---------------
-rust/regex-snmalloc  1.12.2   1.03                            52
-rust/regex-jemalloc  1.12.2   1.04                            52
-rust/regex-smalloc   1.12.2   1.07                            52
-rust/regex-mimalloc  1.12.2   1.07                            52
-rust/regex-rpmalloc  1.12.2   1.08                            52
-rust/regex           1.12.2   1.17                            52
+rust/regex-snmalloc  1.12.2   1.00                            14
+rust/regex-mimalloc  1.12.2   1.07                            14
+rust/regex-jemalloc  1.12.2   1.10                            14
+rust/regex-rpmalloc  1.12.2   1.12                            14
+rust/regex-smalloc   1.12.2   1.14                            14
+rust/regex           1.12.2   1.57                            14
+
+Benchmarks included: 14
+
 Allocator      Geo Mean Ratio   Geo Mean Delta   Test Count
 ------------------------------------------------------------
-default                1.0000           +0.00%           52
-jemalloc               0.8825          -11.75%           52
-snmalloc               0.8787          -12.13%           52
-mimalloc               0.9155           -8.45%           52
-rpmalloc               0.9163           -8.37%           52
-smalloc                0.9151           -8.49%           52
+default                1.0000           +0.00%           14
+jemalloc               0.7014          -29.86%           14
+snmalloc               0.6388          -36.12%           14
+mimalloc               0.6857          -31.43%           14
+rpmalloc               0.7146          -28.54%           14
+smalloc                0.7307          -26.93%           14
 
 Interpretation:
 - Geo Mean Ratio: If baseline takes 1.0s, candidate takes this many seconds (geometric mean)

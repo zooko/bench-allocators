@@ -8,7 +8,7 @@
     .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
     .metadata { font-family: monospace; font-size: 10px; fill: #666; }
   </style>
-  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—time (lower is better)</text>
+  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—compile benchmarks only</text>
   <line x1="80" y1="60" x2="80" y2="400" class="axis"/>
   <line x1="80" y1="400" x2="760" y2="400" class="axis"/>
   <line x1="80" y1="400.0" x2="760" y2="400.0" class="grid"/>
@@ -28,21 +28,21 @@
   <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="149.96146599419518" width="90.66666666666666" height="250.03853400580482" class="bar" fill="#42a5f5"/>
-  <text x="250.0" y="144.96146599419518" class="value" text-anchor="middle">-12%</text>
+  <rect x="204.66666666666666" y="201.26211985142436" width="90.66666666666666" height="198.73788014857564" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="196.26211985142436" class="value" text-anchor="middle">-30%</text>
   <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="151.02376543188552" width="90.66666666666666" height="248.97623456811448" class="bar" fill="#26a69a"/>
-  <text x="363.33333333333326" y="146.02376543188552" class="value" text-anchor="middle">-12%</text>
+  <rect x="317.99999999999994" y="218.99284736853562" width="90.66666666666666" height="181.00715263146438" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="213.99284736853562" class="value" text-anchor="middle">-36%</text>
   <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="140.62232984156424" width="90.66666666666666" height="259.37767015843576" class="bar" fill="#ffca28"/>
-  <text x="476.66666666666663" y="135.62232984156424" class="value" text-anchor="middle">-8%</text>
+  <rect x="431.3333333333333" y="205.718476316803" width="90.66666666666666" height="194.281523683197" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="200.718476316803" class="value" text-anchor="middle">-31%</text>
   <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="140.392907136977" width="90.66666666666666" height="259.607092863023" class="bar" fill="#ff7043"/>
-  <text x="590.0" y="135.392907136977" class="value" text-anchor="middle">-8%</text>
+  <rect x="544.6666666666666" y="197.52160760924056" width="90.66666666666666" height="202.47839239075944" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="192.52160760924056" class="value" text-anchor="middle">-29%</text>
   <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="140.7188794118125" width="90.66666666666666" height="259.2811205881875" class="bar" fill="#66bb6a"/>
-  <text x="703.3333333333334" y="135.7188794118125" class="value" text-anchor="middle">-8%</text>
+  <rect x="658.0" y="192.97195286972502" width="90.66666666666666" height="207.02804713027498" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="187.97195286972502" class="value" text-anchor="middle">-27%</text>
   <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 907c4d09d2b1 · Git status: "Clean"</text>
-  <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU:  Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz · OS: linuxgnu</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: bf559ffc41a3 · Git status: Uncommitted changes</text>
+  <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU: Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz · OS: linuxgnu</text>
 </svg>

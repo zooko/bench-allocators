@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <style>
+    .bar { stroke: none; }
+    .axis { stroke: #333; stroke-width: 1; }
+    .grid { stroke: #ddd; stroke-width: 0.5; }
+    .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 12px; fill: #333; }
+    .value { font-family: monospace; font-size: 11px; fill: #999; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
+    .metadata { font-family: monospace; font-size: 10px; fill: #666; }
+  </style>
+  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of simd-json with different allocators—time (lower is better)</text>
+  <line x1="80" y1="60" x2="80" y2="380" class="axis"/>
+  <line x1="80" y1="380" x2="760" y2="380" class="axis"/>
+  <line x1="80" y1="380.0" x2="760" y2="380.0" class="grid"/>
+  <text x="70" y="384.0" class="label" text-anchor="end">0%</text>
+  <line x1="80" y1="321.8181818181818" x2="760" y2="321.8181818181818" class="grid"/>
+  <text x="70" y="325.8181818181818" class="label" text-anchor="end">20%</text>
+  <line x1="80" y1="263.6363636363637" x2="760" y2="263.6363636363637" class="grid"/>
+  <text x="70" y="267.6363636363637" class="label" text-anchor="end">40%</text>
+  <line x1="80" y1="205.45454545454547" x2="760" y2="205.45454545454547" class="grid"/>
+  <text x="70" y="209.45454545454547" class="label" text-anchor="end">60%</text>
+  <line x1="80" y1="147.2727272727273" x2="760" y2="147.2727272727273" class="grid"/>
+  <text x="70" y="151.2727272727273" class="label" text-anchor="end">80%</text>
+  <line x1="80" y1="89.09090909090914" x2="760" y2="89.09090909090914" class="grid"/>
+  <text x="70" y="93.09090909090914" class="label" text-anchor="end">100%</text>
+  <rect x="91.33333333333333" y="89.09090909090912" width="90.66666666666666" height="290.9090909090909" class="bar" fill="#ab47bc"/>
+  <text x="136.66666666666666" y="84.09090909090912" class="value" text-anchor="middle">100% (baseline)</text>
+  <text x="136.66666666666666" y="400" class="label" text-anchor="middle">default</text>
+  <rect x="204.66666666666666" y="155.50991975379708" width="90.66666666666666" height="224.49008024620292" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="150.50991975379708" class="value" text-anchor="middle">77%</text>
+  <text x="250.0" y="400" class="label" text-anchor="middle">jemalloc</text>
+  <rect x="317.99999999999994" y="167.14331855356465" width="90.66666666666666" height="212.85668144643535" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="162.14331855356465" class="value" text-anchor="middle">73%</text>
+  <text x="363.33333333333326" y="400" class="label" text-anchor="middle">snmalloc</text>
+  <rect x="431.3333333333333" y="171.502940259605" width="90.66666666666666" height="208.497059740395" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="166.502940259605" class="value" text-anchor="middle">72%</text>
+  <text x="476.66666666666663" y="400" class="label" text-anchor="middle">mimalloc</text>
+  <rect x="544.6666666666666" y="166.60237614695208" width="90.66666666666666" height="213.39762385304792" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="161.60237614695208" class="value" text-anchor="middle">73%</text>
+  <text x="590.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
+  <rect x="658.0" y="161.25093797680677" width="90.66666666666666" height="218.74906202319323" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="156.25093797680677" class="value" text-anchor="middle">75%</text>
+  <text x="703.3333333333334" y="400" class="label" text-anchor="middle">smalloc</text>
+  <text x="400.0" y="430" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 3ea4fc31f62a · Git status: "Uncommitted changes"</text>
+  <text x="400.0" y="444" class="metadata" text-anchor="middle">CPU: Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz · OS: linux-gnu</text>
+</svg>
