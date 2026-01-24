@@ -6,12 +6,12 @@ SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
 
 # Collect metadata
-GITCOMMIT=$(git log -1 | head -1 | cut -d' ' -f2)
+GITCOMMIT=$(git rev-parse HEAD)
 GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo "Clean" || echo "Uncommitted changes" )
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 # CPU type on linuxy
-CPUTYPE=$(grep "model name" /proc/cpuinfo 2>/dev/null | uniq | cut -d':' -f2-)
+CPUTYPE=$(grep -m1 "model name" /proc/cpuinfo 2>/dev/null | cut -d':' -f2-)
 if [ -z "${CPUTYPE}" ] ; then
     # CPU type on macos
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null || echo "Unknown")
@@ -20,6 +20,10 @@ CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
 CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
+
+# Create directories
+mkdir -p "$WORK_DIR"
+mkdir -p "$OUTPUT_DIR"
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
@@ -33,10 +37,6 @@ echo "Work directory: $WORK_DIR"
 echo "Output directory: $OUTPUT_DIR"
 echo "========================================"
 echo
-
-# Create directories
-mkdir -p "$WORK_DIR"
-mkdir -p "$OUTPUT_DIR"
 
 # Add this function
 run_loc_benchmark() {
