@@ -1,45 +1,17 @@
-GITCOMMIT: 3ea4fc31f62a9b4f5f47641ddf79f49f58cd109b
+GITCOMMIT: 76b9438cec84c24aa7c2e090334a898a0f4db926
 GITCLEANSTATUS: "Uncommitted changes"
 CPUTYPE: Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz
 OSTYPE: linux-gnu
-test                                                                            default                jemalloc                snmalloc                mimalloc                rpmalloc                 smalloc
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-apache_builds/simd_json::to_borrowed_value                           234.16 µs (  0.0%)      197.83 µs (-15.5%)      192.06 µs (-18.0%)      189.37 µs (-19.1%)      186.81 µs (-20.2%)      202.47 µs (-13.5%)
-apache_builds/simd_json::to_borrowed_value_with_buffers              259.87 µs (  0.0%)      193.91 µs (-25.4%)      185.35 µs (-28.7%)      187.02 µs (-28.0%)      184.85 µs (-28.9%)      201.66 µs (-22.4%)
-apache_builds/simd_json::to_owned_value                              499.88 µs (  0.0%)      267.04 µs (-46.6%)      220.91 µs (-55.8%)      225.50 µs (-54.9%)      241.46 µs (-51.7%)      292.84 µs (-41.4%)
-canada/simd_json::to_borrowed_value                                   15.25 ms (  0.0%)       10.55 ms (-30.8%)        8.43 ms (-44.7%)        7.79 ms (-48.9%)        9.84 ms (-35.5%)        8.32 ms (-45.5%)
-canada/simd_json::to_borrowed_value_with_buffers                      11.40 ms (  0.0%)       10.00 ms (-12.3%)        7.62 ms (-33.1%)        7.61 ms (-33.2%)        9.48 ms (-16.8%)        8.26 ms (-27.6%)
-canada/simd_json::to_owned_value                                      13.78 ms (  0.0%)       10.35 ms (-24.9%)        8.29 ms (-39.9%)        7.80 ms (-43.4%)        9.86 ms (-28.5%)        8.21 ms (-40.5%)
-citm_catalog/simd_json::to_borrowed_value                              4.31 ms (  0.0%)        2.84 ms (-34.2%)        2.92 ms (-32.4%)        2.60 ms (-39.6%)        2.55 ms (-40.8%)        2.87 ms (-33.4%)
-citm_catalog/simd_json::to_borrowed_value_with_buffers                 3.86 ms (  0.0%)        2.71 ms (-29.8%)        2.64 ms (-31.8%)        2.57 ms (-33.5%)        2.52 ms (-34.8%)        2.85 ms (-26.1%)
-citm_catalog/simd_json::to_owned_value                                 5.48 ms (  0.0%)        3.26 ms (-40.5%)        3.07 ms (-44.0%)        2.83 ms (-48.5%)        2.86 ms (-47.8%)        3.34 ms (-39.0%)
-event_stacktrace_10kb/simd_json::to_borrowed_value                     6.41 µs (  0.0%)        6.33 µs ( -1.1%)        5.94 µs ( -7.3%)        5.88 µs ( -8.3%)        5.75 µs (-10.3%)        5.76 µs (-10.0%)
-event_stacktrace_10kb/simd_json::to_borrowed_value_with_buffers        6.14 µs (  0.0%)        6.04 µs ( -1.5%)        5.69 µs ( -7.3%)        5.80 µs ( -5.4%)        5.55 µs ( -9.6%)        5.55 µs ( -9.5%)
-event_stacktrace_10kb/simd_json::to_owned_value                        7.64 µs (  0.0%)        6.62 µs (-13.3%)        6.23 µs (-18.5%)        6.22 µs (-18.5%)        6.55 µs (-14.2%)        6.45 µs (-15.6%)
-github_events/simd_json::to_borrowed_value                            96.56 µs (  0.0%)       80.91 µs (-16.2%)       79.83 µs (-17.3%)       79.69 µs (-17.5%)       79.16 µs (-18.0%)       81.10 µs (-16.0%)
-github_events/simd_json::to_borrowed_value_with_buffers               95.57 µs (  0.0%)       78.43 µs (-17.9%)       77.93 µs (-18.5%)       79.00 µs (-17.3%)       78.04 µs (-18.3%)       80.71 µs (-15.6%)
-github_events/simd_json::to_owned_value                              199.94 µs (  0.0%)      106.76 µs (-46.6%)       91.81 µs (-54.1%)       96.19 µs (-51.9%)      102.08 µs (-48.9%)      112.98 µs (-43.5%)
-log/simd_json::to_borrowed_value                                       3.40 µs (  0.0%)        3.19 µs ( -6.3%)        3.19 µs ( -6.3%)        3.19 µs ( -6.3%)        3.04 µs (-10.5%)        3.07 µs ( -9.7%)
-log/simd_json::to_borrowed_value_with_buffers                          3.05 µs (  0.0%)        3.00 µs ( -1.6%)        3.07 µs ( +0.7%)        3.01 µs ( -1.3%)        2.92 µs ( -4.3%)        2.96 µs ( -2.8%)
-log/simd_json::to_owned_value                                          6.93 µs (  0.0%)        3.66 µs (-47.2%)        3.67 µs (-47.0%)        3.83 µs (-44.7%)        3.88 µs (-44.0%)        4.36 µs (-37.1%)
-twitter/simd_json::to_borrowed_value                                   1.23 ms (  0.0%)        1.04 ms (-15.8%)        1.12 ms ( -9.0%)        1.03 ms (-16.7%)        1.00 ms (-18.7%)        1.02 ms (-17.6%)
-twitter/simd_json::to_borrowed_value_with_buffers                      1.20 ms (  0.0%)        1.02 ms (-15.0%)        1.07 ms (-10.4%)        1.02 ms (-15.1%)      993.57 µs (-16.9%)        1.00 ms (-16.0%)
-twitter/simd_json::to_owned_value                                      2.12 ms (  0.0%)        1.34 ms (-36.8%)        1.27 ms (-40.1%)        1.21 ms (-42.8%)        1.25 ms (-40.8%)        1.31 ms (-38.2%)
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-NORMALIZED (1s of baseline work per test)                              21.0 s  (      )        16.2 s  (      )        15.4 s  (      )        15.1 s  (      )        15.4 s  (      )        15.8 s  (      )
-RELATIVE TO BASELINE                                                           ( +0.0%)                (-22.8%)                (-26.8%)                (-28.3%)                (-26.6%)                (-24.8%)
 
-====================================================
-COMPACT SUMMARY
-====================================================
+Tests compared: 21
 
-Allocator     Total Time (1s per test)   vs Baseline
-----------------------------------------------------
-default                         21.0 s      baseline
-jemalloc                        16.2 s        -22.8%
-snmalloc                        15.4 s        -26.8%
-mimalloc                        15.1 s        -28.3%
-rpmalloc                        15.4 s        -26.6%
-smalloc                         15.8 s        -24.8%
+Allocator      Normalized Sum  vs Baseline
+--------------------------------------------
+default                  21.0     baseline
+jemalloc                 16.3       -22.5%
+snmalloc                 15.3       -27.1%
+mimalloc                 15.0       -28.8%
+rpmalloc                 15.4       -26.8%
+smalloc                  15.7       -25.2%
 
 📊 Graph saved to: ./benchmark-results/IntelRXeonRGold6152CPU210GHz.linuxgnu/simd-json.graph.svg
