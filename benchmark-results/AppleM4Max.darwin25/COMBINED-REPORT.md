@@ -79,6 +79,6 @@ Work-loads:
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** e0a8dfa798a73be005820a3f7c677d9196d9bf3c  
+**git commit:** 2dfdcdb48082f6c442fb806fea9a997009a1071e  
 **git clean status:** Clean  
-**generated:** 2026-01-23 06:42:53 UTC  
+**generated:** 2026-01-24 06:53:10 UTC  

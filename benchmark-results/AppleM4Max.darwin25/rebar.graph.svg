@@ -8,7 +8,7 @@
     .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
     .metadata { font-family: monospace; font-size: 10px; fill: #666; }
   </style>
-  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—time (lower is better)</text>
+  <text x="400.0" y="30" class="title" text-anchor="middle">Performance of rust/regex with different allocators—compile benchmarks only</text>
   <line x1="80" y1="60" x2="80" y2="400" class="axis"/>
   <line x1="80" y1="400" x2="760" y2="400" class="axis"/>
   <line x1="80" y1="400.0" x2="760" y2="400.0" class="grid"/>
@@ -28,21 +28,21 @@
   <rect x="91.33333333333333" y="116.66666666666663" width="90.66666666666666" height="283.33333333333337" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="111.66666666666663" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="420" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="122.83828091835346" width="90.66666666666666" height="277.16171908164654" class="bar" fill="#42a5f5"/>
-  <text x="250.0" y="117.83828091835346" class="value" text-anchor="middle">-2%</text>
+  <rect x="204.66666666666666" y="132.02097081766328" width="90.66666666666666" height="267.9790291823367" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="127.02097081766328" class="value" text-anchor="middle">-5%</text>
   <text x="250.0" y="420" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="135.32606376632464" width="90.66666666666666" height="264.67393623367536" class="bar" fill="#26a69a"/>
-  <text x="363.33333333333326" y="130.32606376632464" class="value" text-anchor="middle">-7%</text>
+  <rect x="317.99999999999994" y="178.94277635819847" width="90.66666666666666" height="221.05722364180153" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="173.94277635819847" class="value" text-anchor="middle">-22%</text>
   <text x="363.33333333333326" y="420" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="130.99216876965215" width="90.66666666666666" height="269.00783123034785" class="bar" fill="#ffca28"/>
-  <text x="476.66666666666663" y="125.99216876965215" class="value" text-anchor="middle">-5%</text>
+  <rect x="431.3333333333333" y="165.8180923872526" width="90.66666666666666" height="234.1819076127474" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="160.8180923872526" class="value" text-anchor="middle">-17%</text>
   <text x="476.66666666666663" y="420" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="132.69081034971157" width="90.66666666666666" height="267.30918965028843" class="bar" fill="#ff7043"/>
-  <text x="590.0" y="127.69081034971157" class="value" text-anchor="middle">-6%</text>
+  <rect x="544.6666666666666" y="170.47887740926421" width="90.66666666666666" height="229.52112259073579" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="165.47887740926421" class="value" text-anchor="middle">-19%</text>
   <text x="590.0" y="420" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="133.1600254778009" width="90.66666666666666" height="266.8399745221991" class="bar" fill="#66bb6a"/>
-  <text x="703.3333333333334" y="128.1600254778009" class="value" text-anchor="middle">-6%</text>
+  <rect x="658.0" y="181.33661147069847" width="90.66666666666666" height="218.66338852930153" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="176.33661147069847" class="value" text-anchor="middle">-23%</text>
   <text x="703.3333333333334" y="420" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 907c4d09d2b1 · Git status: "Clean"</text>
+  <text x="400.0" y="450" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: bf559ffc41a3 · Git status: Clean</text>
   <text x="400.0" y="464" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
 </svg>

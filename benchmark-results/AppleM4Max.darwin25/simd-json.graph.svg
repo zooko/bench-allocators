@@ -26,21 +26,21 @@
   <rect x="91.33333333333333" y="89.09090909090912" width="90.66666666666666" height="290.9090909090909" class="bar" fill="#ab47bc"/>
   <text x="136.66666666666666" y="84.09090909090912" class="value" text-anchor="middle">100% (baseline)</text>
   <text x="136.66666666666666" y="400" class="label" text-anchor="middle">default</text>
-  <rect x="204.66666666666666" y="94.01388221049967" width="90.66666666666666" height="285.9861177895003" class="bar" fill="#42a5f5"/>
-  <text x="250.0" y="89.01388221049967" class="value" text-anchor="middle">98%</text>
+  <rect x="204.66666666666666" y="93.81249564293637" width="90.66666666666666" height="286.18750435706363" class="bar" fill="#42a5f5"/>
+  <text x="250.0" y="88.81249564293637" class="value" text-anchor="middle">98%</text>
   <text x="250.0" y="400" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="317.99999999999994" y="112.0657486073635" width="90.66666666666666" height="267.9342513926365" class="bar" fill="#26a69a"/>
-  <text x="363.33333333333326" y="107.0657486073635" class="value" text-anchor="middle">92%</text>
+  <rect x="317.99999999999994" y="117.34325667825874" width="90.66666666666666" height="262.65674332174126" class="bar" fill="#26a69a"/>
+  <text x="363.33333333333326" y="112.34325667825874" class="value" text-anchor="middle">90%</text>
   <text x="363.33333333333326" y="400" class="label" text-anchor="middle">snmalloc</text>
-  <rect x="431.3333333333333" y="134.2396957603653" width="90.66666666666666" height="245.7603042396347" class="bar" fill="#ffca28"/>
-  <text x="476.66666666666663" y="129.2396957603653" class="value" text-anchor="middle">84%</text>
+  <rect x="431.3333333333333" y="136.4231754707491" width="90.66666666666666" height="243.5768245292509" class="bar" fill="#ffca28"/>
+  <text x="476.66666666666663" y="131.4231754707491" class="value" text-anchor="middle">84%</text>
   <text x="476.66666666666663" y="400" class="label" text-anchor="middle">mimalloc</text>
-  <rect x="544.6666666666666" y="136.59800071538746" width="90.66666666666666" height="243.40199928461254" class="bar" fill="#ff7043"/>
-  <text x="590.0" y="131.59800071538746" class="value" text-anchor="middle">84%</text>
+  <rect x="544.6666666666666" y="138.0593898159664" width="90.66666666666666" height="241.9406101840336" class="bar" fill="#ff7043"/>
+  <text x="590.0" y="133.0593898159664" class="value" text-anchor="middle">83%</text>
   <text x="590.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="658.0" y="143.93097907442348" width="90.66666666666666" height="236.06902092557652" class="bar" fill="#66bb6a"/>
-  <text x="703.3333333333334" y="138.93097907442348" class="value" text-anchor="middle">81%</text>
+  <rect x="658.0" y="144.47823781311328" width="90.66666666666666" height="235.52176218688672" class="bar" fill="#66bb6a"/>
+  <text x="703.3333333333334" y="139.47823781311328" class="value" text-anchor="middle">81%</text>
   <text x="703.3333333333334" y="400" class="label" text-anchor="middle">smalloc</text>
-  <text x="400.0" y="430" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 365e8a6a7824 · Git status: "Clean"</text>
+  <text x="400.0" y="430" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 3ea4fc31f62a · Git status: "Clean"</text>
   <text x="400.0" y="444" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
 </svg>
