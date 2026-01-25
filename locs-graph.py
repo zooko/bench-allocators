@@ -77,7 +77,7 @@ def parse_tokei_output(content):
     return results
 
 # Parse input
-with open(args.input_file, 'r') as f:
+with open(args.input_file, 'r', encoding="utf-8") as f:
     content = f.read()
 
 allocator_locs = parse_tokei_output(content)
@@ -124,7 +124,7 @@ if args.graph:
     actual_bar_width = bar_width - padding
 
     svg_parts = []
-    # Removed Google Fonts import - use system fonts only
+    svg_parts.append('<?xml version="1.0" encoding="UTF-8"?>')
     svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}">
   <rect width="{width}" height="{height}" fill="#fafafa"/>
   <style>
@@ -198,7 +198,7 @@ if args.graph:
 
     svg_parts.append('</svg>')
 
-    with open(args.graph, 'w') as f:
+    with open(args.graph, 'w' encoding="utf-8") as f:
         f.write(''.join(svg_parts))
 
-    print(f"\n📊 Graph saved to: {args.graph}")
+    print(f"\nGraph saved to: {args.graph}")
