@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" width="1000" height="550">
+  <rect width="1000" height="550" fill="white"/>
+  <style>
+    .title { font-family: sans-serif; font-size: 16px; font-weight: bold; fill: #333333; }
+    .subtitle { font-family: sans-serif; font-size: 12px; fill: #666666; }
+    .axis-label { font-family: sans-serif; font-size: 11px; fill: #666666; }
+    .tick-label { font-family: sans-serif; font-size: 10px; fill: #333333; }
+    .tick-label-minor { font-family: sans-serif; font-size: 9px; fill: #999999; }
+    .test-label { font-family: sans-serif; font-size: 11px; fill: #333333; }
+    .bar-label-value { font-family: sans-serif; font-size: 8px; fill: #333333; }
+    .bar-label-pct { font-family: sans-serif; font-size: 8px; fill: white; }
+    .legend-text { font-family: sans-serif; font-size: 10px; fill: #333333; }
+    .metadata { font-family: sans-serif; font-size: 9px; fill: #666666; }
+    .key-text { font-family: sans-serif; font-size: 9px; font-style: italic; fill: #666666; }
+    .grid-line-major { stroke: #cccccc; stroke-width: 1; }
+    .grid-line-minor { stroke: #e0e0e0; stroke-width: 0.5; stroke-dasharray: 4,3; }
+  </style>
+  <text x="500.0" y="30" class="title" text-anchor="middle">Single-Threaded Performance by Test</text>
+  <text x="500.0" y="48" class="subtitle" text-anchor="middle">(Time vs baseline, lower is better, linear scale)</text>
+  <text x="20" y="245.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 245.0)">Time vs Baseline (%, linear scale)</text>
+  <line x1="80" y1="410.0" x2="820" y2="410.0" class="grid-line-major"/>
+  <text x="72" y="413.0" class="tick-label" text-anchor="end">0%</text>
+  <line x1="80" y1="355.0" x2="820" y2="355.0" class="grid-line-major"/>
+  <text x="72" y="358.0" class="tick-label" text-anchor="end">20%</text>
+  <line x1="80" y1="300.0" x2="820" y2="300.0" class="grid-line-major"/>
+  <text x="72" y="303.0" class="tick-label" text-anchor="end">40%</text>
+  <line x1="80" y1="245.0" x2="820" y2="245.0" class="grid-line-major"/>
+  <text x="72" y="248.0" class="tick-label" text-anchor="end">60%</text>
+  <line x1="80" y1="190.0" x2="820" y2="190.0" class="grid-line-major"/>
+  <text x="72" y="193.0" class="tick-label" text-anchor="end">80%</text>
+  <line x1="80" y1="135.0" x2="820" y2="135.0" class="grid-line-major"/>
+  <text x="72" y="138.0" class="tick-label" text-anchor="end">100%</text>
+  <line x1="80" y1="80.0" x2="820" y2="80.0" class="grid-line-major"/>
+  <text x="72" y="83.0" class="tick-label" text-anchor="end">120%</text>
+  <line x1="80" y1="135.0" x2="820" y2="135.0" class="grid-line-line"/>
+  <line x1="80" y1="410" x2="820" y2="410" stroke="#333333" stroke-width="1"/>
+  <path d="M 104.66666666666667 410.0 L 136.55555555555557 410.0 L 136.55555555555557 138.0 A 3 3 0 0 0 133.55555555555557 135.0 L 107.66666666666667 135.0 A 3 3 0 0 0 104.66666666666667 138.0 Z" fill="#78909c"/>
+  <text x="120.61111111111111" y="130.0" class="bar-label-value" text-anchor="middle">21ns</text>
+  <path d="M 137.55555555555557 410.0 L 169.44444444444446 410.0 L 169.44444444444446 220.37327188940094 A 3 3 0 0 0 166.44444444444446 217.37327188940094 L 140.55555555555557 217.37327188940094 A 3 3 0 0 0 137.55555555555557 220.37327188940094 Z" fill="#66bb6a"/>
+  <text x="153.50000000000003" y="212.37327188940094" class="bar-label-value" text-anchor="middle">15ns</text>
+  <text x="153.50000000000003" y="231.37327188940094" class="bar-label-pct" text-anchor="middle">-30%</text>
+  <path d="M 170.44444444444446 410.0 L 202.33333333333334 410.0 L 202.33333333333334 273.5990783410138 A 3 3 0 0 0 199.33333333333334 270.5990783410138 L 173.44444444444446 270.5990783410138 A 3 3 0 0 0 170.44444444444446 273.5990783410138 Z" fill="#ab47bc"/>
+  <text x="186.3888888888889" y="265.5990783410138" class="bar-label-value" text-anchor="middle">11ns</text>
+  <text x="186.3888888888889" y="284.5990783410138" class="bar-label-pct" text-anchor="middle">-49%</text>
+  <path d="M 203.33333333333337 410.0 L 235.22222222222226 410.0 L 235.22222222222226 246.98617511520735 A 3 3 0 0 0 232.22222222222226 243.98617511520735 L 206.33333333333337 243.98617511520735 A 3 3 0 0 0 203.33333333333337 246.98617511520735 Z" fill="#ffca28"/>
+  <text x="219.27777777777783" y="238.98617511520735" class="bar-label-value" text-anchor="middle">13ns</text>
+  <text x="219.27777777777783" y="257.98617511520735" class="bar-label-pct" text-anchor="middle">-40%</text>
+  <path d="M 236.22222222222223 410.0 L 268.11111111111114 410.0 L 268.11111111111114 278.66820276497697 A 3 3 0 0 0 265.11111111111114 275.66820276497697 L 239.22222222222223 275.66820276497697 A 3 3 0 0 0 236.22222222222223 278.66820276497697 Z" fill="#ff7043"/>
+  <text x="252.16666666666669" y="270.66820276497697" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="252.16666666666669" y="289.66820276497697" class="bar-label-pct" text-anchor="middle">-51%</text>
+  <path d="M 269.11111111111114 410.0 L 301.00000000000006 410.0 L 301.00000000000006 301.47926267281105 A 3 3 0 0 0 298.00000000000006 298.47926267281105 L 272.11111111111114 298.47926267281105 A 3 3 0 0 0 269.11111111111114 301.47926267281105 Z" fill="#42a5f5"/>
+  <text x="285.0555555555556" y="293.47926267281105" class="bar-label-value" text-anchor="middle">8ns</text>
+  <text x="285.0555555555556" y="312.47926267281105" class="bar-label-pct" text-anchor="middle">-59%</text>
+  <text x="203.33333333333337" y="430" class="test-label" text-anchor="middle">adrww-1</text>
+  <path d="M 351.3333333333333 410.0 L 383.22222222222223 410.0 L 383.22222222222223 138.0 A 3 3 0 0 0 380.22222222222223 135.0 L 354.3333333333333 135.0 A 3 3 0 0 0 351.3333333333333 138.0 Z" fill="#78909c"/>
+  <text x="367.27777777777777" y="130.0" class="bar-label-value" text-anchor="middle">17ns</text>
+  <path d="M 384.22222222222223 410.0 L 416.11111111111114 410.0 L 416.11111111111114 210.6123595505618 A 3 3 0 0 0 413.11111111111114 207.6123595505618 L 387.22222222222223 207.6123595505618 A 3 3 0 0 0 384.22222222222223 210.6123595505618 Z" fill="#66bb6a"/>
+  <text x="400.1666666666667" y="202.6123595505618" class="bar-label-value" text-anchor="middle">13ns</text>
+  <text x="400.1666666666667" y="221.6123595505618" class="bar-label-pct" text-anchor="middle">-26%</text>
+  <path d="M 417.1111111111111 410.0 L 449.0 410.0 L 449.0 238.42134831460675 A 3 3 0 0 0 446.0 235.42134831460675 L 420.1111111111111 235.42134831460675 A 3 3 0 0 0 417.1111111111111 238.42134831460675 Z" fill="#ab47bc"/>
+  <text x="433.05555555555554" y="230.42134831460675" class="bar-label-value" text-anchor="middle">11ns</text>
+  <text x="433.05555555555554" y="249.42134831460675" class="bar-label-pct" text-anchor="middle">-37%</text>
+  <path d="M 450.0 410.0 L 481.8888888888889 410.0 L 481.8888888888889 224.51685393258433 A 3 3 0 0 0 478.8888888888889 221.51685393258433 L 453.0 221.51685393258433 A 3 3 0 0 0 450.0 224.51685393258433 Z" fill="#ffca28"/>
+  <text x="465.94444444444446" y="216.51685393258433" class="bar-label-value" text-anchor="middle">12ns</text>
+  <text x="465.94444444444446" y="235.51685393258433" class="bar-label-pct" text-anchor="middle">-31%</text>
+  <path d="M 482.8888888888889 410.0 L 514.7777777777778 410.0 L 514.7777777777778 246.14606741573033 A 3 3 0 0 0 511.7777777777778 243.14606741573033 L 485.8888888888889 243.14606741573033 A 3 3 0 0 0 482.8888888888889 246.14606741573033 Z" fill="#ff7043"/>
+  <text x="498.83333333333337" y="238.14606741573033" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="498.83333333333337" y="257.14606741573033" class="bar-label-pct" text-anchor="middle">-39%</text>
+  <path d="M 515.7777777777778 410.0 L 547.6666666666667 410.0 L 547.6666666666667 270.86516853932585 A 3 3 0 0 0 544.6666666666667 267.86516853932585 L 518.7777777777778 267.86516853932585 A 3 3 0 0 0 515.7777777777778 270.86516853932585 Z" fill="#42a5f5"/>
+  <text x="531.7222222222223" y="262.86516853932585" class="bar-label-value" text-anchor="middle">9ns</text>
+  <text x="531.7222222222223" y="281.86516853932585" class="bar-label-pct" text-anchor="middle">-48%</text>
+  <text x="450.0" y="430" class="test-label" text-anchor="middle">adww-1</text>
+  <path d="M 597.9999999999999 410.0 L 629.8888888888888 410.0 L 629.8888888888888 138.0 A 3 3 0 0 0 626.8888888888888 135.0 L 600.9999999999999 135.0 A 3 3 0 0 0 597.9999999999999 138.0 Z" fill="#78909c"/>
+  <text x="613.9444444444443" y="130.0" class="bar-label-value" text-anchor="middle">12ns</text>
+  <path d="M 630.8888888888888 410.0 L 662.7777777777777 410.0 L 662.7777777777777 243.2734375 A 3 3 0 0 0 659.7777777777777 240.2734375 L 633.8888888888888 240.2734375 A 3 3 0 0 0 630.8888888888888 243.2734375 Z" fill="#66bb6a"/>
+  <text x="646.8333333333333" y="235.2734375" class="bar-label-value" text-anchor="middle">7ns</text>
+  <text x="646.8333333333333" y="254.2734375" class="bar-label-pct" text-anchor="middle">-38%</text>
+  <path d="M 663.7777777777777 410.0 L 695.6666666666666 410.0 L 695.6666666666666 127.25781250000001 A 3 3 0 0 0 692.6666666666666 124.25781250000001 L 666.7777777777777 124.25781250000001 A 3 3 0 0 0 663.7777777777777 127.25781250000001 Z" fill="#ab47bc"/>
+  <text x="679.7222222222222" y="119.25781250000001" class="bar-label-value" text-anchor="middle">13ns</text>
+  <text x="679.7222222222222" y="138.2578125" class="bar-label-pct" text-anchor="middle">+4%</text>
+  <path d="M 696.6666666666665 410.0 L 728.5555555555554 410.0 L 728.5555555555554 196.00781250000003 A 3 3 0 0 0 725.5555555555554 193.00781250000003 L 699.6666666666665 193.00781250000003 A 3 3 0 0 0 696.6666666666665 196.00781250000003 Z" fill="#ffca28"/>
+  <text x="712.611111111111" y="188.00781250000003" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="712.611111111111" y="207.00781250000003" class="bar-label-pct" text-anchor="middle">-21%</text>
+  <path d="M 729.5555555555554 410.0 L 761.4444444444443 410.0 L 761.4444444444443 309.875 A 3 3 0 0 0 758.4444444444443 306.875 L 732.5555555555554 306.875 A 3 3 0 0 0 729.5555555555554 309.875 Z" fill="#ff7043"/>
+  <text x="745.4999999999999" y="301.875" class="bar-label-value" text-anchor="middle">4ns</text>
+  <text x="745.4999999999999" y="320.875" class="bar-label-pct" text-anchor="middle">-62%</text>
+  <path d="M 762.4444444444443 410.0 L 794.3333333333333 410.0 L 794.3333333333333 292.6875 A 3 3 0 0 0 791.3333333333333 289.6875 L 765.4444444444443 289.6875 A 3 3 0 0 0 762.4444444444443 292.6875 Z" fill="#42a5f5"/>
+  <text x="778.3888888888888" y="284.6875" class="bar-label-value" text-anchor="middle">5ns</text>
+  <text x="778.3888888888888" y="303.6875" class="bar-label-pct" text-anchor="middle">-56%</text>
+  <text x="696.6666666666665" y="430" class="test-label" text-anchor="middle">aww-1</text>
+  <rect x="840" y="90" width="12" height="12" fill="#78909c" rx="2"/>
+  <text x="858" y="100" class="legend-text">default</text>
+  <rect x="840" y="110" width="12" height="12" fill="#66bb6a" rx="2"/>
+  <text x="858" y="120" class="legend-text">jemalloc</text>
+  <rect x="840" y="130" width="12" height="12" fill="#ab47bc" rx="2"/>
+  <text x="858" y="140" class="legend-text">snmalloc</text>
+  <rect x="840" y="150" width="12" height="12" fill="#ffca28" rx="2"/>
+  <text x="858" y="160" class="legend-text">mimalloc</text>
+  <rect x="840" y="170" width="12" height="12" fill="#ff7043" rx="2"/>
+  <text x="858" y="180" class="legend-text">rpmalloc</text>
+  <rect x="840" y="190" width="12" height="12" fill="#42a5f5" rx="2"/>
+  <text x="858" y="200" class="legend-text">smalloc</text>
+  <text x="500.0" y="475" class="key-text" text-anchor="middle">Tests: adrww=alloc/dealloc/realloc and write, adww=alloc/dealloc and write, aww=alloc and write</text>
+  <text x="500.0" y="500" class="metadata" text-anchor="middle">Commit: 03cd955640f0 · Git status: &quot;&quot;Uncommitted changes&quot;&quot;</text>
+  <text x="500.0" y="515" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
+</svg>
