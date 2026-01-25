@@ -25,8 +25,10 @@ CPUTYPE=${CPUTYPE## }  # Trim leading space
 
 CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
-CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 
+CPUCOUNT=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo "${NUMBER_OF_PROCESSORS:-unknown}")
+
+CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
 
 # Create directories
@@ -36,10 +38,11 @@ mkdir -p "$OUTPUT_DIR"
 echo "========================================"
 echo "Allocator Benchmark Suite"
 echo "========================================"
-echo "CPU: $CPUTYPE"
-echo "OS: $OSTYPE"
 echo "git commit: $GITCOMMIT"
 echo "git clean status: $GITCLEANSTATUS"
+echo "CPU: $CPUTYPE"
+echo "OS: $OSTYPE"
+echo "CPU count: $CPUCOUNT"
 echo "Timestamp: $TIMESTAMP"
 echo "Work directory: $WORK_DIR"
 echo "Output directory: $OUTPUT_DIR"
