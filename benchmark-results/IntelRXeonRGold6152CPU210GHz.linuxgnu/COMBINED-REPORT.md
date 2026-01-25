@@ -1,33 +1,25 @@
 # Allocator Performance Benchmarks
 
-This report compares memory allocator performance in different codebases.
+This report compares memory allocator performance across different workloads.
 
-Allocators:
+## Allocators Tested
 
-- default: the default Rust global allocator, which in current Rust falls through to the system
-  allocator
-- [jemalloc](https://github.com/jemalloc/jemalloc): using
-  [tikv-jemallocator](https://github.com/tikv/jemallocator) Rust wrappers
-- [snmalloc](https://github.com/microsoft/snmalloc): using
-  [snmalloc-rs](https://github.com/SchrodingerZhu/snmalloc-rs) Rust wrappers
-- [mimalloc](https://github.com/microsoft/mimalloc): using
-  [mimalloc_rust](https://github.com/purpleprotocol/mimalloc_rust) Rust wrappers
-- [rpmalloc](https://github.com/mjansson/rpmalloc): using
-  [rpmalloc-rs](https://github.com/EmbarkStudios/rpmalloc-rs) Rust wrappers
-- [smalloc](https://github.com/zooko/smalloc): (written in Rust)
+- **default**: the default Rust global allocator (falls through to system allocator)
+- [jemalloc](https://github.com/jemalloc/jemalloc): using [tikv-jemallocator](https://github.com/tikv/jemallocator) Rust wrappers
+- [snmalloc](https://github.com/microsoft/snmalloc): using [snmalloc-rs](https://github.com/SchrodingerZhu/snmalloc-rs) Rust wrappers
+- [mimalloc](https://github.com/microsoft/mimalloc): using [mimalloc_rust](https://github.com/purpleprotocol/mimalloc_rust) Rust wrappers
+- [rpmalloc](https://github.com/mjansson/rpmalloc): using [rpmalloc-rs](https://github.com/EmbarkStudios/rpmalloc-rs) Rust wrappers
+- [smalloc](https://github.com/zooko/smalloc): a simple memory allocator (written in Rust)
 
-Count Lines-of-Code:
+## Workloads
 
-- the number of lines of source code (excluding debug assertions) in the allocator implementation
+- **Lines of Code**: Implementation size comparison (excluding debug assertions)
+- **simd-json**: High-performance JSON parser ([fork for benchmarking](https://github.com/zooko/simd-json))
+- **rebar**: Regex engine benchmark harness ([fork for benchmarking](https://github.com/zooko/rebar))
+- **smalloc bench**: Micro-benchmarks for malloc/free/realloc operations
 
-Work-loads:
-
-- [simd-json](https://github.com/simd-lite/simd-json): High-performance JSON parser ([fork for
-  benchmarking](https://github.com/zooko/simd-json))
-- [rebar](https://github.com/BurntSushi/rebar): Regex engine benchmark harness ([fork for
-  benchmarking](https://github.com/zooko/simd-json))
-
-**CPU:** Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz **OS:** linux-gnu  
+**CPU:** Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz
+**OS:** linux-gnu
 
 ---
 
@@ -55,16 +47,30 @@ Work-loads:
 
 ---
 
+## smalloc Micro-Benchmarks
+
+### Single-Threaded Performance
+
+![](smalloc-st.graph.svg)
+
+### Multi-Threaded Performance
+
+![](smalloc-mt.graph.svg)
+
+[View detailed smalloc benchmark results](smalloc.result.txt)
+
+---
+
 ## Summary
 
-- **Lines of Code** compares implementation size (excluding debug assertions)  
-- **simd-json** tests memory allocation performance in simd-json (JSON parsing)  
-- **rebar** tests memory allocation performance in rebar (regex compilation and matching)  
+- **Lines of Code** compares implementation size (excluding debug assertions)
+- **simd-json** tests allocator performance during JSON parsing
+- **rebar** tests allocator performance during regex compilation and matching
+- **smalloc bench** tests raw malloc/free/realloc performance in single and multi-threaded scenarios
 
 ### Methodology
 
 - Each allocator is tested using identical code with only the global allocator changed
-- Summary is the mean of normalized performance ratios across all tests
 - Results show percentage differences from baseline (system allocator)
 - Lower percentages = better performance (less time)
 
@@ -79,6 +85,6 @@ Work-loads:
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** 58684dab4879e0a5b0f8bd93fcd9aca9b9b495e3  
-**git clean status:** Clean  
-**generated:** 2026-01-24 19:02:18 UTC  
+**git commit:** 9ebb0c24e13d369a9ba7bec0f95074230b1dbd81
+**git clean status:** Clean
+**generated:** 2026-01-25 01:03:32 UTC
