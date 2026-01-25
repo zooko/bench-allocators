@@ -198,7 +198,7 @@ if args.graph:
 
     svg_parts.append('</svg>')
 
-    with open(args.graph, 'w' encoding="utf-8") as f:
+    with open(args.graph, 'w', encoding="utf-8") as f:
         f.write(''.join(svg_parts))
 
     print(f"\nGraph saved to: {args.graph}")
