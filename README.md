@@ -14,19 +14,12 @@ pandoc COMBINED-REPORT.md --standalone -o COMBINED-REPORT.html
 
 You can see some such reports committed into this git repo: [benchmark-results](benchmark-results).
 
-# smalloc's own bench tool
+Example:
 
-Someone should extend this script to git checkout and run `smalloc`'s `bench` executable. To do it
-manually in the meantime, get [the `smalloc` repo](https://github.com/zooko/smalloc) and run its
-`./runbench.sh` script.
-
-# mimalloc-bench
-
-Someone should extend this script to git checkout and run `mimalloc-bench`. To do it manually in the
-meantime, get this fork of the mimalloc-bench repo: https://github.com/zooko/mimalloc-bench and run
-its [bench-allocators.sh](https://github.com/zooko/mimalloc-bench/blob/master/bench-allocators.sh)
-script. (It works only on Linux in my experience.)
-
+<a href="https://github.com/zooko/bench-allocators/blob/main/benchmark-results/AppleM4Max.darwin25/COMBINED-REPORT.md">
+  <img src="https://raw.githubusercontent.com/zooko/bench-allocators/refs/heads/main/benchmark-results/AppleM4Max.darwin25/smalloc-mt.graph.svg" width="600">
+</a>
+    
 ## License
 
 You may use this work under the terms of any of these four Free and Open Source Software licences:
