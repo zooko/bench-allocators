@@ -1,0 +1,16 @@
+GITCOMMIT: c418d17a0864553b0d11f143cd4b35dae0d70141
+GITCLEANSTATUS: "Uncommitted changes"
+CPUTYPE: AMD Ryzen 9 3900X 12-Core Processor            
+OSTYPE: msys
+CPUCOUNT: 24
+
+Tests compared: 21
+
+Allocator      Normalized Sum  vs Baseline
+--------------------------------------------
+default                  21.0     baseline
+mimalloc                 14.9       -29.0%
+rpmalloc                 15.0       -28.4%
+smalloc                  15.5       -26.3%
+
+Graph saved to: ./benchmark-results/AMDRyzen93900X12CoreProcessor.msys/simd-json.graph.svg

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <rect width="800" height="450" fill="white"/>
+  <style>
+    .title { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; fill: #333333; }
+    .axis-label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #666666; }
+    .tick-label { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #666666; }
+    .bar-label-name { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #333333; }
+    .bar-label-value { font-family: monospace; font-size: 11px; fill: #555555; }
+    .bar-label-pct { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; fill: white; }
+    .metadata { font-family: monospace; font-size: 10px; fill: #666666; }
+    .grid-line { stroke: #cccccc; stroke-width: 0.5; }
+  </style>
+  <text x="400.0" y="35" class="title" text-anchor="middle">Performance of simd-json with different allocators—time (lower is better)</text>
+  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 3.08ms)</text>
+  <line x1="80" y1="350.0" x2="760" y2="350.0" class="grid-line"/>
+  <text x="70" y="354.0" class="tick-label" text-anchor="end">0</text>
+  <line x1="80" y1="299.5652173913044" x2="760" y2="299.5652173913044" class="grid-line"/>
+  <text x="70" y="303.5652173913044" class="tick-label" text-anchor="end">20</text>
+  <line x1="80" y1="249.1304347826087" x2="760" y2="249.1304347826087" class="grid-line"/>
+  <text x="70" y="253.1304347826087" class="tick-label" text-anchor="end">40</text>
+  <line x1="80" y1="198.69565217391306" x2="760" y2="198.69565217391306" class="grid-line"/>
+  <text x="70" y="202.69565217391306" class="tick-label" text-anchor="end">60</text>
+  <line x1="80" y1="148.2608695652174" x2="760" y2="148.2608695652174" class="grid-line"/>
+  <text x="70" y="152.2608695652174" class="tick-label" text-anchor="end">80</text>
+  <line x1="80" y1="97.82608695652175" x2="760" y2="97.82608695652175" class="grid-line"/>
+  <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100</text>
+  <line x1="80" y1="97.82608695652175" x2="760" y2="97.82608695652175" class="grid-line"/>
+  <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100</text>
+  <path d="M 105.5 350.0 L 224.5 350.0 L 224.5 105.82608695652175 A 8 8 0 0 0 216.5 97.82608695652175 L 113.5 97.82608695652175 A 8 8 0 0 0 105.5 105.82608695652175 Z" fill="#78909c"/>
+  <text x="165.0" y="370" class="bar-label-name" text-anchor="middle">default</text>
+  <text x="165.0" y="89.82608695652175" class="bar-label-value" text-anchor="middle">3.08ms</text>
+  <text x="165.0" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
+  <path d="M 275.5 350.0 L 394.5 350.0 L 394.5 178.87029624271537 A 8 8 0 0 0 386.5 170.87029624271537 L 283.5 170.87029624271537 A 8 8 0 0 0 275.5 178.87029624271537 Z" fill="#ffca28"/>
+  <text x="335.0" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
+  <text x="335.0" y="162.87029624271537" class="bar-label-value" text-anchor="middle">1.97ms</text>
+  <text x="335.0" y="188.87029624271537" class="bar-label-pct" text-anchor="middle">-29%</text>
+  <path d="M 445.5 350.0 L 564.5 350.0 L 564.5 177.44333554446445 A 8 8 0 0 0 556.5 169.44333554446445 L 453.5 169.44333554446445 A 8 8 0 0 0 445.5 177.44333554446445 Z" fill="#ff7043"/>
+  <text x="505.0" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
+  <text x="505.0" y="161.44333554446445" class="bar-label-value" text-anchor="middle">2.04ms</text>
+  <text x="505.0" y="187.44333554446445" class="bar-label-pct" text-anchor="middle">-28%</text>
+  <path d="M 615.5 350.0 L 734.5 350.0 L 734.5 172.09537318823178 A 8 8 0 0 0 726.5 164.09537318823178 L 623.5 164.09537318823178 A 8 8 0 0 0 615.5 172.09537318823178 Z" fill="#42a5f5"/>
+  <text x="675.0" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
+  <text x="675.0" y="156.09537318823178" class="bar-label-value" text-anchor="middle">2.02ms</text>
+  <text x="675.0" y="182.09537318823178" class="bar-label-pct" text-anchor="middle">-26%</text>
+  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: c418d17a0864 · Git status: &quot;Uncommitted changes&quot;</text>
+  <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU: AMD Ryzen 9 3900X 12-Core Processor             · OS: msys · CPU Count: 24</text>
+</svg>
