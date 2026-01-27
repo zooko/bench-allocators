@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 # Configuration
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -13,10 +13,9 @@ GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo "Clean" || echo "
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 # Detect CPU type
-if [ -f /proc/cpuinfo ]; then
-    # Linux
-    CPUTYPE=$(grep -m1 "model name" /proc/cpuinfo | cut -d':' -f2-)
-elif command -v sysctl >/dev/null 2>&1; then
+# try Linux first
+CPUTYPE=$(lscpu 2>/dev/null | grep -i "model name" | cut -d':' -f2-)
+if [ -z "${CPUTYPE}" ]; then
     # macOS
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null)
 fi
