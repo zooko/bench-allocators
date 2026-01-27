@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 # Configuration
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -48,6 +48,12 @@ echo "Output directory: $OUTPUT_DIR"
 echo "========================================"
 echo
 
+TEST_FOR_CARGO="$( cargo --help 2>/dev/null )"
+if [ -z "${TEST_FOR_CARGO}" ] ; then
+    echo "Need cargo installed."
+    exit 1
+fi
+
 # Lines-of-code benchmark
 run_loc_benchmark() {
     echo
@@ -55,6 +61,11 @@ run_loc_benchmark() {
     echo "Running lines-of-code comparison..."
     echo "========================================"
 
+    TEST_FOR_TOKEI="$( tokei --help 2>/dev/null )"
+    if [ -z "${TEST_FOR_TOKEI}" ] ; then
+        echo "Need tokei installed to generate lines-of-code comparison. Install it with `cargo install tokei`."
+        return 1
+    fi 
     pushd "$WORK_DIR"
 
     echo "Cloning allocator sources for LOC comparison..."
