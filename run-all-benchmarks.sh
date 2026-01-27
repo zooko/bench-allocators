@@ -93,6 +93,11 @@ run_loc_benchmark() {
 
 # Function to run benchmark in simd-json or rebar repos (standard interface)
 run_benchmark() {
+    if ! command -v cmake >/dev/null 2>&1; then
+        echo "Need cmake installed."
+        exit 1
+    fi
+
     local name=$1
     local repo=$2
     local dir="$WORK_DIR/$name"
