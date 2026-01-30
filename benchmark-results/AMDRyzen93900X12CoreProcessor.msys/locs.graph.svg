@@ -30,8 +30,8 @@
   <rect x="179.0" y="105.72800000000001" width="72.0" height="274.272" rx="3" ry="3" class="bar" fill="#66bb6a"/>
   <text x="215.0" y="97.72800000000001" class="value" text-anchor="middle">25,713</text>
   <text x="215.0" y="400" class="label" text-anchor="middle">jemalloc</text>
-  <rect x="269.0" y="244.23466666666667" width="72.0" height="135.76533333333333" rx="3" ry="3" class="bar" fill="#ab47bc"/>
-  <text x="305.0" y="236.23466666666667" class="value" text-anchor="middle">12,728</text>
+  <rect x="269.0" y="243.93599999999998" width="72.0" height="136.06400000000002" rx="3" ry="3" class="bar" fill="#ab47bc"/>
+  <text x="305.0" y="235.93599999999998" class="value" text-anchor="middle">12,756</text>
   <text x="305.0" y="400" class="label" text-anchor="middle">snmalloc</text>
   <rect x="359.0" y="272.88533333333334" width="72.0" height="107.11466666666666" rx="3" ry="3" class="bar" fill="#ffca28"/>
   <text x="395.0" y="264.88533333333334" class="value" text-anchor="middle">10,042</text>
@@ -42,10 +42,10 @@
   <rect x="539.0" y="376.36266666666666" width="72.0" height="3.6373333333333333" rx="3" ry="3" class="bar" fill="#42a5f5"/>
   <text x="575.0" y="368.36266666666666" class="value" text-anchor="middle">341</text>
   <text x="575.0" y="400" class="label" text-anchor="middle">smalloc</text>
-  <rect x="629.0" y="371.75466666666665" width="72.0" height="8.245333333333333" rx="3" ry="3" class="bar" fill="#93c2f9"/>
-  <text x="665.0" y="363.75466666666665" class="value" text-anchor="middle">773</text>
+  <rect x="629.0" y="371.7866666666667" width="72.0" height="8.213333333333333" rx="3" ry="3" class="bar" fill="#93c2f9"/>
+  <text x="665.0" y="363.7866666666667" class="value" text-anchor="middle">770</text>
   <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
   <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
-  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 6281121633c5 · Git status: Clean</text>
+  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 9bac5f56354e · Git status: "Clean"</text>
   <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: AMDRyzen93900X12CoreProcessor · OS: msys</text>
 </svg>

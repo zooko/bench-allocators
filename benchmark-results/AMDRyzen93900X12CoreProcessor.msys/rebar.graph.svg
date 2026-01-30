@@ -31,18 +31,18 @@
   <text x="165.0" y="370" class="bar-label-name" text-anchor="middle">default</text>
   <text x="165.0" y="89.82608695652175" class="bar-label-value" text-anchor="middle">14.0s</text>
   <text x="165.0" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
-  <path d="M 275.5 350.0 L 394.5 350.0 L 394.5 206.1424571774357 A 8 8 0 0 0 386.5 198.1424571774357 L 283.5 198.1424571774357 A 8 8 0 0 0 275.5 206.1424571774357 Z" fill="#ffca28"/>
+  <path d="M 275.5 350.0 L 394.5 350.0 L 394.5 207.3783099343369 A 8 8 0 0 0 386.5 199.3783099343369 L 283.5 199.3783099343369 A 8 8 0 0 0 275.5 207.3783099343369 Z" fill="#ffca28"/>
   <text x="335.0" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
-  <text x="335.0" y="190.1424571774357" class="bar-label-value" text-anchor="middle">8.43s</text>
-  <text x="335.0" y="216.1424571774357" class="bar-label-pct" text-anchor="middle">-40%</text>
-  <path d="M 445.5 350.0 L 564.5 350.0 L 564.5 210.23318980288954 A 8 8 0 0 0 556.5 202.23318980288954 L 453.5 202.23318980288954 A 8 8 0 0 0 445.5 210.23318980288954 Z" fill="#ff7043"/>
+  <text x="335.0" y="191.3783099343369" class="bar-label-value" text-anchor="middle">8.36s</text>
+  <text x="335.0" y="217.3783099343369" class="bar-label-pct" text-anchor="middle">-40%</text>
+  <path d="M 445.5 350.0 L 564.5 350.0 L 564.5 210.1368403855421 A 8 8 0 0 0 556.5 202.1368403855421 L 453.5 202.1368403855421 A 8 8 0 0 0 445.5 210.1368403855421 Z" fill="#ff7043"/>
   <text x="505.0" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
-  <text x="505.0" y="194.23318980288954" class="bar-label-value" text-anchor="middle">8.20s</text>
-  <text x="505.0" y="220.23318980288954" class="bar-label-pct" text-anchor="middle">-41%</text>
-  <path d="M 615.5 350.0 L 734.5 350.0 L 734.5 196.1569117976087 A 8 8 0 0 0 726.5 188.1569117976087 L 623.5 188.1569117976087 A 8 8 0 0 0 615.5 196.1569117976087 Z" fill="#42a5f5"/>
+  <text x="505.0" y="194.1368403855421" class="bar-label-value" text-anchor="middle">8.21s</text>
+  <text x="505.0" y="220.1368403855421" class="bar-label-pct" text-anchor="middle">-41%</text>
+  <path d="M 615.5 350.0 L 734.5 350.0 L 734.5 195.5683021580839 A 8 8 0 0 0 726.5 187.5683021580839 L 623.5 187.5683021580839 A 8 8 0 0 0 615.5 195.5683021580839 Z" fill="#42a5f5"/>
   <text x="675.0" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
-  <text x="675.0" y="180.1569117976087" class="bar-label-value" text-anchor="middle">8.99s</text>
-  <text x="675.0" y="206.1569117976087" class="bar-label-pct" text-anchor="middle">-36%</text>
-  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: fa341c826c58 · Git status: Uncommitted changes</text>
+  <text x="675.0" y="179.5683021580839" class="bar-label-value" text-anchor="middle">9.02s</text>
+  <text x="675.0" y="205.5683021580839" class="bar-label-pct" text-anchor="middle">-36%</text>
+  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: e1e502f9131d · Git status: Clean</text>
   <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU: AMD Ryzen 9 3900X 12-Core Processor             · OS: msys · CPU Count: 24</text>
 </svg>

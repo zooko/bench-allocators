@@ -85,6 +85,6 @@ This report compares memory allocator performance across different workloads.
 
 Source: https://github.com/zooko/bench-allocators
 
-**git commit:** 6281121633c55b16880fd18148278dc3a6f46595
-**git clean status:** Clean
-**generated:** 2026-01-26 05:03:19 UTC
+**git commit:** 9bac5f56354ef952c8aea54644f827759b147b32
+**git clean status:** "Clean"
+**generated:** 2026-01-30 20:14:22 UTC

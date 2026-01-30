@@ -1,16 +1,45 @@
-GITCOMMIT: c418d17a0864553b0d11f143cd4b35dae0d70141
-GITCLEANSTATUS: "Uncommitted changes"
+GITCOMMIT: f49aea298b5d250c729372dc1e3b931be8313432
+GITCLEANSTATUS: "Clean"
 CPUTYPE: AMD Ryzen 9 3900X 12-Core Processor            
 OSTYPE: msys
 CPUCOUNT: 24
 
+                                                                             default           mimalloc          rpmalloc          smalloc       
+                                                                         ----------------  ----------------  ----------------  ----------------  
+test                                                             weight   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)
+----                                                             ------  -------- -------  -------- -------  -------- -------  -------- -------
+log/simd_json::to_borrowed_value                                  10000      41.0 ( base)      38.3 (  -7%)      36.7 ( -10%)      36.9 ( -10%)
+log/simd_json::to_borrowed_value_with_buffers                     10000      37.2 ( base)      35.2 (  -5%)      35.4 (  -5%)      35.6 (  -4%)
+log/simd_json::to_owned_value                                     10000      88.8 ( base)      44.7 ( -50%)      45.6 ( -49%)      49.3 ( -44%)
+event_stacktrace_10kb/simd_json::to_borrowed_value                 1000       7.0 ( base)       6.5 (  -7%)       6.4 (  -8%)       6.5 (  -7%)
+event_stacktrace_10kb/simd_json::to_borrowed_value_with_buffers    1000       6.5 ( base)       6.2 (  -5%)       6.3 (  -4%)       6.3 (  -3%)
+event_stacktrace_10kb/simd_json::to_owned_value                    1000       9.0 ( base)       6.9 ( -24%)       7.0 ( -23%)       7.2 ( -20%)
+apache_builds/simd_json::to_borrowed_value                          100      29.8 ( base)      22.7 ( -24%)      22.9 ( -23%)      23.5 ( -21%)
+apache_builds/simd_json::to_borrowed_value_with_buffers             100      29.2 ( base)      22.3 ( -23%)      22.8 ( -22%)      23.3 ( -20%)
+apache_builds/simd_json::to_owned_value                             100      54.7 ( base)      26.1 ( -52%)      27.8 ( -49%)      31.1 ( -43%)
+github_events/simd_json::to_borrowed_value                          100      11.5 ( base)       9.4 ( -18%)       9.4 ( -18%)       9.6 ( -17%)
+github_events/simd_json::to_borrowed_value_with_buffers             100      11.1 ( base)       9.2 ( -17%)       9.4 ( -16%)       9.5 ( -15%)
+github_events/simd_json::to_owned_value                             100      21.9 ( base)      11.2 ( -49%)      11.9 ( -46%)      12.5 ( -43%)
+citm_catalog/simd_json::to_borrowed_value                            10      47.6 ( base)      28.4 ( -40%)      28.2 ( -41%)      38.3 ( -20%)
+citm_catalog/simd_json::to_borrowed_value_with_buffers               10      43.4 ( base)      28.1 ( -35%)      27.9 ( -36%)      38.2 ( -12%)
+citm_catalog/simd_json::to_owned_value                               10      58.9 ( base)      30.4 ( -48%)      31.1 ( -47%)      42.8 ( -27%)
+twitter/simd_json::to_borrowed_value                                 10      14.6 ( base)      11.0 ( -25%)      10.8 ( -26%)      11.1 ( -24%)
+twitter/simd_json::to_borrowed_value_with_buffers                    10      14.0 ( base)      10.8 ( -23%)      10.8 ( -23%)      11.0 ( -21%)
+twitter/simd_json::to_owned_value                                    10      24.9 ( base)      12.6 ( -49%)      13.0 ( -48%)      13.7 ( -45%)
+canada/simd_json::to_borrowed_value                                   1      14.3 ( base)       9.4 ( -34%)      10.0 ( -30%)       9.4 ( -34%)
+canada/simd_json::to_borrowed_value_with_buffers                      1      13.5 ( base)       9.3 ( -31%)       9.8 ( -27%)       9.4 ( -30%)
+canada/simd_json::to_owned_value                                      1      14.3 ( base)       9.5 ( -34%)      10.0 ( -30%)       9.3 ( -35%)
+-----------------------------------------------------------------------------------------------------------------------------------------------
+SUM                                                                         593.5 ( base)     388.5 ( -35%)     393.2 ( -34%)     434.6 ( -27%)
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
 Tests compared: 21
 
-Allocator      Normalized Sum  vs Baseline
---------------------------------------------
-default                  21.0     baseline
-mimalloc                 14.9       -29.0%
-rpmalloc                 15.0       -28.4%
-smalloc                  15.5       -26.3%
+Allocator       Weighted Sum vs Baseline
+--------------- ------------ -----------
+default                593.5    baseline
+mimalloc               388.5     ( -35%)
+rpmalloc               393.2     ( -34%)
+smalloc                434.6     ( -27%)
 
 Graph saved to: ./benchmark-results/AMDRyzen93900X12CoreProcessor.msys/simd-json.graph.svg

@@ -46,6 +46,6 @@
   <text x="665.0" y="363.7866666666667" class="value" text-anchor="middle">770</text>
   <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
   <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
-  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 5b59756ec99b · Git status: Clean</text>
+  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 9bac5f56354e · Git status: "Clean"</text>
   <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25</text>
 </svg>
