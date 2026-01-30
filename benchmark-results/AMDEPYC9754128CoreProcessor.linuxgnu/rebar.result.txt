@@ -1,0 +1,116 @@
+GITCOMMIT: e1e502f9131d8860effd00dc2bca587972ec5309
+GITCLEANSTATUS: Clean
+CPUTYPE:                           AMD EPYC 9754 128-Core Processor
+OSTYPE: linux-gnu
+CPUCOUNT: 256
+
+========================================
+COMPILE BENCHMARKS ONLY
+========================================
+Engine               Version  Geometric mean of speed ratios  Benchmark count
+------               -------  ------------------------------  ---------------
+rust/regex-snmalloc  1.12.2   1.00                            14
+rust/regex-mimalloc  1.12.2   1.03                            14
+rust/regex-rpmalloc  1.12.2   1.09                            14
+rust/regex-jemalloc  1.12.2   1.12                            14
+rust/regex-smalloc   1.12.2   1.16                            14
+rust/regex           1.12.2   1.41                            14
+
+Benchmarks analyzed: 14
+
+Allocator      Normalized Sum  vs Baseline
+--------------------------------------------
+default                 14.0s     baseline
+jemalloc                11.2s       -20.4%
+snmalloc                9.98s       -28.7%
+mimalloc                10.2s       -26.8%
+rpmalloc                10.8s       -22.8%
+smalloc                 11.6s       -17.3%
+
+Graph saved to: ./benchmark-results/AMDEPYC9754128CoreProcessor.linuxgnu/rebar.graph.svg
+
+name,model,rebar_version,engine,engine_version,err,haystack_len,iters,total,median,mad,mean,stddev,min,max
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,1093,4.51s,2.50ms,5.92us,2.50ms,12.18us,2.47ms,2.68ms
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,1510,4.51s,1.93ms,8.47us,1.93ms,15.60us,1.89ms,2.19ms
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,1295,4.51s,2.21ms,9.11us,2.22ms,14.75us,2.18ms,2.29ms
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,1387,4.51s,2.09ms,6.33us,2.09ms,13.37us,2.06ms,2.19ms
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,1454,4.51s,2.00ms,5.76us,2.00ms,9.34us,1.98ms,2.05ms
+curated/03-date/compile-ascii,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,1540,4.51s,1.88ms,3.71us,1.88ms,6.51us,1.86ms,1.93ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,278,4.51s,10.21ms,19.64us,10.22ms,45.12us,10.10ms,10.64ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,393,4.56s,7.50ms,23.67us,7.50ms,42.37us,7.43ms,7.96ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,358,4.51s,8.17ms,28.86us,8.18ms,123.21us,8.08ms,10.11ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,349,4.56s,8.47ms,24.23us,8.47ms,50.84us,8.39ms,9.07ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,370,4.56s,7.99ms,22.00us,7.99ms,31.90us,7.90ms,8.10ms
+curated/03-date/compile-unicode,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,397,4.56s,7.36ms,16.78us,7.36ms,24.66us,7.29ms,7.43ms
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,32640,4.57s,85.03us,671.00ns,85.48us,1.99us,81.48us,118.66us
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,51240,4.57s,53.87us,320.00ns,54.28us,1.56us,52.80us,139.53us
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,50177,4.57s,55.06us,210.00ns,55.43us,2.18us,53.99us,230.59us
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,40117,4.57s,69.13us,1.42us,69.36us,2.45us,62.84us,124.13us
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,48305,4.57s,57.26us,390.00ns,57.73us,1.96us,55.82us,140.73us
+curated/04-ruff-noqa/compile-real,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,53759,4.57s,51.36us,220.00ns,51.71us,1.91us,50.31us,226.21us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,6438,4.51s,446.72us,2.62us,447.18us,4.22us,436.79us,505.84us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,9491,4.51s,303.33us,2.45us,304.26us,4.39us,295.40us,352.23us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,8785,4.56s,328.37us,2.21us,329.20us,3.88us,321.54us,373.04us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,8985,4.51s,320.29us,2.45us,321.05us,4.23us,312.45us,379.95us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,9089,4.56s,316.25us,2.92us,317.92us,11.93us,307.23us,915.75us
+curated/05-lexer-veryl/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,9637,4.51s,298.50us,2.04us,299.66us,3.94us,293.39us,378.11us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,53428,4.57s,45.64us,680.00ns,45.88us,1.55us,43.66us,125.60us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,69186,4.62s,35.68us,200.00ns,35.75us,1.21us,33.65us,64.27us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,67224,4.57s,36.56us,160.00ns,36.77us,1.21us,35.68us,131.97us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,57993,4.57s,41.70us,540.00ns,41.79us,1.42us,38.79us,69.35us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,67055,4.57s,37.09us,470.00ns,36.92us,1.30us,35.14us,119.21us
+curated/07-unicode-character-data/compile,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,71570,4.57s,34.44us,220.00ns,34.48us,1.49us,32.46us,177.99us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,18348,4.56s,126.68us,1.05us,127.33us,2.65us,122.02us,189.94us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,25650,4.56s,92.27us,450.00ns,92.97us,3.94us,90.38us,305.19us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,24675,4.56s,94.57us,430.00ns,95.14us,2.10us,92.93us,149.72us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,23466,4.56s,100.75us,890.00ns,101.14us,2.17us,97.14us,146.66us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,24707,4.56s,95.37us,450.00ns,96.01us,2.21us,93.48us,143.12us
+curated/09-aws-keys/compile-full,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,26808,4.56s,86.93us,500.00ns,87.59us,2.56us,85.08us,293.21us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,89189,4.62s,24.63us,241.00ns,24.78us,0.97us,23.31us,66.35us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,118831,4.62s,18.34us,130.00ns,18.47us,843.00ns,17.66us,68.04us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,111997,4.62s,19.72us,129.00ns,19.85us,1.05us,19.09us,179.44us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,94024,4.62s,22.48us,369.00ns,22.61us,1.10us,20.76us,139.31us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,113319,4.62s,19.38us,140.00ns,19.50us,817.00ns,18.67us,50.06us
+curated/09-aws-keys/compile-quick,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,122474,4.63s,17.77us,110.00ns,17.89us,805.00ns,17.18us,44.95us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,23308,4.56s,102.41us,710.00ns,102.90us,2.25us,99.25us,184.88us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,34552,4.56s,65.86us,380.00ns,66.25us,2.45us,64.03us,286.12us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,31748,4.56s,72.36us,560.00ns,72.81us,1.96us,70.23us,134.56us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,29509,4.56s,77.89us,610.00ns,78.22us,1.75us,74.72us,112.61us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,31932,4.56s,72.35us,410.00ns,72.77us,1.77us,70.28us,102.16us
+curated/10-bounded-repeat/compile-context,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,35317,4.56s,64.09us,330.00ns,64.47us,1.70us,62.18us,119.90us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,21961,4.56s,111.04us,650.00ns,111.58us,2.23us,108.26us,193.69us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,32710,4.56s,70.82us,471.00ns,71.18us,1.84us,68.26us,158.05us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,28967,4.56s,81.27us,600.00ns,81.72us,1.96us,78.63us,138.38us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,29020,4.56s,80.27us,599.00ns,80.62us,2.08us,76.98us,176.43us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,29542,4.56s,79.91us,490.00ns,80.34us,1.94us,77.40us,132.50us
+curated/10-bounded-repeat/compile-capitals,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,32323,4.56s,72.36us,570.00ns,72.73us,1.79us,69.72us,101.34us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,72386,4.62s,29.24us,419.00ns,29.45us,1.38us,27.61us,123.28us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,91236,4.62s,23.01us,160.00ns,23.16us,926.00ns,22.17us,100.49us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,86987,4.62s,24.20us,131.00ns,24.35us,1.03us,23.43us,119.40us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,73649,4.57s,27.81us,359.00ns,27.94us,1.13us,25.98us,107.85us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,88712,4.62s,23.66us,139.00ns,23.81us,923.00ns,22.91us,80.52us
+curated/11-unstructured-to-json/compile,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,95406,4.62s,21.75us,140.00ns,21.89us,916.00ns,20.92us,67.70us
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,221,4.56s,13.48ms,24.44us,13.48ms,34.05us,13.40ms,13.63ms
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,285,4.56s,10.41ms,23.35us,10.48ms,592.14us,10.33ms,18.38ms
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,248,4.56s,12.01ms,43.10us,12.02ms,124.76us,11.84ms,12.88ms
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,248,4.56s,12.06ms,91.58us,12.02ms,159.17us,11.61ms,12.59ms
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,271,4.56s,10.96ms,31.50us,10.98ms,92.48us,10.85ms,11.26ms
+curated/12-dictionary/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,285,4.56s,10.44ms,18.89us,10.44ms,28.10us,10.37ms,10.52ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,110,4.56s,26.26ms,260.10us,26.21ms,442.07us,25.27ms,27.05ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,131,4.56s,22.13ms,105.37us,22.17ms,427.28us,21.43ms,23.68ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,119,4.56s,24.42ms,229.74us,24.37ms,355.59us,23.40ms,25.22ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,127,4.61s,22.69ms,197.45us,22.84ms,597.76us,21.64ms,24.60ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,129,4.56s,22.56ms,137.81us,22.47ms,267.63us,21.83ms,22.82ms
+curated/12-dictionary/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,131,4.56s,22.13ms,237.88us,22.01ms,426.53us,21.41ms,23.25ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,697,4.51s,3.84ms,10.37us,3.84ms,14.68us,3.79ms,3.90ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,967,4.51s,2.90ms,7.81us,2.90ms,15.04us,2.85ms,3.08ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,850,4.51s,3.22ms,22.41us,3.23ms,65.38us,3.16ms,3.98ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,923,4.51s,3.03ms,10.17us,3.03ms,20.81us,2.99ms,3.44ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,918,4.51s,3.06ms,8.02us,3.06ms,15.34us,3.03ms,3.15ms
+curated/13-noseyparker/compile-single,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,1001,4.51s,2.78ms,4.61us,2.78ms,8.97us,2.76ms,2.89ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex,1.12.2,,,591,4.51s,4.58ms,10.12us,4.58ms,16.22us,4.53ms,4.68ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-mimalloc,1.12.2,,,838,4.51s,3.35ms,7.83us,3.35ms,23.35us,3.32ms,3.80ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-jemalloc,1.12.2,,,742,4.51s,3.71ms,29.02us,3.72ms,47.34us,3.65ms,4.23ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-smalloc,1.12.2,,,783,4.51s,3.58ms,9.96us,3.58ms,29.21us,3.54ms,4.08ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-rpmalloc,1.12.2,,,788,4.51s,3.58ms,8.14us,3.58ms,13.84us,3.54ms,3.65ms
+curated/13-noseyparker/compile-multi,compile,0.1.0 (rev e1e502f913),rust/regex-snmalloc,1.12.2,,,858,4.51s,3.23ms,10.27us,3.24ms,14.33us,3.20ms,3.31ms
