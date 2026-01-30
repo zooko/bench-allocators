@@ -1,10 +1,14 @@
 #!/bin/bash
 set -e
 
-# Collect metadata
-GITCOMMIT=$(git rev-parse HEAD)
-GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo \"Clean\" || echo \"Uncommitted changes\" )
-TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+# Configuration
+WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
+SIMD_JSON_REPO="https://github.com/zooko/simd-json"
+REBAR_REPO="https://github.com/zooko/rebar"
+SMALLOC_REPO="https://github.com/zooko/smalloc"
+
+# Create directories
+mkdir -p "$WORK_DIR"
 
 # Detect CPU type
 if command -v lscpu >/dev/null 2>&1; then
@@ -23,27 +27,24 @@ CPUTYPE=${CPUTYPE## }  # Trim leading space
 CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
 OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
 
-CPUCOUNT=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo "${NUMBER_OF_PROCESSORS:-unknown}")
-
-ARGS=$*
-
 CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
+
 OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
-
-# Configuration
-WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
-SIMD_JSON_REPO="https://github.com/zooko/simd-json"
-REBAR_REPO="https://github.com/zooko/rebar"
-SMALLOC_REPO="https://github.com/zooko/smalloc"
-
-# Create directories
-mkdir -p "$WORK_DIR"
 
 # THIS LINE BLOWS AWAY ALL CONTENTS OF THE OUTPUT DIR (This is necessary to make multiple successive
 # runs of this script show "git clean" instead of "git uncommitted changes".)
 git clean -fd "$OUTPUT_DIR"
 git restore "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
+
+# Collect metadata
+GITCOMMIT=$(git rev-parse HEAD)
+GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo \"Clean\" || echo \"Uncommitted changes\" )
+TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+CPUCOUNT=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo "${NUMBER_OF_PROCESSORS:-unknown}")
+
+ARGS=$*
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
