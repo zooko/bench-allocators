@@ -38,6 +38,10 @@ SMALLOC_REPO="https://github.com/zooko/smalloc"
 
 # Create directories
 mkdir -p "$WORK_DIR"
+
+# THIS LINE BLOWS AWAY ALL CONTENTS OF THE OUTPUT DIR (This is necessary to make multiple successive
+# runs of this script show "git clean" instead of "git uncommitted changes".)
+git clean -fd "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
 
 echo "========================================"
