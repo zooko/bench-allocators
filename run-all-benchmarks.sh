@@ -7,8 +7,7 @@ SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
 SMALLOC_REPO="https://github.com/zooko/smalloc"
 
-# Create directories
-mkdir -p "$WORK_DIR"
+OUTPUT_BASE_DIR=./benchmark-results
 
 # Detect CPU type
 if command -v lscpu >/dev/null 2>&1; then
@@ -29,13 +28,19 @@ OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
 
 CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 
-OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
+OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
 
-# THIS LINE BLOWS AWAY ALL CONTENTS OF THE OUTPUT DIR (This is necessary to make multiple successive
-# runs of this script show "git clean" instead of "git uncommitted changes".)
-git clean -fd "$OUTPUT_DIR"
-git restore "$OUTPUT_DIR"
+# THIS LINE BLOWS AWAY ALL CONTENTS OF THE OUTPUT BASE DIR
+# (${OUTPUT_BASE_DIR}). (This is necessary to make multiple successive
+# runs of this script show "git clean" instead of "git uncommitted
+# changes".)
+
+git clean -fd "$OUTPUT_BASE_DIR"
+git restore "$OUTPUT_BASE_DIR"
 mkdir -p "$OUTPUT_DIR"
+
+# Create directories
+mkdir -p "$WORK_DIR"
 
 # Collect metadata
 GITCOMMIT=$(git rev-parse HEAD)
