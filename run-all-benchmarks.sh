@@ -1,24 +1,21 @@
 #!/bin/bash
 set -e
 
-# Configuration
-WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
-SIMD_JSON_REPO="https://github.com/zooko/simd-json"
-REBAR_REPO="https://github.com/zooko/rebar"
-SMALLOC_REPO="https://github.com/zooko/smalloc"
-
 # Collect metadata
 GITCOMMIT=$(git rev-parse HEAD)
-GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo "Clean" || echo "Uncommitted changes" )
+GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo \"Clean\" || echo \"Uncommitted changes\" )
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 # Detect CPU type
-# try Linux first
 if command -v lscpu >/dev/null 2>&1; then
+    # Linux, but John's little raspbi has better information in lscpu than in /proc/cpuinfo
     CPUTYPE=$(lscpu 2>/dev/null | grep -i "model name" | cut -d':' -f2-)
 elif command -v sysctl >/dev/null 2>&1; then
     # macOS
     CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null)
+elif [ -f /proc/cpuinfo ]; then
+    # Linux in case it didn't have lscpu, and also mingw64 on Windows provides /proc/cpuifo
+    CPUTYPE=$(grep -m1 "model name" /proc/cpuinfo | cut -d':' -f2-)
 fi
 CPUTYPE=${CPUTYPE:-Unknown}
 CPUTYPE=${CPUTYPE## }  # Trim leading space
@@ -28,8 +25,16 @@ OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
 
 CPUCOUNT=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo "${NUMBER_OF_PROCESSORS:-unknown}")
 
+ARGS=$*
+
 CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
 OUTPUT_DIR="${OUTPUT_DIR:-./benchmark-results}/${CPUSTR_DOT_OSSTR}"
+
+# Configuration
+WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
+SIMD_JSON_REPO="https://github.com/zooko/simd-json"
+REBAR_REPO="https://github.com/zooko/rebar"
+SMALLOC_REPO="https://github.com/zooko/smalloc"
 
 # Create directories
 mkdir -p "$WORK_DIR"
@@ -91,7 +96,7 @@ run_loc_benchmark() {
     popd
 }
 
-# Function to run benchmark in simd-json or rebar repos (standard interface)
+# Function to run benchmark in simd-json or rebar repos (semi-standard interface)
 run_benchmark() {
     if ! command -v cmake >/dev/null 2>&1; then
         echo "Need cmake installed."
