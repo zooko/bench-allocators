@@ -12,45 +12,43 @@
     .grid-line { stroke: #cccccc; stroke-width: 0.5; }
   </style>
   <text x="400.0" y="35" class="title" text-anchor="middle">Performance of simd-json with different allocators—time (lower is better)</text>
-  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 815μs)</text>
+  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 167.91ms)</text>
   <line x1="80" y1="350.0" x2="760" y2="350.0" class="grid-line"/>
-  <text x="70" y="354.0" class="tick-label" text-anchor="end">0</text>
+  <text x="70" y="354.0" class="tick-label" text-anchor="end">0%</text>
   <line x1="80" y1="299.5652173913044" x2="760" y2="299.5652173913044" class="grid-line"/>
-  <text x="70" y="303.5652173913044" class="tick-label" text-anchor="end">20</text>
+  <text x="70" y="303.5652173913044" class="tick-label" text-anchor="end">20%</text>
   <line x1="80" y1="249.1304347826087" x2="760" y2="249.1304347826087" class="grid-line"/>
-  <text x="70" y="253.1304347826087" class="tick-label" text-anchor="end">40</text>
+  <text x="70" y="253.1304347826087" class="tick-label" text-anchor="end">40%</text>
   <line x1="80" y1="198.69565217391306" x2="760" y2="198.69565217391306" class="grid-line"/>
-  <text x="70" y="202.69565217391306" class="tick-label" text-anchor="end">60</text>
+  <text x="70" y="202.69565217391306" class="tick-label" text-anchor="end">60%</text>
   <line x1="80" y1="148.2608695652174" x2="760" y2="148.2608695652174" class="grid-line"/>
-  <text x="70" y="152.2608695652174" class="tick-label" text-anchor="end">80</text>
+  <text x="70" y="152.2608695652174" class="tick-label" text-anchor="end">80%</text>
   <line x1="80" y1="97.82608695652175" x2="760" y2="97.82608695652175" class="grid-line"/>
-  <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100</text>
-  <line x1="80" y1="97.82608695652175" x2="760" y2="97.82608695652175" class="grid-line"/>
-  <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100</text>
+  <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100%</text>
   <path d="M 97.0 350.0 L 176.33333333333331 350.0 L 176.33333333333331 105.82608695652175 A 8 8 0 0 0 168.33333333333331 97.82608695652175 L 105.0 97.82608695652175 A 8 8 0 0 0 97.0 105.82608695652175 Z" fill="#78909c"/>
   <text x="136.66666666666666" y="370" class="bar-label-name" text-anchor="middle">default</text>
-  <text x="136.66666666666666" y="89.82608695652175" class="bar-label-value" text-anchor="middle">815μs</text>
+  <text x="136.66666666666666" y="89.82608695652175" class="bar-label-value" text-anchor="middle">167.91ms</text>
   <text x="136.66666666666666" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
-  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 110.11106420070726 A 8 8 0 0 0 281.66666666666663 102.11106420070726 L 218.33333333333331 102.11106420070726 A 8 8 0 0 0 210.33333333333331 110.11106420070726 Z" fill="#66bb6a"/>
+  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 115.88511608118674 A 8 8 0 0 0 281.66666666666663 107.88511608118674 L 218.33333333333331 107.88511608118674 A 8 8 0 0 0 210.33333333333331 115.88511608118674 Z" fill="#66bb6a"/>
   <text x="249.99999999999997" y="370" class="bar-label-name" text-anchor="middle">jemalloc</text>
-  <text x="249.99999999999997" y="94.11106420070726" class="bar-label-value" text-anchor="middle">845μs</text>
-  <text x="249.99999999999997" y="120.11106420070726" class="bar-label-pct" text-anchor="middle">-2%</text>
-  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 126.8091068465958 A 8 8 0 0 0 394.99999999999994 118.8091068465958 L 331.66666666666663 118.8091068465958 A 8 8 0 0 0 323.66666666666663 126.8091068465958 Z" fill="#ab47bc"/>
+  <text x="249.99999999999997" y="99.88511608118674" class="bar-label-value" text-anchor="middle">161.22ms</text>
+  <text x="249.99999999999997" y="125.88511608118674" class="bar-label-pct" text-anchor="middle">-4%</text>
+  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 139.0076672637514 A 8 8 0 0 0 394.99999999999994 131.0076672637514 L 331.66666666666663 131.0076672637514 A 8 8 0 0 0 323.66666666666663 139.0076672637514 Z" fill="#ab47bc"/>
   <text x="363.3333333333333" y="370" class="bar-label-name" text-anchor="middle">snmalloc</text>
-  <text x="363.3333333333333" y="110.8091068465958" class="bar-label-value" text-anchor="middle">748μs</text>
-  <text x="363.3333333333333" y="136.8091068465958" class="bar-label-pct" text-anchor="middle">-8%</text>
-  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 143.1289902080909 A 8 8 0 0 0 508.33333333333337 135.1289902080909 L 445.0 135.1289902080909 A 8 8 0 0 0 437.0 143.1289902080909 Z" fill="#ffca28"/>
+  <text x="363.3333333333333" y="123.00766726375139" class="bar-label-value" text-anchor="middle">145.82ms</text>
+  <text x="363.3333333333333" y="149.0076672637514" class="bar-label-pct" text-anchor="middle">-13%</text>
+  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 153.30701719066946 A 8 8 0 0 0 508.33333333333337 145.30701719066946 L 445.0 145.30701719066946 A 8 8 0 0 0 437.0 153.30701719066946 Z" fill="#ffca28"/>
   <text x="476.6666666666667" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
-  <text x="476.6666666666667" y="127.1289902080909" class="bar-label-value" text-anchor="middle">661μs</text>
-  <text x="476.6666666666667" y="153.1289902080909" class="bar-label-pct" text-anchor="middle">-15%</text>
-  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 144.5826300037617 A 8 8 0 0 0 621.6666666666666 136.5826300037617 L 558.3333333333333 136.5826300037617 A 8 8 0 0 0 550.3333333333333 144.5826300037617 Z" fill="#ff7043"/>
+  <text x="476.6666666666667" y="137.30701719066946" class="bar-label-value" text-anchor="middle">136.30ms</text>
+  <text x="476.6666666666667" y="163.30701719066946" class="bar-label-pct" text-anchor="middle">-19%</text>
+  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 159.4055100944378 A 8 8 0 0 0 621.6666666666666 151.4055100944378 L 558.3333333333333 151.4055100944378 A 8 8 0 0 0 550.3333333333333 159.4055100944378 Z" fill="#ff7043"/>
   <text x="589.9999999999999" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
-  <text x="589.9999999999999" y="128.5826300037617" class="bar-label-value" text-anchor="middle">656μs</text>
-  <text x="589.9999999999999" y="154.5826300037617" class="bar-label-pct" text-anchor="middle">-15%</text>
-  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 153.68989337630404 A 8 8 0 0 0 735.0 145.68989337630404 L 671.6666666666666 145.68989337630404 A 8 8 0 0 0 663.6666666666666 153.68989337630404 Z" fill="#42a5f5"/>
+  <text x="589.9999999999999" y="143.4055100944378" class="bar-label-value" text-anchor="middle">132.24ms</text>
+  <text x="589.9999999999999" y="169.4055100944378" class="bar-label-pct" text-anchor="middle">-21%</text>
+  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 164.56913503312634 A 8 8 0 0 0 735.0 156.56913503312634 L 671.6666666666666 156.56913503312634 A 8 8 0 0 0 663.6666666666666 164.56913503312634 Z" fill="#42a5f5"/>
   <text x="703.3333333333333" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
-  <text x="703.3333333333333" y="137.68989337630404" class="bar-label-value" text-anchor="middle">595μs</text>
-  <text x="703.3333333333333" y="163.68989337630404" class="bar-label-pct" text-anchor="middle">-19%</text>
-  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 2a10a9364c7a · Git status: &quot;Uncommitted changes&quot;</text>
-  <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25</text>
+  <text x="703.3333333333333" y="148.56913503312634" class="bar-label-value" text-anchor="middle">128.80ms</text>
+  <text x="703.3333333333333" y="174.56913503312634" class="bar-label-pct" text-anchor="middle">-23%</text>
+  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 54190d61db02 · Git status: &quot;Clean&quot;</text>
+  <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25 · CPU Count: 16</text>
 </svg>

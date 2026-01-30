@@ -1,17 +1,47 @@
-GITCOMMIT: 2a10a9364c7a9707062c29740bf85ac6a21c6333
-GITCLEANSTATUS: "Uncommitted changes"
+GITCOMMIT: 54190d61db02a3666de085067cb112ab818521bd
+GITCLEANSTATUS: "Clean"
 CPUTYPE: Apple M4 Max
 OSTYPE: darwin25
+CPUCOUNT: 16
+
+                                                                             default           jemalloc          snmalloc          mimalloc          rpmalloc          smalloc       
+                                                                         ----------------  ----------------  ----------------  ----------------  ----------------  ----------------  
+test                                                             weight   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)
+----                                                             ------  -------- -------  -------- -------  -------- -------  -------- -------  -------- -------  -------- -------
+log/simd_json::to_borrowed_value                                  10000      14.1 ( base)      12.8 (  -9%)      13.6 (  -4%)      12.9 (  -9%)      12.8 ( -10%)      12.7 ( -10%)
+log/simd_json::to_borrowed_value_with_buffers                     10000      12.4 ( base)      12.0 (  -4%)      12.5 (  +1%)      11.8 (  -5%)      11.9 (  -4%)      12.4 (   0%)
+log/simd_json::to_owned_value                                     10000      24.7 ( base)      19.3 ( -22%)      17.1 ( -31%)      19.3 ( -22%)      17.3 ( -30%)      16.6 ( -33%)
+event_stacktrace_10kb/simd_json::to_borrowed_value                 1000       2.7 ( base)       2.6 (  -2%)       2.8 (  +4%)       2.5 (  -7%)       2.7 (  +1%)       2.6 (  -3%)
+event_stacktrace_10kb/simd_json::to_borrowed_value_with_buffers    1000       2.5 ( base)       2.6 (  +5%)       2.4 (  -1%)       2.4 (  -3%)       2.5 (  +1%)       2.5 (  +2%)
+event_stacktrace_10kb/simd_json::to_owned_value                    1000       3.2 ( base)       3.0 (  -4%)       2.9 (  -8%)       2.9 (  -8%)       3.0 (  -3%)       2.9 (  -9%)
+apache_builds/simd_json::to_borrowed_value                          100       7.9 ( base)       8.0 (  +2%)       7.8 (   0%)       6.5 ( -17%)       6.7 ( -15%)       6.5 ( -18%)
+apache_builds/simd_json::to_borrowed_value_with_buffers             100       7.6 ( base)       7.8 (  +3%)       6.6 ( -13%)       6.4 ( -16%)       6.6 ( -12%)       6.4 ( -15%)
+apache_builds/simd_json::to_owned_value                             100      15.8 ( base)      15.6 (  -1%)       9.6 ( -39%)      10.8 ( -31%)       9.7 ( -39%)       9.6 ( -39%)
+github_events/simd_json::to_borrowed_value                          100       3.5 ( base)       3.3 (  -6%)       3.1 ( -11%)       3.0 ( -15%)       3.0 ( -15%)       3.0 ( -16%)
+github_events/simd_json::to_borrowed_value_with_buffers             100       3.3 ( base)       3.2 (  -2%)       3.0 ( -10%)       3.0 ( -10%)       3.0 (  -9%)       3.0 ( -10%)
+github_events/simd_json::to_owned_value                             100       6.0 ( base)       5.7 (  -4%)       4.0 ( -34%)       4.4 ( -26%)       4.1 ( -32%)       4.1 ( -33%)
+citm_catalog/simd_json::to_borrowed_value                            10      11.4 ( base)      11.5 (  +1%)      12.3 (  +8%)       8.8 ( -23%)       8.8 ( -23%)       8.3 ( -27%)
+citm_catalog/simd_json::to_borrowed_value_with_buffers               10      11.2 ( base)      11.3 (   0%)       9.8 ( -13%)       8.7 ( -22%)       8.7 ( -22%)       8.3 ( -26%)
+citm_catalog/simd_json::to_owned_value                               10      15.0 ( base)      15.1 (   0%)      12.9 ( -14%)      10.9 ( -28%)      10.1 ( -33%)       9.4 ( -37%)
+twitter/simd_json::to_borrowed_value                                 10       4.1 ( base)       4.1 (   0%)       5.0 ( +21%)       3.8 (  -8%)       3.7 ( -11%)       3.6 ( -12%)
+twitter/simd_json::to_borrowed_value_with_buffers                    10       4.1 ( base)       4.2 (  +4%)       4.3 (  +7%)       3.7 (  -8%)       3.7 ( -10%)       3.7 ( -10%)
+twitter/simd_json::to_owned_value                                    10       7.0 ( base)       6.8 (  -3%)       5.7 ( -18%)       5.1 ( -27%)       4.6 ( -34%)       4.8 ( -32%)
+canada/simd_json::to_borrowed_value                                   1       3.8 ( base)       4.1 (  +7%)       3.6 (  -5%)       3.1 ( -19%)       3.1 ( -18%)       2.8 ( -28%)
+canada/simd_json::to_borrowed_value_with_buffers                      1       3.8 ( base)       4.0 (  +3%)       3.1 ( -20%)       3.1 ( -19%)       3.1 ( -19%)       2.8 ( -27%)
+canada/simd_json::to_owned_value                                      1       3.9 ( base)       4.1 (  +6%)       3.6 (  -6%)       3.1 ( -19%)       3.1 ( -19%)       2.8 ( -28%)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SUM                                                                         167.9 ( base)     161.2 (  -4%)     145.8 ( -13%)     136.3 ( -19%)     132.2 ( -21%)     128.8 ( -23%)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Tests compared: 21
 
-Allocator      Normalized Sum  vs Baseline
---------------------------------------------
-default                  21.0     baseline
-jemalloc                 20.6        -1.7%
-snmalloc                 19.3        -8.3%
-mimalloc                 17.9       -14.8%
-rpmalloc                 17.8       -15.4%
-smalloc                  17.0       -19.0%
+Allocator       Weighted Sum vs Baseline
+--------------- ------------ -----------
+default                167.9    baseline
+jemalloc               161.2     (  -4%)
+snmalloc               145.8     ( -13%)
+mimalloc               136.3     ( -19%)
+rpmalloc               132.2     ( -21%)
+smalloc                128.8     ( -23%)
 
 Graph saved to: ./benchmark-results/AppleM4Max.darwin25/simd-json.graph.svg
