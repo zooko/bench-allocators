@@ -14,7 +14,7 @@ TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 # Detect CPU type
 # try Linux first
-if command -v sysctl >/dev/null 2>&1; then
+if command -v lscpu >/dev/null 2>&1; then
     CPUTYPE=$(lscpu 2>/dev/null | grep -i "model name" | cut -d':' -f2-)
 elif command -v sysctl >/dev/null 2>&1; then
     # macOS
