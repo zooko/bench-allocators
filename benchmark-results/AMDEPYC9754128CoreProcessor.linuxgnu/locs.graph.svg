@@ -39,13 +39,13 @@
   <rect x="449.0" y="353.2373333333333" width="72.0" height="26.762666666666668" rx="3" ry="3" class="bar" fill="#ff7043"/>
   <text x="485.0" y="345.2373333333333" class="value" text-anchor="middle">2,509</text>
   <text x="485.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="539.0" y="376.36266666666666" width="72.0" height="3.6373333333333333" rx="3" ry="3" class="bar" fill="#42a5f5"/>
-  <text x="575.0" y="368.36266666666666" class="value" text-anchor="middle">341</text>
+  <rect x="539.0" y="376.24533333333335" width="72.0" height="3.7546666666666666" rx="3" ry="3" class="bar" fill="#42a5f5"/>
+  <text x="575.0" y="368.24533333333335" class="value" text-anchor="middle">352</text>
   <text x="575.0" y="400" class="label" text-anchor="middle">smalloc</text>
-  <rect x="629.0" y="371.7866666666667" width="72.0" height="8.213333333333333" rx="3" ry="3" class="bar" fill="#93c2f9"/>
-  <text x="665.0" y="363.7866666666667" class="value" text-anchor="middle">770</text>
+  <rect x="629.0" y="371.6693333333333" width="72.0" height="8.330666666666666" rx="3" ry="3" class="bar" fill="#93c2f9"/>
+  <text x="665.0" y="363.6693333333333" class="value" text-anchor="middle">781</text>
   <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
   <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
-  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: cca7e59525b8 · Git status: "Clean"</text>
+  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: a089815553b2 · Git status: "Clean"</text>
   <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: AMDEPYC9754128CoreProcessor · OS: linuxgnu</text>
 </svg>

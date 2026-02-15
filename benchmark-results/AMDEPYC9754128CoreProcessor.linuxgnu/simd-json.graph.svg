@@ -12,7 +12,7 @@
     .grid-line { stroke: #cccccc; stroke-width: 0.5; }
   </style>
   <text x="400.0" y="35" class="title" text-anchor="middle">Performance of simd-json with different allocators—time (lower is better)</text>
-  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 442.52ms)</text>
+  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 442.50ms)</text>
   <line x1="80" y1="350.0" x2="760" y2="350.0" class="grid-line"/>
   <text x="70" y="354.0" class="tick-label" text-anchor="end">0%</text>
   <line x1="80" y1="299.5652173913044" x2="760" y2="299.5652173913044" class="grid-line"/>
@@ -27,28 +27,32 @@
   <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100%</text>
   <path d="M 97.0 350.0 L 176.33333333333331 350.0 L 176.33333333333331 105.82608695652175 A 8 8 0 0 0 168.33333333333331 97.82608695652175 L 105.0 97.82608695652175 A 8 8 0 0 0 97.0 105.82608695652175 Z" fill="#78909c"/>
   <text x="136.66666666666666" y="370" class="bar-label-name" text-anchor="middle">default</text>
-  <text x="136.66666666666666" y="89.82608695652175" class="bar-label-value" text-anchor="middle">442.52ms</text>
+  <text x="136.66666666666666" y="89.82608695652175" class="bar-label-value" text-anchor="middle">442.50ms</text>
   <text x="136.66666666666666" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
-  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 152.5052280412746 A 8 8 0 0 0 281.66666666666663 144.5052280412746 L 218.33333333333331 144.5052280412746 A 8 8 0 0 0 210.33333333333331 152.5052280412746 Z" fill="#66bb6a"/>
+  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 153.93076647181186 A 8 8 0 0 0 281.66666666666663 145.93076647181186 L 218.33333333333331 145.93076647181186 A 8 8 0 0 0 210.33333333333331 153.93076647181186 Z" fill="#66bb6a"/>
   <text x="249.99999999999997" y="370" class="bar-label-name" text-anchor="middle">jemalloc</text>
-  <text x="249.99999999999997" y="136.5052280412746" class="bar-label-value" text-anchor="middle">360.61ms</text>
-  <text x="249.99999999999997" y="162.5052280412746" class="bar-label-pct" text-anchor="middle">-19%</text>
-  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 163.19334113351263 A 8 8 0 0 0 394.99999999999994 155.19334113351263 L 331.66666666666663 155.19334113351263 A 8 8 0 0 0 323.66666666666663 163.19334113351263 Z" fill="#ab47bc"/>
+  <text x="249.99999999999997" y="137.93076647181186" class="bar-label-value" text-anchor="middle">358.09ms</text>
+  <text x="249.99999999999997" y="163.93076647181186" class="bar-label-pct" text-anchor="middle">-19%</text>
+  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 160.3248841193909 A 8 8 0 0 0 394.99999999999994 152.3248841193909 L 331.66666666666663 152.3248841193909 A 8 8 0 0 0 323.66666666666663 160.3248841193909 Z" fill="#ab47bc"/>
   <text x="363.3333333333333" y="370" class="bar-label-name" text-anchor="middle">snmalloc</text>
-  <text x="363.3333333333333" y="147.19334113351263" class="bar-label-value" text-anchor="middle">341.85ms</text>
-  <text x="363.3333333333333" y="173.19334113351263" class="bar-label-pct" text-anchor="middle">-23%</text>
-  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 174.0594764230335 A 8 8 0 0 0 508.33333333333337 166.0594764230335 L 445.0 166.0594764230335 A 8 8 0 0 0 437.0 174.0594764230335 Z" fill="#ffca28"/>
+  <text x="363.3333333333333" y="144.3248841193909" class="bar-label-value" text-anchor="middle">346.87ms</text>
+  <text x="363.3333333333333" y="170.3248841193909" class="bar-label-pct" text-anchor="middle">-22%</text>
+  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 173.75002368219012 A 8 8 0 0 0 508.33333333333337 165.75002368219012 L 445.0 165.75002368219012 A 8 8 0 0 0 437.0 173.75002368219012 Z" fill="#ffca28"/>
   <text x="476.6666666666667" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
-  <text x="476.6666666666667" y="158.0594764230335" class="bar-label-value" text-anchor="middle">322.79ms</text>
-  <text x="476.6666666666667" y="184.0594764230335" class="bar-label-pct" text-anchor="middle">-27%</text>
-  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 168.28441126963276 A 8 8 0 0 0 621.6666666666666 160.28441126963276 L 558.3333333333333 160.28441126963276 A 8 8 0 0 0 550.3333333333333 168.28441126963276 Z" fill="#ff7043"/>
+  <text x="476.6666666666667" y="157.75002368219012" class="bar-label-value" text-anchor="middle">323.31ms</text>
+  <text x="476.6666666666667" y="183.75002368219012" class="bar-label-pct" text-anchor="middle">-27%</text>
+  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 167.82651765255858 A 8 8 0 0 0 621.6666666666666 159.82651765255858 L 558.3333333333333 159.82651765255858 A 8 8 0 0 0 550.3333333333333 167.82651765255858 Z" fill="#ff7043"/>
   <text x="589.9999999999999" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
-  <text x="589.9999999999999" y="152.28441126963276" class="bar-label-value" text-anchor="middle">332.92ms</text>
-  <text x="589.9999999999999" y="178.28441126963276" class="bar-label-pct" text-anchor="middle">-25%</text>
-  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 170.29559481915246 A 8 8 0 0 0 735.0 162.29559481915246 L 671.6666666666666 162.29559481915246 A 8 8 0 0 0 663.6666666666666 170.29559481915246 Z" fill="#42a5f5"/>
+  <text x="589.9999999999999" y="151.82651765255858" class="bar-label-value" text-anchor="middle">333.70ms</text>
+  <text x="589.9999999999999" y="177.82651765255858" class="bar-label-pct" text-anchor="middle">-25%</text>
+  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 169.4772485953374 A 8 8 0 0 0 735.0 161.4772485953374 L 671.6666666666666 161.4772485953374 A 8 8 0 0 0 663.6666666666666 169.4772485953374 Z" fill="#42a5f5"/>
   <text x="703.3333333333333" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
-  <text x="703.3333333333333" y="154.29559481915246" class="bar-label-value" text-anchor="middle">329.39ms</text>
-  <text x="703.3333333333333" y="180.29559481915246" class="bar-label-pct" text-anchor="middle">-26%</text>
-  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: f49aea298b5d · Git status: &quot;Clean&quot;</text>
+  <text x="703.3333333333333" y="153.4772485953374" class="bar-label-value" text-anchor="middle">330.81ms</text>
+  <text x="703.3333333333333" y="179.4772485953374" class="bar-label-pct" text-anchor="middle">-25%</text>
+  <text x="400.0" y="400" class="metadata" text-anchor="middle">Timestamp: 2026-02-15 05:53:53 UTC</text>
+
+  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: 2d52ec78fc00 · Git status: Clean</text>
+
   <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU:                           AMD EPYC 9754 128-Core Processor · OS: linux-gnu · CPU Count: 256</text>
+
 </svg>
