@@ -43,6 +43,13 @@ mkdir -p "$OUTPUT_DIR"
 mkdir -p "$WORK_DIR"
 
 # Collect metadata
+set +e
+GITSOURCE=$(git remote get-url origin 2>/dev/null)
+set -e
+GITSOURCE="${GITSOURCE:-https://github.com/zooko/bench-allocators.git}"
+[[ "$GITSOURCE" == git@* ]] && GITSOURCE=$(echo "$GITSOURCE" | sed 's|^git@\([^:]*\):\(.*\)|https://\1/\2|')
+GITSOURCE="${GITSOURCE%.git}"
+
 GITCOMMIT=$(git rev-parse HEAD)
 GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo \"Clean\" || echo \"Uncommitted changes\" )
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
@@ -54,6 +61,8 @@ ARGS=$*
 echo "========================================"
 echo "Allocator Benchmark Suite"
 echo "========================================"
+echo "timestamp: ${TIMESTAMP}"
+echo "git source: $GITSOURCE"
 echo "git commit: $GITCOMMIT"
 echo "git clean status: $GITCLEANSTATUS"
 echo "CPU: $CPUTYPE"
@@ -282,6 +291,7 @@ This report compares memory allocator performance across different workloads.
 
 Source: https://github.com/zooko/bench-allocators
 
+**git source:** $GITSOURCE
 **git commit:** $GITCOMMIT
 **git clean status:** $GITCLEANSTATUS
 **generated:** $TIMESTAMP
