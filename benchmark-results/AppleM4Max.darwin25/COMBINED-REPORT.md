@@ -18,7 +18,7 @@ This report compares memory allocator performance across different workloads.
 - **rebar**: Regex engine benchmark harness ([fork for benchmarking](https://github.com/zooko/rebar))
 - **smalloc bench**: Micro-benchmarks for malloc/free/realloc operations
 
-**CPU:** Apple M4 Max
+**CPU:** AppleM4Max
 **OS:** darwin25
 
 ---
@@ -86,6 +86,7 @@ This report compares memory allocator performance across different workloads.
 Source: https://github.com/zooko/bench-allocators
 
 **git source:** https://github.com/zooko/bench-allocators
-**git commit:** ed803a2abb55deae69f0bbebeafcd309536d9ba1
-**git clean status:** "Clean"
-**generated:** 2026-02-15 07:10:09 UTC
+**git commit:** 0f12256e96b20137de72199bed3e07986162f516
+**git tag:** 
+**git clean status:** Clean
+**generated:** 2026-03-06 04:33:49 UTC

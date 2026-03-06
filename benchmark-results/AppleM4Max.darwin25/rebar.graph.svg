@@ -31,28 +31,32 @@
   <text x="136.66666666666666" y="370" class="bar-label-name" text-anchor="middle">default</text>
   <text x="136.66666666666666" y="89.82608695652175" class="bar-label-value" text-anchor="middle">14.0s</text>
   <text x="136.66666666666666" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
-  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 121.00521289979372 A 8 8 0 0 0 281.66666666666663 113.00521289979372 L 218.33333333333331 113.00521289979372 A 8 8 0 0 0 210.33333333333331 121.00521289979372 Z" fill="#66bb6a"/>
+  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 121.60144959125114 A 8 8 0 0 0 281.66666666666663 113.60144959125114 L 218.33333333333331 113.60144959125114 A 8 8 0 0 0 210.33333333333331 121.60144959125114 Z" fill="#66bb6a"/>
   <text x="249.99999999999997" y="370" class="bar-label-name" text-anchor="middle">jemalloc</text>
-  <text x="249.99999999999997" y="105.00521289979372" class="bar-label-value" text-anchor="middle">13.2s</text>
-  <text x="249.99999999999997" y="131.00521289979372" class="bar-label-pct" text-anchor="middle">-6%</text>
-  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 162.79075572474505 A 8 8 0 0 0 394.99999999999994 154.79075572474505 L 331.66666666666663 154.79075572474505 A 8 8 0 0 0 323.66666666666663 162.79075572474505 Z" fill="#ab47bc"/>
+  <text x="249.99999999999997" y="105.60144959125114" class="bar-label-value" text-anchor="middle">13.1s</text>
+  <text x="249.99999999999997" y="131.60144959125114" class="bar-label-pct" text-anchor="middle">-6%</text>
+  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 162.50361852545694 A 8 8 0 0 0 394.99999999999994 154.50361852545694 L 331.66666666666663 154.50361852545694 A 8 8 0 0 0 323.66666666666663 162.50361852545694 Z" fill="#ab47bc"/>
   <text x="363.3333333333333" y="370" class="bar-label-name" text-anchor="middle">snmalloc</text>
-  <text x="363.3333333333333" y="146.79075572474505" class="bar-label-value" text-anchor="middle">10.8s</text>
-  <text x="363.3333333333333" y="172.79075572474505" class="bar-label-pct" text-anchor="middle">-23%</text>
-  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 150.2701376882531 A 8 8 0 0 0 508.33333333333337 142.2701376882531 L 445.0 142.2701376882531 A 8 8 0 0 0 437.0 150.2701376882531 Z" fill="#ffca28"/>
+  <text x="363.3333333333333" y="146.50361852545694" class="bar-label-value" text-anchor="middle">10.9s</text>
+  <text x="363.3333333333333" y="172.50361852545694" class="bar-label-pct" text-anchor="middle">-22%</text>
+  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 150.7404181214956 A 8 8 0 0 0 508.33333333333337 142.7404181214956 L 445.0 142.7404181214956 A 8 8 0 0 0 437.0 150.7404181214956 Z" fill="#ffca28"/>
   <text x="476.6666666666667" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
-  <text x="476.6666666666667" y="134.2701376882531" class="bar-label-value" text-anchor="middle">11.5s</text>
-  <text x="476.6666666666667" y="160.2701376882531" class="bar-label-pct" text-anchor="middle">-18%</text>
-  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 155.0143517315181 A 8 8 0 0 0 621.6666666666666 147.0143517315181 L 558.3333333333333 147.0143517315181 A 8 8 0 0 0 550.3333333333333 155.0143517315181 Z" fill="#ff7043"/>
+  <text x="476.6666666666667" y="134.7404181214956" class="bar-label-value" text-anchor="middle">11.5s</text>
+  <text x="476.6666666666667" y="160.7404181214956" class="bar-label-pct" text-anchor="middle">-18%</text>
+  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 156.42285789076675 A 8 8 0 0 0 621.6666666666666 148.42285789076675 L 558.3333333333333 148.42285789076675 A 8 8 0 0 0 550.3333333333333 156.42285789076675 Z" fill="#ff7043"/>
   <text x="589.9999999999999" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
-  <text x="589.9999999999999" y="139.0143517315181" class="bar-label-value" text-anchor="middle">11.3s</text>
-  <text x="589.9999999999999" y="165.0143517315181" class="bar-label-pct" text-anchor="middle">-20%</text>
-  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 164.82926510696325 A 8 8 0 0 0 735.0 156.82926510696325 L 671.6666666666666 156.82926510696325 A 8 8 0 0 0 663.6666666666666 164.82926510696325 Z" fill="#42a5f5"/>
+  <text x="589.9999999999999" y="140.42285789076675" class="bar-label-value" text-anchor="middle">11.2s</text>
+  <text x="589.9999999999999" y="166.42285789076675" class="bar-label-pct" text-anchor="middle">-20%</text>
+  <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 164.21788729577875 A 8 8 0 0 0 735.0 156.21788729577875 L 671.6666666666666 156.21788729577875 A 8 8 0 0 0 663.6666666666666 164.21788729577875 Z" fill="#42a5f5"/>
   <text x="703.3333333333333" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
-  <text x="703.3333333333333" y="148.82926510696325" class="bar-label-value" text-anchor="middle">10.7s</text>
-  <text x="703.3333333333333" y="174.82926510696325" class="bar-label-pct" text-anchor="middle">-23%</text>
-  <text x="400.0" y="415" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: fc330c60284c · Git status: Clean</text>
+  <text x="703.3333333333333" y="148.21788729577875" class="bar-label-value" text-anchor="middle">10.8s</text>
+  <text x="703.3333333333333" y="174.21788729577875" class="bar-label-pct" text-anchor="middle">-23%</text>
+  <text x="400.0" y="400" class="metadata" text-anchor="middle">Timestamp: 2026-03-06 05:24:27 UTC</text>
 
-  <text x="400.0" y="430" class="metadata" text-anchor="middle">CPU: Apple M4 Max · OS: darwin25 · CPU Count: 16</text>
+  <text x="400.0" y="414" class="metadata" text-anchor="middle">Source: https://github.com/zooko/rebar · Commit: 329031473cd999c46f3c20b4e274e8c1f14742d6</text>
+
+  <text x="400.0" y="428" class="metadata" text-anchor="middle">Git Clean Status: Clean</text>
+
+  <text x="400.0" y="442" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25 · CPU count: 16</text>
 
 </svg>

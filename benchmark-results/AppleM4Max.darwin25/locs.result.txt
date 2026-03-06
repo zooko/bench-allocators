@@ -1,13 +1,17 @@
 smalloc
 ~/playground/bench-allocators/benchmark-workspace/smalloc/smalloc ~/playground/bench-allocators/benchmark-workspace
+git source: https://github.com/zooko/smalloc
+git commit: 48a4d035b402e23b5d62ecfde8ef257be64e414f
+git tag: v7.6.5
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Rust                      2          683          385          146          152
- |- Markdown               1           29            6           18            5
- (Total)                              712          391          164          157
+ Rust                      2          698          384          160          154
+ |- Markdown               1           46            6           31            9
+ (Total)                              744          390          191          163
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                     2          712          391          164          157
+ Total                     2          744          390          191          163
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 smalloc-ffi
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -24,6 +28,10 @@ smalloc-ffi
 ~/playground/bench-allocators/benchmark-workspace
 rpmalloc
 ~/playground/bench-allocators/benchmark-workspace/rpmalloc/rpmalloc ~/playground/bench-allocators/benchmark-workspace
+git source: https://github.com/mjansson/rpmalloc
+git commit: feb43aee0d4dcca9fd91b3dd54311c34c6cc6187
+git tag: 
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -35,6 +43,10 @@ rpmalloc
 ~/playground/bench-allocators/benchmark-workspace
 glibc
 ~/playground/bench-allocators/benchmark-workspace/glibc/malloc ~/playground/bench-allocators/benchmark-workspace
+git source: https://sourceware.org/git/glibc
+git commit: ed3d8dd2b3738e67db7628d0d4212db6342fdb36
+git tag: 
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -46,6 +58,10 @@ glibc
 ~/playground/bench-allocators/benchmark-workspace
 mimalloc
 ~/playground/bench-allocators/benchmark-workspace/mimalloc/src ~/playground/bench-allocators/benchmark-workspace
+git source: https://github.com/microsoft/mimalloc
+git commit: b69f9cb39f22b95971a4b9196a9c265a7b474718
+git tag: 
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -57,6 +73,10 @@ mimalloc
 ~/playground/bench-allocators/benchmark-workspace
 snmalloc
 ~/playground/bench-allocators/benchmark-workspace/snmalloc/src ~/playground/bench-allocators/benchmark-workspace
+git source: https://github.com/microsoft/snmalloc
+git commit: 4a169bf3d769245727dee7f27dbe4edd7fb80063
+git tag: 
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -67,6 +87,10 @@ snmalloc
 ~/playground/bench-allocators/benchmark-workspace
 jemalloc
 ~/playground/bench-allocators/benchmark-workspace/jemalloc/src ~/playground/bench-allocators/benchmark-workspace
+git source: https://github.com/jemalloc/jemalloc
+git commit: 1972241cd204c60fb5b66f23c48a117879636161
+git tag: 
+git clean status: Clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

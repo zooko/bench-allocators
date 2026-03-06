@@ -39,13 +39,14 @@
   <rect x="449.0" y="353.2373333333333" width="72.0" height="26.762666666666668" rx="3" ry="3" class="bar" fill="#ff7043"/>
   <text x="485.0" y="345.2373333333333" class="value" text-anchor="middle">2,509</text>
   <text x="485.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
-  <rect x="539.0" y="375.82933333333335" width="72.0" height="4.1706666666666665" rx="3" ry="3" class="bar" fill="#42a5f5"/>
-  <text x="575.0" y="367.82933333333335" class="value" text-anchor="middle">391</text>
+  <rect x="539.0" y="375.84" width="72.0" height="4.16" rx="3" ry="3" class="bar" fill="#42a5f5"/>
+  <text x="575.0" y="367.84" class="value" text-anchor="middle">390</text>
   <text x="575.0" y="400" class="label" text-anchor="middle">smalloc</text>
-  <rect x="629.0" y="371.2853333333333" width="72.0" height="8.714666666666666" rx="3" ry="3" class="bar" fill="#93c2f9"/>
-  <text x="665.0" y="363.2853333333333" class="value" text-anchor="middle">817</text>
+  <rect x="629.0" y="371.296" width="72.0" height="8.703999999999999" rx="3" ry="3" class="bar" fill="#93c2f9"/>
+  <text x="665.0" y="363.296" class="value" text-anchor="middle">816</text>
   <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
   <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
-  <text x="375.0" y="475" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: ed803a2abb55 · Git status: "Clean"</text>
-  <text x="375.0" y="489" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25</text>
+  <text x="375.0" y="450" class="metadata" text-anchor="middle">Timestamp: 2026-03-06 04:33:49 UTC</text>
+  <text x="375.0" y="464" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 0f12256e96b20137de72199bed3e07986162f516</text>
+  <text x="375.0" y="478" class="metadata" text-anchor="middle">Git Clean Status: Clean</text>
 </svg>
