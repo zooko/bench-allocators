@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>COMBINED-REPORT</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="allocator-performance-benchmarks">Allocator Performance
+Benchmarks</h1>
+<p>This report compares memory allocator performance across different
+workloads.</p>
+<h2 id="allocators-tested">Allocators Tested</h2>
+<ul>
+<li><strong>default</strong>: the default Rust global allocator (falls
+through to system allocator)</li>
+<li><a href="https://github.com/jemalloc/jemalloc">jemalloc</a>: using
+<a href="https://github.com/tikv/jemallocator">tikv-jemallocator</a>
+Rust wrappers</li>
+<li><a href="https://github.com/microsoft/snmalloc">snmalloc</a>: using
+<a href="https://github.com/SchrodingerZhu/snmalloc-rs">snmalloc-rs</a>
+Rust wrappers</li>
+<li><a href="https://github.com/microsoft/mimalloc">mimalloc</a>: using
+<a
+href="https://github.com/purpleprotocol/mimalloc_rust">mimalloc_rust</a>
+Rust wrappers</li>
+<li><a href="https://github.com/mjansson/rpmalloc">rpmalloc</a>: using
+<a href="https://github.com/EmbarkStudios/rpmalloc-rs">rpmalloc-rs</a>
+Rust wrappers</li>
+<li><a href="https://github.com/zooko/smalloc">smalloc</a>: a simple
+memory allocator (written in Rust)</li>
+</ul>
+<h2 id="workloads">Workloads</h2>
+<ul>
+<li><strong>Lines of Code</strong>: Implementation size comparison
+(excluding debug assertions)</li>
+<li><strong>simd-json</strong>: High-performance JSON parser (<a
+href="https://github.com/zooko/simd-json">fork for
+benchmarking</a>)</li>
+<li><strong>rebar</strong>: Regex engine benchmark harness (<a
+href="https://github.com/zooko/rebar">fork for benchmarking</a>)</li>
+<li><strong>smalloc bench</strong>: Micro-benchmarks for
+malloc/free/realloc operations</li>
+</ul>
+<p><strong>CPU:</strong> CortexA76 <strong>OS:</strong> linuxgnu</p>
+<hr />
+<h2 id="lines-of-code-comparison">Lines of Code Comparison</h2>
+<p><img src="locs.graph.svg" /></p>
+<p><a href="locs.result.txt">View detailed LOC results</a></p>
+<hr />
+<h2 id="simd-json-results">simd-json Results</h2>
+<p><img src="simd-json.graph.svg" /></p>
+<p><a href="simd-json.result.txt">View detailed simd-json
+results</a></p>
+<hr />
+<h2 id="rebar-results">rebar Results</h2>
+<p><img src="rebar.graph.svg" /></p>
+<p><a href="rebar.result.txt">View detailed rebar results</a></p>
+<hr />
+<h2 id="smalloc-micro-benchmarks">smalloc Micro-Benchmarks</h2>
+<h3 id="single-threaded-performance">Single-Threaded Performance</h3>
+<p><img src="smalloc-st.graph.svg" /></p>
+<h3 id="multi-threaded-performance">Multi-Threaded Performance</h3>
+<p><img src="smalloc-mt.graph.svg" /></p>
+<p><a href="smalloc.result.txt">View detailed smalloc benchmark
+results</a></p>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Lines of Code</strong> compares implementation size
+(excluding debug assertions)</li>
+<li><strong>simd-json</strong> tests allocator performance during JSON
+parsing</li>
+<li><strong>rebar</strong> tests allocator performance during regex
+compilation and matching</li>
+<li><strong>smalloc bench</strong> tests raw malloc/free/realloc
+performance in single and multi-threaded scenarios</li>
+</ul>
+<h3 id="methodology">Methodology</h3>
+<ul>
+<li>Each allocator is tested using identical code with only the global
+allocator changed</li>
+<li>Results show percentage differences from baseline (system
+allocator)</li>
+<li>Lower percentages = better performance (less time)</li>
+</ul>
+<h3 id="how-to-read-the-performance-graphs">How to Read the Performance
+Graphs</h3>
+<ul>
+<li><strong>Baseline (default)</strong>: The system allocator, shown at
+100%</li>
+<li><strong>Negative percentages</strong>: Faster than baseline (e.g.,
+-3% means 3% faster)</li>
+<li><strong>Positive percentages</strong>: Slower than baseline (e.g.,
++5% means 5% slower)</li>
+<li><strong>Bar height</strong>: Proportional to execution time</li>
+</ul>
+<hr />
+<p>Source: https://github.com/zooko/bench-allocators</p>
+<p><strong>git source:</strong>
+https://github.com/zooko/bench-allocators <strong>git commit:</strong>
+733b9e574754d4a93b3570f3e33ff939b8343dd0 <strong>git tag:</strong>
+<strong>git clean status:</strong> Uncommitted changes
+<strong>generated:</strong> 2026-03-06 06:20:38 UTC</p>
+</body>
+</html>
