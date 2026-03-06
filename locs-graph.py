@@ -179,7 +179,7 @@ if args.graph:
         else:
             svg_parts.append(f'  <text x="{x + actual_bar_width/2}" y="{text_y}" class="label" text-anchor="middle">{allocator}</text>\n')
 
-    metadata.add_svg_metadata(args, height - 25, svg_parts, width)
+    metadata.add_svg_metadata(args, height - 50, svg_parts, width)
 
     svg_parts.append('</svg>')
 
