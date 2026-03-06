@@ -5,13 +5,16 @@ import sys
 import re
 import argparse
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import metadata
+
 parser = argparse.ArgumentParser()
 parser.add_argument('input_file', help='Output from count-locs.sh')
-parser.add_argument('--commit', help='Git commit hash')
-parser.add_argument('--git-status', help='Git status (Clean or Uncommitted changes)')
-parser.add_argument('--graph', help='Output SVG graph to this file')
-parser.add_argument('--cpu', help='CPU type')
-parser.add_argument('--os', help='OS type')
+
+metadata.add_parse_args(parser)
+
 args = parser.parse_args()
 
 # Desired output order
@@ -176,25 +179,7 @@ if args.graph:
         else:
             svg_parts.append(f'  <text x="{x + actual_bar_width/2}" y="{text_y}" class="label" text-anchor="middle">{allocator}</text>\n')
 
-    metadata_y = height - 25
-
-    line1_parts = []
-    line1_parts.append(f"Source: https://github.com/zooko/bench-allocators")
-    if args.commit:
-        line1_parts.append(f"Commit: {args.commit[:12]}")
-    if args.git_status:
-        line1_parts.append(f"Git status: {args.git_status}")
-
-    line2_parts = []
-    if args.cpu:
-        line2_parts.append(f"CPU: {args.cpu}")
-    if args.os:
-        line2_parts.append(f"OS: {args.os}")
-
-    if line1_parts:
-        svg_parts.append(f'  <text x="{width/2}" y="{metadata_y}" class="metadata" text-anchor="middle">{" · ".join(line1_parts)}</text>\n')
-    if line2_parts:
-        svg_parts.append(f'  <text x="{width/2}" y="{metadata_y + 14}" class="metadata" text-anchor="middle">{" · ".join(line2_parts)}</text>\n')
+    metadata.add_svg_metadata(args, height - 25, svg_parts, width)
 
     svg_parts.append('</svg>')
 

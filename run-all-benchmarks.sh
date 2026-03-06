@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+source "$(dirname "$0")/gather-metadata.sh"
+
 # Configuration
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
@@ -9,31 +11,11 @@ SMALLOC_REPO="https://github.com/zooko/smalloc"
 
 OUTPUT_BASE_DIR=./benchmark-results
 
-# Detect CPU type
-if command -v lscpu >/dev/null 2>&1; then
-    # Linux, but John's little raspbi has better information in lscpu than in /proc/cpuinfo
-    CPUTYPE=$(lscpu 2>/dev/null | grep -i "model name" | cut -d':' -f2-)
-elif command -v sysctl >/dev/null 2>&1; then
-    # macOS
-    CPUTYPE=$(sysctl -n machdep.cpu.brand_string 2>/dev/null)
-elif [ -f /proc/cpuinfo ]; then
-    # Linux in case it didn't have lscpu, and also mingw64 on Windows provides /proc/cpuifo
-    CPUTYPE=$(grep -m1 "model name" /proc/cpuinfo | cut -d':' -f2-)
-fi
-CPUTYPE=${CPUTYPE:-Unknown}
-CPUTYPE=${CPUTYPE## }  # Trim leading space
-
-CPUTYPESTR="${CPUTYPE//[^[:alnum:]]/}"
-OSTYPESTR="${OSTYPE//[^[:alnum:]]/}"
-
-CPUSTR_DOT_OSSTR="${CPUTYPESTR}.${OSTYPESTR}"
-
 OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
 
-# THIS LINE BLOWS AWAY ALL CONTENTS OF THE OUTPUT BASE DIR
-# (${OUTPUT_BASE_DIR}). (This is necessary to make multiple successive
-# runs of this script show "git clean" instead of "git uncommitted
-# changes".)
+# THE FOLLOWING LINES BLOW AWAY ALL CONTENTS OF THE OUTPUT BASE DIR (${OUTPUT_BASE_DIR}). (This is
+# necessary to make multiple successive runs of this script show "git clean" instead of "git
+# uncommitted changes".)
 
 git clean -fd "$OUTPUT_BASE_DIR"
 git restore "$OUTPUT_BASE_DIR"
@@ -42,33 +24,14 @@ mkdir -p "$OUTPUT_DIR"
 # Create directories
 mkdir -p "$WORK_DIR"
 
-# Collect metadata
-set +e
-GITSOURCE=$(git remote get-url origin 2>/dev/null)
-set -e
-GITSOURCE="${GITSOURCE:-https://github.com/zooko/bench-allocators.git}"
-[[ "$GITSOURCE" == git@* ]] && GITSOURCE=$(echo "$GITSOURCE" | sed 's|^git@\([^:]*\):\(.*\)|https://\1/\2|')
-GITSOURCE="${GITSOURCE%.git}"
-
-GITCOMMIT=$(git rev-parse HEAD)
-GITCLEANSTATUS=$( [ -z "$( git status --porcelain )" ] && echo \"Clean\" || echo \"Uncommitted changes\" )
-TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-
-CPUCOUNT=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo "${NUMBER_OF_PROCESSORS:-unknown}")
-
 ARGS=$*
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
 echo "========================================"
 echo "timestamp: ${TIMESTAMP}"
-echo "git source: $GITSOURCE"
-echo "git commit: $GITCOMMIT"
-echo "git clean status: $GITCLEANSTATUS"
-echo "CPU: $CPUTYPE"
-echo "OS: $OSTYPE"
-echo "CPU count: $CPUCOUNT"
-echo "Timestamp: $TIMESTAMP"
+gather_and_print_git_metadata
+print_machine_metadata
 echo "Work directory: $WORK_DIR"
 echo "Output directory: $OUTPUT_DIR"
 echo "========================================"
@@ -93,22 +56,23 @@ run_loc_benchmark() {
     pushd "$WORK_DIR"
 
     echo "Cloning allocator sources for LOC comparison..."
-    [ -d "glibc" ] || git clone --depth 1 https://sourceware.org/git/glibc.git
-    [ -d "jemalloc" ] || git clone --depth 1 https://github.com/jemalloc/jemalloc
-    [ -d "snmalloc" ] || git clone --depth 1 https://github.com/microsoft/snmalloc
-    [ -d "mimalloc" ] || git clone --depth 1 https://github.com/microsoft/mimalloc
-    [ -d "rpmalloc" ] || git clone --depth 1 https://github.com/mjansson/rpmalloc
-    [ -d "smalloc" ] || git clone --depth 1 https://github.com/zooko/smalloc
+    [ -d "glibc" ] || git clone --depth 1 --tags https://sourceware.org/git/glibc.git
+    [ -d "jemalloc" ] || git clone --depth 1 --tags https://github.com/jemalloc/jemalloc
+    [ -d "snmalloc" ] || git clone --depth 1 --tags https://github.com/microsoft/snmalloc
+    [ -d "mimalloc" ] || git clone --depth 1 --tags https://github.com/microsoft/mimalloc
+    [ -d "rpmalloc" ] || git clone --depth 1 --tags https://github.com/mjansson/rpmalloc
+    [ -d "smalloc" ] || git clone --depth 1 --tags https://github.com/zooko/smalloc
 
     echo "Counting lines of code..."
     "../count-locs.sh" > "loc-output.txt" 2>&1
 
     python3 "../locs-graph.py" \
         "loc-output.txt" \
-        --commit "$GITCOMMIT" \
-        --git-status "$GITCLEANSTATUS" \
-        --cpu "$CPUTYPESTR" \
-        --os "$OSTYPESTR" \
+        --timestamp "$TIMESTAMP" \
+        --git-source "$GIT_SOURCE" \
+        --git-commit "$GIT_COMMIT" \
+        --git-tag "$GIT_TAG" \
+        --git-clean-status "$GIT_CLEAN_STATUS" \
         --graph "../$OUTPUT_DIR/locs.graph.svg"
 
     cp "loc-output.txt" "../$OUTPUT_DIR/locs.result.txt"
@@ -224,8 +188,8 @@ This report compares memory allocator performance across different workloads.
 - **rebar**: Regex engine benchmark harness ([fork for benchmarking](https://github.com/zooko/rebar))
 - **smalloc bench**: Micro-benchmarks for malloc/free/realloc operations
 
-**CPU:** $CPUTYPE
-**OS:** $OSTYPE
+**CPU:** $CPU_TYPE_STR
+**OS:** $OS_TYPE_STR
 
 ---
 
@@ -291,9 +255,10 @@ This report compares memory allocator performance across different workloads.
 
 Source: https://github.com/zooko/bench-allocators
 
-**git source:** $GITSOURCE
-**git commit:** $GITCOMMIT
-**git clean status:** $GITCLEANSTATUS
+**git source:** $GIT_SOURCE
+**git commit:** $GIT_COMMIT
+**git tag:** $GIT_TAG
+**git clean status:** $GIT_CLEAN_STATUS
 **generated:** $TIMESTAMP
 EOF
 
