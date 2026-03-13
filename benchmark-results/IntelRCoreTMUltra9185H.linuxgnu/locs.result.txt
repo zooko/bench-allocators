@@ -1,0 +1,101 @@
+smalloc
+~/Documents/bench-allocators/benchmark-workspace/smalloc/smalloc ~/Documents/bench-allocators/benchmark-workspace
+git source: https://github.com/zooko/smalloc
+git commit: 48a4d035b402e23b5d62ecfde8ef257be64e414f
+git tag: v7.6.5
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Rust                      2          698          384          160          154
+ |- Markdown               1           46            6           31            9
+ (Total)                              744          390          191          163
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                     2          744          390          191          163
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+smalloc-ffi
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C                         1           26           21            0            5
+─────────────────────────────────────────────────────────────────────────────────
+ Rust                      2          544          405           44           95
+ |- Markdown               1           30            0           21            9
+ (Total)                              574          405           65          104
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                     3          600          426           65          109
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace
+rpmalloc
+~/Documents/bench-allocators/benchmark-workspace/rpmalloc/rpmalloc ~/Documents/bench-allocators/benchmark-workspace
+git source: https://github.com/mjansson/rpmalloc
+git commit: feb43aee0d4dcca9fd91b3dd54311c34c6cc6187
+git tag: 
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C                         2         2793         2226          292          275
+ C Header                  2          520          283          158           79
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                     4         3313         2509          450          354
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace
+glibc
+~/Documents/bench-allocators/benchmark-workspace/glibc/malloc ~/Documents/bench-allocators/benchmark-workspace
+git source: https://sourceware.org/git/glibc
+git commit: 05d00ade8e8ae53d5087e986c9bbda449ff6be28
+git tag: 
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C                        32        11690         6875         3229         1586
+ C Header                  5          954          449          363          142
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                    37        12644         7324         3592         1728
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace
+mimalloc
+~/Documents/bench-allocators/benchmark-workspace/mimalloc/src ~/Documents/bench-allocators/benchmark-workspace
+git source: https://github.com/microsoft/mimalloc
+git commit: 8ff03b636192e25db17eaaff29e6f75acc9a662b
+git tag: 
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C                        27        13757         9585         2350         1822
+ C Header                  2         1022          462          431          129
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                    29        14779        10047         2781         1951
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace
+snmalloc
+~/Documents/bench-allocators/benchmark-workspace/snmalloc/src ~/Documents/bench-allocators/benchmark-workspace
+git source: https://github.com/microsoft/snmalloc
+git commit: c2f0d1cc6f375279c558a52f16dc385c62825b4f
+git tag: 
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C Header                130        20779        12788         5451         2540
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                   130        20779        12788         5451         2540
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace
+jemalloc
+~/Documents/bench-allocators/benchmark-workspace/jemalloc/src ~/Documents/bench-allocators/benchmark-workspace
+git source: https://github.com/jemalloc/jemalloc
+git commit: 1972241cd204c60fb5b66f23c48a117879636161
+git tag: 
+git clean status: Clean
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ C                        67        34702        25713         4793         4196
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                    67        34702        25713         4793         4196
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+~/Documents/bench-allocators/benchmark-workspace

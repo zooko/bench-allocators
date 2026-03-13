@@ -1,0 +1,50 @@
+TIMESTAMP: 2026-03-06 06:20:42 UTC
+git source: https://github.com/zooko/simd-json
+git commit: 73485a3ecae17f059b08cf63368920276e1c4ffb
+git tag: 
+git clean status: Clean
+CPU type: CortexA76
+CPU count: 4
+OS type: linuxgnu
+
+                                                                             default           jemalloc          snmalloc          mimalloc          rpmalloc          smalloc       
+                                                                         ----------------  ----------------  ----------------  ----------------  ----------------  ----------------  
+test                                                             weight   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)   time ms (diff%)
+----                                                             ------  -------- -------  -------- -------  -------- -------  -------- -------  -------- -------  -------- -------
+log/simd_json::to_borrowed_value                                  10000      53.9 ( base)      51.5 (  -5%)      52.7 (  -2%)      51.9 (  -4%)      52.1 (  -3%)      56.1 (  +4%)
+log/simd_json::to_borrowed_value_with_buffers                     10000      48.1 ( base)      49.2 (  +2%)      50.3 (  +5%)      49.2 (  +2%)      49.3 (  +3%)      57.7 ( +20%)
+log/simd_json::to_owned_value                                     10000      98.5 ( base)      58.2 ( -41%)      59.6 ( -39%)      66.1 ( -33%)      67.0 ( -32%)      74.1 ( -25%)
+event_stacktrace_10kb/simd_json::to_borrowed_value                 1000      12.9 ( base)      13.0 (  +1%)      12.5 (  -4%)      11.8 (  -9%)      12.3 (  -5%)      13.0 (   0%)
+event_stacktrace_10kb/simd_json::to_borrowed_value_with_buffers    1000      12.2 ( base)      12.4 (  +2%)      11.7 (  -4%)      11.3 (  -7%)      11.6 (  -5%)      12.0 (  -1%)
+event_stacktrace_10kb/simd_json::to_owned_value                    1000      14.5 ( base)      13.6 (  -6%)      13.1 (  -9%)      12.8 ( -12%)      13.5 (  -7%)      13.9 (  -4%)
+apache_builds/simd_json::to_borrowed_value                          100      34.6 ( base)      29.4 ( -15%)      27.9 ( -19%)      26.1 ( -25%)      26.7 ( -23%)      28.0 ( -19%)
+apache_builds/simd_json::to_borrowed_value_with_buffers             100      35.6 ( base)      27.5 ( -23%)      26.3 ( -26%)      25.4 ( -29%)      25.3 ( -29%)      27.6 ( -22%)
+apache_builds/simd_json::to_owned_value                             100      68.4 ( base)      41.0 ( -40%)      35.3 ( -48%)      33.5 ( -51%)      35.6 ( -48%)      41.7 ( -39%)
+github_events/simd_json::to_borrowed_value                          100      14.4 ( base)      12.4 ( -14%)      12.2 ( -15%)      12.0 ( -17%)      12.3 ( -14%)      12.6 ( -13%)
+github_events/simd_json::to_borrowed_value_with_buffers             100      14.2 ( base)      11.9 ( -16%)      11.9 ( -17%)      11.7 ( -18%)      11.7 ( -18%)      12.3 ( -13%)
+github_events/simd_json::to_owned_value                             100      28.1 ( base)      16.7 ( -41%)      15.2 ( -46%)      15.0 ( -46%)      16.6 ( -41%)      17.6 ( -37%)
+citm_catalog/simd_json::to_borrowed_value                            10      95.7 ( base)      55.9 ( -42%)      61.7 ( -36%)      60.1 ( -37%)      59.3 ( -38%)      73.3 ( -23%)
+citm_catalog/simd_json::to_borrowed_value_with_buffers               10      94.0 ( base)      54.4 ( -42%)      58.0 ( -38%)      59.2 ( -37%)      58.1 ( -38%)      71.8 ( -24%)
+citm_catalog/simd_json::to_owned_value                               10     124.0 ( base)      67.5 ( -46%)      71.2 ( -43%)      68.8 ( -44%)      70.1 ( -43%)      84.6 ( -32%)
+twitter/simd_json::to_borrowed_value                                 10      22.4 ( base)      20.3 (  -9%)      22.1 (  -1%)      20.9 (  -7%)      20.4 (  -9%)      20.9 (  -7%)
+twitter/simd_json::to_borrowed_value_with_buffers                    10      21.4 ( base)      19.3 ( -10%)      20.9 (  -3%)      20.0 (  -7%)      19.6 (  -9%)      20.0 (  -7%)
+twitter/simd_json::to_owned_value                                    10      42.8 ( base)      28.4 ( -34%)      28.7 ( -33%)      27.5 ( -36%)      27.9 ( -35%)      30.3 ( -29%)
+canada/simd_json::to_borrowed_value                                   1      29.3 ( base)      17.5 ( -40%)      17.3 ( -41%)      17.6 ( -40%)      18.9 ( -35%)      16.1 ( -45%)
+canada/simd_json::to_borrowed_value_with_buffers                      1      23.9 ( base)      16.8 ( -30%)      16.2 ( -32%)      16.8 ( -30%)      18.4 ( -23%)      15.9 ( -33%)
+canada/simd_json::to_owned_value                                      1      25.9 ( base)      17.6 ( -32%)      17.3 ( -33%)      17.5 ( -33%)      18.9 ( -27%)      16.1 ( -38%)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SUM                                                                         914.8 ( base)     634.5 ( -31%)     641.8 ( -30%)     635.0 ( -31%)     645.5 ( -29%)     715.6 ( -22%)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Tests compared: 21
+
+Allocator       Weighted Sum vs Baseline
+--------------- ------------ -----------
+default                914.8    baseline
+jemalloc               634.5     ( -31%)
+snmalloc               641.8     ( -30%)
+mimalloc               635.0     ( -31%)
+rpmalloc               645.5     ( -29%)
+smalloc                715.6     ( -22%)
+
+Graph saved to: ./benchmark-results/CortexA76.linuxgnu/simd-json.graph.svg

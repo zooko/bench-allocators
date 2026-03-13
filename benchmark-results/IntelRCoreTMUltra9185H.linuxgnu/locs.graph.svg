@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500">
+  <rect width="750" height="500" fill="#fafafa"/>
+  <style>
+    .bar { stroke: #fff; stroke-width: 1; }
+    .axis { stroke: #333; stroke-width: 1; }
+    .grid { stroke: #e0e0e0; stroke-width: 0.5; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #333; }
+    .value { font-family: monospace; font-size: 11px; fill: #555; }
+    .title { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; fill: #333; }
+    .metadata { font-family: monospace; font-size: 9px; fill: #888; }
+  </style>
+  <text x="375.0" y="35" class="title" text-anchor="middle">Lines of code by allocator (excluding assertions)</text>
+  <line x1="80" y1="60" x2="80" y2="380" class="axis"/>
+  <line x1="80" y1="380" x2="710" y2="380" class="axis"/>
+  <line x1="80" y1="380.0" x2="710" y2="380.0" class="grid"/>
+  <text x="70" y="384.0" class="label" text-anchor="end">0</text>
+  <line x1="80" y1="316.0" x2="710" y2="316.0" class="grid"/>
+  <text x="70" y="320.0" class="label" text-anchor="end">6,000</text>
+  <line x1="80" y1="252.0" x2="710" y2="252.0" class="grid"/>
+  <text x="70" y="256.0" class="label" text-anchor="end">12,000</text>
+  <line x1="80" y1="188.0" x2="710" y2="188.0" class="grid"/>
+  <text x="70" y="192.0" class="label" text-anchor="end">18,000</text>
+  <line x1="80" y1="124.0" x2="710" y2="124.0" class="grid"/>
+  <text x="70" y="128.0" class="label" text-anchor="end">24,000</text>
+  <line x1="80" y1="60.0" x2="710" y2="60.0" class="grid"/>
+  <text x="70" y="64.0" class="label" text-anchor="end">30,000</text>
+  <rect x="89.0" y="301.87733333333335" width="72.0" height="78.12266666666667" rx="3" ry="3" class="bar" fill="#5c6bc0"/>
+  <text x="125.0" y="293.87733333333335" class="value" text-anchor="middle">7,324</text>
+  <text x="125.0" y="400" class="label" text-anchor="middle">glibc</text>
+  <rect x="179.0" y="105.72800000000001" width="72.0" height="274.272" rx="3" ry="3" class="bar" fill="#66bb6a"/>
+  <text x="215.0" y="97.72800000000001" class="value" text-anchor="middle">25,713</text>
+  <text x="215.0" y="400" class="label" text-anchor="middle">jemalloc</text>
+  <rect x="269.0" y="243.59466666666665" width="72.0" height="136.40533333333335" rx="3" ry="3" class="bar" fill="#ab47bc"/>
+  <text x="305.0" y="235.59466666666665" class="value" text-anchor="middle">12,788</text>
+  <text x="305.0" y="400" class="label" text-anchor="middle">snmalloc</text>
+  <rect x="359.0" y="272.832" width="72.0" height="107.16799999999999" rx="3" ry="3" class="bar" fill="#ffca28"/>
+  <text x="395.0" y="264.832" class="value" text-anchor="middle">10,047</text>
+  <text x="395.0" y="400" class="label" text-anchor="middle">mimalloc</text>
+  <rect x="449.0" y="353.2373333333333" width="72.0" height="26.762666666666668" rx="3" ry="3" class="bar" fill="#ff7043"/>
+  <text x="485.0" y="345.2373333333333" class="value" text-anchor="middle">2,509</text>
+  <text x="485.0" y="400" class="label" text-anchor="middle">rpmalloc</text>
+  <rect x="539.0" y="375.84" width="72.0" height="4.16" rx="3" ry="3" class="bar" fill="#42a5f5"/>
+  <text x="575.0" y="367.84" class="value" text-anchor="middle">390</text>
+  <text x="575.0" y="400" class="label" text-anchor="middle">smalloc</text>
+  <rect x="629.0" y="371.296" width="72.0" height="8.703999999999999" rx="3" ry="3" class="bar" fill="#93c2f9"/>
+  <text x="665.0" y="363.296" class="value" text-anchor="middle">816</text>
+  <text x="665.0" y="400" class="label" text-anchor="middle">smalloc</text>
+  <text x="665.0" y="414" class="label" text-anchor="middle">+ ffi</text>
+  <text x="375.0" y="450" class="metadata" text-anchor="middle">Timestamp: 2026-03-06 06:09:03 UTC</text>
+  <text x="375.0" y="464" class="metadata" text-anchor="middle">Source: https://github.com/zooko/bench-allocators · Commit: 733b9e574754d4a93b3570f3e33ff939b8343dd0</text>
+  <text x="375.0" y="478" class="metadata" text-anchor="middle">Git Clean Status: Clean</text>
+</svg>
