@@ -1,24 +1,25 @@
 # Allocator colors
 ALLOCATOR_COLORS = {
-    'default': '#78909c',   # blue-grey (distinct from smalloc green)
-    'glibc': '#5c6bc0',     # indigo
-    'jemalloc': '#66bb6a',  # green
-    'snmalloc': '#ab47bc',  # purple
-    'mimalloc': '#ffca28',  # amber
-    'rpmalloc': '#ff7043',  # deep orange
-    'smalloc': '#42a5f5',   # blue
-    'smalloc + ffi': '#93c2f9', # light blue
+    'default': '#8a969e',        # duller blue-grey
+    'glibc': '#6f76a3',          # duller indigo
+    'jemalloc': '#7faa82',       # duller green
+    'snmalloc': '#a06bab',       # duller purple
+    'mimalloc': '#e0bd5e',       # duller amber
+    'rpmalloc': '#d98567',       # duller deep orange
+    'smalloc': '#42a5f5',        # blue (vivid)
+    'smalloc + ffi': '#93c2f9',  # light blue (vivid)
 }
 UNKNOWN_ALLOCATOR_COLOR = '#9e9e9e'  # gray
 
 # Canonical allocator ordering
-ALLOCATOR_ORDER = ['default', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'smalloc']
+ALLOCATOR_ORDER = ['smalloc', 'rpmalloc', 'mimalloc', 'snmalloc', 'jemalloc', 'glibc', 'default']
 
 def get_color(name):
     return ALLOCATOR_COLORS.get(name, UNKNOWN_ALLOCATOR_COLOR)
 
 def sort_allocators(names):
-    """Sort allocator names in canonical order: default, known allocators, unknown, smalloc last."""
+    """Sort allocator names in canonical order: smalloc first, known allocators, unknown
+    allocators, default."""
     def sort_key(name):
         if name in ALLOCATOR_ORDER:
             return (0, ALLOCATOR_ORDER.index(name))
@@ -47,6 +48,7 @@ def add_parse_args(parser):
     parser.add_argument('--cpu', help='CPU type')
     parser.add_argument('--os', help='OS type')
     parser.add_argument('--cpu-count', help='Number of CPUs')
+    parser.add_argument('--smalloc-dep-version', help='Version number of smalloc dependency (from cargo metadata)')
 
 def escape_xml(text):
     """Escape special XML characters."""
@@ -77,6 +79,10 @@ def add_svg_metadata(args, metadata_y, svg_parts, svg_width):
     if args.cpu_count:
         line3_parts.append(f"CPU count: {args.cpu_count}")
 
+    line4_parts = []
+    if args.smalloc_dep_version:
+        line4_parts.append(f"smalloc version: {args.smalloc_dep_version}")
+
     if line0_parts:
         svg_parts.append(f'  <text x="{svg_width/2}" y="{metadata_y}" class="metadata" text-anchor="middle">{escape_xml(" · ".join(line0_parts))}</text>\n')
     if line1_parts:
@@ -85,3 +91,5 @@ def add_svg_metadata(args, metadata_y, svg_parts, svg_width):
         svg_parts.append(f'  <text x="{svg_width/2}" y="{metadata_y + 28}" class="metadata" text-anchor="middle">{" · ".join(line2_parts)}</text>\n')
     if line3_parts:
         svg_parts.append(f'  <text x="{svg_width/2}" y="{metadata_y + 42}" class="metadata" text-anchor="middle">{" · ".join(line3_parts)}</text>\n')
+    if line4_parts:
+        svg_parts.append(f'  <text x="{svg_width/2}" y="{metadata_y + 56}" class="metadata" text-anchor="middle">{" · ".join(line4_parts)}</text>\n')

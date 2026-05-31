@@ -55,12 +55,9 @@ run_loc_benchmark() {
 
     python3 "../locs-graph.py" \
         "loc-output.txt" \
-        --timestamp "$TIMESTAMP" \
-        --git-source "$GIT_SOURCE" \
-        --git-commit "$GIT_COMMIT" \
-        --git-tag "$GIT_TAG" \
-        --git-clean-status "$GIT_CLEAN_STATUS" \
-        --graph "../$OUTPUT_DIR/locs.graph.svg"
+        --graph "../$OUTPUT_DIR/locs.graph.svg" \
+        "${METADATA_ARGS_TO_PASS_TO_PYTHON_SCRIPT[@]}" \
+        --smalloc-dep-version $(get_smalloc_dep_version "smalloc")
 
     cp "loc-output.txt" "../$OUTPUT_DIR/locs.result.txt"
 

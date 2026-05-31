@@ -17,22 +17,6 @@ metadata.add_parse_args(parser)
 
 args = parser.parse_args()
 
-# Desired output order
-ALLOCATOR_ORDER = ['glibc', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'smalloc'] # 'smalloc + ffi'
-
-# Allocator colors
-ALLOCATOR_COLORS = {
-    'default': '#78909c',   # blue-grey (distinct from smalloc green)
-    'glibc': '#5c6bc0',     # indigo
-    'jemalloc': '#66bb6a',  # green
-    'snmalloc': '#ab47bc',  # purple
-    'mimalloc': '#ffca28',  # amber
-    'rpmalloc': '#ff7043',  # deep orange
-    'smalloc': '#42a5f5',   # blue
-    'smalloc + ffi': '#93c2f9', # light blue
-}
-UNKNOWN_ALLOCATOR_COLOR = '#9e9e9e'  # gray
-
 def parse_tokei_output(content):
     """Parse tokei output sections and extract total code lines."""
     results = {}
@@ -73,9 +57,9 @@ def parse_tokei_output(content):
 
         i += 1
 
-    # Add combined smalloc + ffi entry
-    if 'smalloc' in results:
-        results['smalloc + ffi'] = results['smalloc'] + smalloc_ffi_loc
+#    # Add combined smalloc + ffi entry
+#    if 'smalloc' in results:
+#        results['smalloc + ffi'] = results['smalloc'] + smalloc_ffi_loc
 
     return results
 
@@ -92,7 +76,7 @@ if not allocator_locs:
     sys.exit(1)
 
 # Sort by desired order
-sorted_allocators = [a for a in ALLOCATOR_ORDER if a in allocator_locs]
+sorted_allocators = metadata.sort_allocators(list(allocator_locs.keys()))
 
 # Print summary
 print(f"{'Allocator':<20} {'Lines of Code':>15}")
@@ -142,7 +126,7 @@ if args.graph:
 ''')
 
     # Title
-    svg_parts.append(f'  <text x="{width/2}" y="35" class="title" text-anchor="middle">Lines of code by allocator (excluding assertions)</text>\n')
+    svg_parts.append(f'  <text x="{width/2}" y="35" class="title" text-anchor="middle">Lines of code (excluding assertions)—lower is better</text>\n')
 
     # Y-axis
     svg_parts.append(f'  <line x1="{margin_left}" y1="{margin_top}" x2="{margin_left}" y2="{margin_top + chart_height}" class="axis"/>\n')
@@ -163,7 +147,7 @@ if args.graph:
         bar_height = (val / scale_max) * chart_height
         y = margin_top + chart_height - bar_height
 
-        color = ALLOCATOR_COLORS.get(allocator, UNKNOWN_ALLOCATOR_COLOR)
+        color = metadata.get_color(allocator)
 
         # Bar with rounded top corners
         svg_parts.append(f'  <rect x="{x}" y="{y}" width="{actual_bar_width}" height="{bar_height}" rx="3" ry="3" class="bar" fill="{color}"/>\n')
@@ -179,7 +163,7 @@ if args.graph:
         else:
             svg_parts.append(f'  <text x="{x + actual_bar_width/2}" y="{text_y}" class="label" text-anchor="middle">{allocator}</text>\n')
 
-    metadata.add_svg_metadata(args, height - 50, svg_parts, width)
+    metadata.add_svg_metadata(args, height - 80, svg_parts, width)
 
     svg_parts.append('</svg>')
 
