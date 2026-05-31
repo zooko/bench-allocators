@@ -18,7 +18,7 @@ metadata.add_parse_args(parser)
 args = parser.parse_args()
 
 # Desired output order
-ALLOCATOR_ORDER = ['glibc', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'smalloc', 'smalloc + ffi']
+ALLOCATOR_ORDER = ['glibc', 'jemalloc', 'snmalloc', 'mimalloc', 'rpmalloc', 'smalloc'] # 'smalloc + ffi'
 
 # Allocator colors
 ALLOCATOR_COLORS = {

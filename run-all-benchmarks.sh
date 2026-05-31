@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-source "$(dirname "$0")/gather-metadata.sh"
+source "$(dirname "$0")/tools.sh"
 
-# Configuration
+# Directories
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
@@ -49,22 +49,9 @@ run_loc_benchmark() {
     echo "Running lines-of-code comparison..."
     echo "========================================"
 
-    if ! command -v tokei >/dev/null 2>&1; then
-        echo "Need tokei installed to generate lines-of-code comparison. Install it with \"cargo install tokei\"."
-        return 1
-    fi 
     pushd "$WORK_DIR"
 
-    echo "Cloning allocator sources for LOC comparison..."
-    [ -d "glibc" ] || git clone --depth 1 --tags https://sourceware.org/git/glibc.git
-    [ -d "jemalloc" ] || git clone --depth 1 --tags https://github.com/jemalloc/jemalloc
-    [ -d "snmalloc" ] || git clone --depth 1 --tags https://github.com/microsoft/snmalloc
-    [ -d "mimalloc" ] || git clone --depth 1 --tags https://github.com/microsoft/mimalloc
-    [ -d "rpmalloc" ] || git clone --depth 1 --tags https://github.com/mjansson/rpmalloc
-    [ -d "smalloc" ] || git clone --depth 1 --tags https://github.com/zooko/smalloc
-
-    echo "Counting lines of code..."
-    "../count-locs.sh" > "loc-output.txt" 2>&1
+    ../count-locs.sh ${SMALLOC_ONLY}
 
     python3 "../locs-graph.py" \
         "loc-output.txt" \
@@ -80,13 +67,8 @@ run_loc_benchmark() {
     popd
 }
 
-# Function to run benchmark in simd-json or rebar repos (semi-standard interface)
+# Function to run benchmark in simd-json, rebar, or smalloc repos
 run_benchmark() {
-    if ! command -v cmake >/dev/null 2>&1; then
-        echo "Need cmake installed."
-        exit 1
-    fi
-
     local name=$1
     local repo=$2
     local dir="$WORK_DIR/$name"
@@ -108,56 +90,20 @@ run_benchmark() {
     fi
 
     # Run benchmark
-    ./bench-allocators.sh
+    ./bench-allocators.sh "${SMALLOC_ONLY}"
 
     popd
 
     # Copy results (1 txt, 1 svg)
     cp "$dir/${OUTPUT_DIR}/${name}.result.txt" "$OUTPUT_DIR/${name}.result.txt"
-    cp "$dir/${OUTPUT_DIR}/${name}.graph.svg" "$OUTPUT_DIR/${name}.graph.svg"
-}
-
-# Function to run smalloc benchmark (different interface: runbench.sh, 1 txt, 2 svgs)
-run_smalloc_benchmark() {
-    local name="smalloc"
-    local repo="$SMALLOC_REPO"
-    local dir="$WORK_DIR/$name"
-
-    echo
-    echo "========================================"
-    echo "Running $name benchmarks..."
-    echo "========================================"
-
-    # Clone or update
-    if [ -d "$dir" ]; then
-        echo "Updating $dir..."
-        pushd "$dir"
-        git pull
-    else
-        echo "Cloning $repo to $dir..."
-        git clone "$repo" "$dir"
-        pushd "$dir"
-    fi
-
-    # Run benchmark (different script name)
-    ./runbench.sh
-
-    popd
-
-    # Copy results (1 txt, 2 svgs - st and mt)
-    # smalloc outputs to bench/results/{CPU}.{OS}/
-    local smalloc_results_dir="$dir/bench/results/${CPUSTR_DOT_OSSTR}"
-
-    cp "$smalloc_results_dir/cargo-bench.result.txt" "$OUTPUT_DIR/smalloc.result.txt"
-    cp "$smalloc_results_dir/cargo-bench.graph-st.svg" "$OUTPUT_DIR/smalloc-st.graph.svg"
-    cp "$smalloc_results_dir/cargo-bench.graph-mt.svg" "$OUTPUT_DIR/smalloc-mt.graph.svg"
+    cp $dir/${OUTPUT_DIR}/${name}.graph*.svg "$OUTPUT_DIR/"
 }
 
 # Run benchmarks
 run_loc_benchmark
 run_benchmark "simd-json" "$SIMD_JSON_REPO"
 run_benchmark "rebar" "$REBAR_REPO"
-run_smalloc_benchmark
+run_benchmark "smalloc" "$SMALLOC_REPO"
 
 # Generate combined report
 REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
