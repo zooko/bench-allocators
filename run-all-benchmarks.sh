@@ -91,7 +91,7 @@ run_benchmark() {
 
     popd
 
-    # Copy results (1 txt, 1 svg)
+    # Copy results (one txt, any number of svgs)
     cp "$dir/${OUTPUT_DIR}/${name}.result.txt" "$OUTPUT_DIR/${name}.result.txt"
     cp $dir/${OUTPUT_DIR}/${name}.graph*.svg "$OUTPUT_DIR/"
 }
@@ -164,11 +164,11 @@ This report compares memory allocator performance across different workloads.
 
 ### Single-Threaded Performance
 
-![](smalloc-st.graph.svg)
+![](smalloc.graph-st.svg)
 
 ### Multi-Threaded Performance
 
-![](smalloc-mt.graph.svg)
+![](smalloc.graph-mt.svg)
 
 [View detailed smalloc benchmark results](smalloc.result.txt)
 
