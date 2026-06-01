@@ -22,6 +22,16 @@ You can see some such reports committed into this git repo:
 
 You can find benchmark results from other platforms in [benchmark-results](benchmark-results).
 
+## Your Code Here
+
+Make a script that runs benchmarks against your codebase, possibly following the examples of
+https://github.com/zooko/rebar/blob/master/bench-allocators.sh and
+https://github.com/zooko/simd-json/blob/master/bench-allocators.sh
+(if your code is in Rust) or
+https://github.com/zooko/mimalloc-bench/blob/master/bench-allocators.sh
+(if your code is in C/C++/Zig/etc) and publish them and let me know by opening an issue or a
+pull-request!
+
 ## License
 
 You may use this work under the terms of any of these four Free and Open Source Software licences:
