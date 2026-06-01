@@ -51,11 +51,11 @@ This report compares memory allocator performance across different workloads.
 
 ### Single-Threaded Performance
 
-![](smalloc-st.graph.svg)
+![](smalloc.graph-st.svg)
 
 ### Multi-Threaded Performance
 
-![](smalloc-mt.graph.svg)
+![](smalloc.graph-mt.svg)
 
 [View detailed smalloc benchmark results](smalloc.result.txt)
 
@@ -86,7 +86,7 @@ This report compares memory allocator performance across different workloads.
 Source: https://github.com/zooko/bench-allocators
 
 **git source:** https://github.com/zooko/bench-allocators
-**git commit:** 0f12256e96b20137de72199bed3e07986162f516
+**git commit:** d05b9b318e00b7573d40206e20071de1f7f9e291
 **git tag:** 
-**git clean status:** Clean
-**generated:** 2026-03-06 04:33:49 UTC
+**git clean status:** dirty
+**generated:** 2026-05-31 23:53:44 UTC

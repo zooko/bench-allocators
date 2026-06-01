@@ -1,81 +1,119 @@
-TIMESTAMP: 2026-03-06 05:32:45 UTC
+TIMESTAMP: 2026-06-01 00:50:21 UTC
 git source: https://github.com/zooko/smalloc
-git commit: 48a4d035b402e23b5d62ecfde8ef257be64e414f
-git tag: v7.6.5
-git clean status: Clean
+git commit: 9b4e999708317576d255d5b37b7a10b521e15731
+git tag: v7.6.9+b140dc6f0bfa37c175e5e7b315e8c59e1712808b
+git clean status: clean
 CPU type: AppleM4Max
 CPU count: 16
 OS type: darwin25
 Using seed: 0
-name:   de_mt_adrww-64, threads:    64, iters:    100000, ns:     70,093,000, ns/i:       700.9
-name:   je_mt_adrww-64, threads:    64, iters:    100000, ns:      9,561,625, ns/i:        95.6
-name:   sn_mt_adrww-64, threads:    64, iters:    100000, ns:     17,987,708, ns/i:       179.8
-name:   mi_mt_adrww-64, threads:    64, iters:    100000, ns:     16,699,000, ns/i:       166.9
-name:   rp_mt_adrww-64, threads:    64, iters:    100000, ns:      6,110,458, ns/i:        61.1
-name:   sm_mt_adrww-64, threads:    64, iters:    100000, ns:      5,147,834, ns/i:        51.4
-smalloc diff from  default:  -93%
-smalloc diff from jemalloc:  -46%
-smalloc diff from snmalloc:  -71%
-smalloc diff from mimalloc:  -69%
+name:    sm_st_adrww-1, threads:     1, iters:    500000, ns:      4,676,125, ns/i:         9.3
+name:    rp_st_adrww-1, threads:     1, iters:    500000, ns:      5,442,291, ns/i:        10.8
+name:    sn_st_adrww-1, threads:     1, iters:    500000, ns:      5,689,375, ns/i:        11.3
+name:    mi_st_adrww-1, threads:     1, iters:    500000, ns:      7,973,542, ns/i:        15.9
+name:    je_st_adrww-1, threads:     1, iters:    500000, ns:      7,813,167, ns/i:        15.6
+name:    de_st_adrww-1, threads:     1, iters:    500000, ns:      9,341,292, ns/i:        18.6
+smalloc diff from rpmalloc:  -14%
+smalloc diff from snmalloc:  -18%
+smalloc diff from mimalloc:  -41%
+smalloc diff from jemalloc:  -40%
+smalloc diff from  default:  -50%
+
+name:     sm_st_adww-1, threads:     1, iters:    500000, ns:      5,034,041, ns/i:        10.0
+name:     rp_st_adww-1, threads:     1, iters:    500000, ns:      5,480,375, ns/i:        10.9
+name:     sn_st_adww-1, threads:     1, iters:    500000, ns:      6,268,083, ns/i:        12.5
+name:     je_st_adww-1, threads:     1, iters:    500000, ns:      6,956,084, ns/i:        13.9
+name:     mi_st_adww-1, threads:     1, iters:    500000, ns:      7,392,916, ns/i:        14.7
+name:     de_st_adww-1, threads:     1, iters:    500000, ns:      8,325,667, ns/i:        16.6
+smalloc diff from rpmalloc:   -8%
+smalloc diff from snmalloc:  -20%
+smalloc diff from jemalloc:  -28%
+smalloc diff from mimalloc:  -32%
+smalloc diff from  default:  -40%
+
+name:      rp_st_aww-1, threads:     1, iters:     10000, ns:         50,250, ns/i:         5.0
+name:      sm_st_aww-1, threads:     1, iters:     10000, ns:         59,166, ns/i:         5.9
+name:      de_st_aww-1, threads:     1, iters:     10000, ns:         83,042, ns/i:         8.3
+name:      mi_st_aww-1, threads:     1, iters:     10000, ns:        133,042, ns/i:        13.3
+name:      sn_st_aww-1, threads:     1, iters:     10000, ns:        138,000, ns/i:        13.8
+name:      je_st_aww-1, threads:     1, iters:     10000, ns:        157,500, ns/i:        15.7
+smalloc diff from rpmalloc:  +18%
+smalloc diff from  default:  -29%
+smalloc diff from mimalloc:  -56%
+smalloc diff from snmalloc:  -57%
+smalloc diff from jemalloc:  -62%
+
+name:   de_mt_adrww-32, threads:    32, iters:    100000, ns:     29,688,250, ns/i:       296.8
+name:   je_mt_adrww-32, threads:    32, iters:    100000, ns:      5,098,542, ns/i:        50.9
+name:   sn_mt_adrww-32, threads:    32, iters:    100000, ns:     24,588,541, ns/i:       245.8
+name:   mi_mt_adrww-32, threads:    32, iters:    100000, ns:     16,621,459, ns/i:       166.2
+name:   rp_mt_adrww-32, threads:    32, iters:    100000, ns:      3,404,708, ns/i:        34.0
+name:   sm_mt_adrww-32, threads:    32, iters:    100000, ns:      2,866,666, ns/i:        28.6
+smalloc diff from  default:  -90%
+smalloc diff from jemalloc:  -44%
+smalloc diff from snmalloc:  -88%
+smalloc diff from mimalloc:  -83%
 smalloc diff from rpmalloc:  -16%
 
-name:    sm_st_adrww-1, threads:     1, iters:    500000, ns:      4,477,000, ns/i:         8.9
-name:    rp_st_adrww-1, threads:     1, iters:    500000, ns:      5,442,250, ns/i:        10.8
-name:    sn_st_adrww-1, threads:     1, iters:    500000, ns:      5,449,208, ns/i:        10.8
-name:    mi_st_adrww-1, threads:     1, iters:    500000, ns:      6,819,000, ns/i:        13.6
-name:    je_st_adrww-1, threads:     1, iters:    500000, ns:      7,716,875, ns/i:        15.4
-name:    de_st_adrww-1, threads:     1, iters:    500000, ns:     10,587,250, ns/i:        21.1
-smalloc diff from rpmalloc:  -18%
-smalloc diff from snmalloc:  -18%
-smalloc diff from mimalloc:  -34%
-smalloc diff from jemalloc:  -42%
-smalloc diff from  default:  -58%
+name:    de_mt_adww-32, threads:    32, iters:    100000, ns:     19,176,709, ns/i:       191.7
+name:    je_mt_adww-32, threads:    32, iters:    100000, ns:      4,868,458, ns/i:        48.6
+name:    sn_mt_adww-32, threads:    32, iters:    100000, ns:      8,636,000, ns/i:        86.3
+name:    mi_mt_adww-32, threads:    32, iters:    100000, ns:     11,665,000, ns/i:       116.6
+name:    rp_mt_adww-32, threads:    32, iters:    100000, ns:      3,397,208, ns/i:        33.9
+name:    sm_mt_adww-32, threads:    32, iters:    100000, ns:      3,287,084, ns/i:        32.8
+smalloc diff from  default:  -83%
+smalloc diff from jemalloc:  -32%
+smalloc diff from snmalloc:  -62%
+smalloc diff from mimalloc:  -72%
+smalloc diff from rpmalloc:   -3%
 
-name:    de_mt_adww-64, threads:    64, iters:    100000, ns:     44,816,250, ns/i:       448.1
-name:    je_mt_adww-64, threads:    64, iters:    100000, ns:     10,354,416, ns/i:       103.5
-name:    sn_mt_adww-64, threads:    64, iters:    100000, ns:     35,893,667, ns/i:       358.9
-name:    mi_mt_adww-64, threads:    64, iters:    100000, ns:     15,730,625, ns/i:       157.3
-name:    rp_mt_adww-64, threads:    64, iters:    100000, ns:      6,601,125, ns/i:        66.0
-name:    sm_mt_adww-64, threads:    64, iters:    100000, ns:      5,909,833, ns/i:        59.0
-smalloc diff from  default:  -87%
-smalloc diff from jemalloc:  -43%
-smalloc diff from snmalloc:  -84%
-smalloc diff from mimalloc:  -62%
-smalloc diff from rpmalloc:  -10%
+name:     de_mt_aww-32, threads:    32, iters:     10000, ns:      2,702,083, ns/i:       270.2
+name:     je_mt_aww-32, threads:    32, iters:     10000, ns:     19,860,125, ns/i:     1,986.0
+name:     sn_mt_aww-32, threads:    32, iters:     10000, ns:      4,779,542, ns/i:       477.9
+name:     mi_mt_aww-32, threads:    32, iters:     10000, ns:      3,263,583, ns/i:       326.3
+name:     rp_mt_aww-32, threads:    32, iters:     10000, ns:        992,917, ns/i:        99.2
+name:     sm_mt_aww-32, threads:    32, iters:     10000, ns:        399,417, ns/i:        39.9
+smalloc diff from  default:  -85%
+smalloc diff from jemalloc:  -98%
+smalloc diff from snmalloc:  -92%
+smalloc diff from mimalloc:  -88%
+smalloc diff from rpmalloc:  -60%
 
-name:     sm_st_adww-1, threads:     1, iters:    500000, ns:      5,191,750, ns/i:        10.3
-name:     rp_st_adww-1, threads:     1, iters:    500000, ns:      5,689,292, ns/i:        11.3
-name:     je_st_adww-1, threads:     1, iters:    500000, ns:      7,160,458, ns/i:        14.3
-name:     sn_st_adww-1, threads:     1, iters:    500000, ns:      7,734,875, ns/i:        15.4
-name:     mi_st_adww-1, threads:     1, iters:    500000, ns:      8,081,000, ns/i:        16.1
-name:     de_st_adww-1, threads:     1, iters:    500000, ns:      9,611,750, ns/i:        19.2
-smalloc diff from rpmalloc:   -9%
-smalloc diff from jemalloc:  -27%
-smalloc diff from snmalloc:  -33%
-smalloc diff from mimalloc:  -36%
-smalloc diff from  default:  -46%
 
-name:     de_mt_aww-64, threads:    64, iters:     10000, ns:      6,262,333, ns/i:       626.2
-name:     je_mt_aww-64, threads:    64, iters:     10000, ns:    159,018,833, ns/i:    15,901.8
-name:     sn_mt_aww-64, threads:    64, iters:     10000, ns:     13,682,209, ns/i:     1,368.2
-name:     mi_mt_aww-64, threads:    64, iters:     10000, ns:      7,563,292, ns/i:       756.3
-name:     rp_mt_aww-64, threads:    64, iters:     10000, ns:     23,602,333, ns/i:     2,360.2
-name:     sm_mt_aww-64, threads:    64, iters:     10000, ns:        852,708, ns/i:        85.2
-smalloc diff from  default:  -86%
-smalloc diff from jemalloc:  -99%
-smalloc diff from snmalloc:  -94%
-smalloc diff from mimalloc:  -89%
-smalloc diff from rpmalloc:  -96%
+============================================================
+BENCHMARK SUMMARY
+============================================================
 
-name:      sm_st_aww-1, threads:     1, iters:     10000, ns:         52,667, ns/i:         5.2
-name:      rp_st_aww-1, threads:     1, iters:     10000, ns:         48,125, ns/i:         4.8
-name:      mi_st_aww-1, threads:     1, iters:     10000, ns:        107,583, ns/i:        10.7
-name:      je_st_aww-1, threads:     1, iters:     10000, ns:         97,292, ns/i:         9.7
-name:      de_st_aww-1, threads:     1, iters:     10000, ns:        113,959, ns/i:        11.3
-name:      sn_st_aww-1, threads:     1, iters:     10000, ns:        299,750, ns/i:        29.9
-smalloc diff from rpmalloc:   +9%
-smalloc diff from mimalloc:  -51%
-smalloc diff from jemalloc:  -46%
-smalloc diff from  default:  -54%
-smalloc diff from snmalloc:  -82%
+Single-Threaded - Arithmetic mean of time ratios (1.0 = baseline):
+  smalloc     : 0.604 (-39.6%)
+  rpmalloc    : 0.613 (-38.7%)
+  mimalloc    : 1.114 (+11.4%)
+  snmalloc    : 1.008 (+0.8%)
+  jemalloc    : 1.189 (+18.9%)
+  default     : 1.000 (+0.0%)
 
+Multi-Threaded - Arithmetic mean of time ratios (1.0 = baseline):
+  smalloc     : 0.138 (-86.2%)
+  rpmalloc    : 0.220 (-78.0%)
+  mimalloc    : 0.792 (-20.8%)
+  snmalloc    : 1.016 (+1.6%)
+  jemalloc    : 2.592 (+159.2%)
+  default     : 1.000 (+0.0%)
+
+Single-Threaded smalloc vs others:
+  smalloc vs rpmalloc    : -1.4%
+  smalloc vs mimalloc    : -45.8%
+  smalloc vs snmalloc    : -40.0%
+  smalloc vs jemalloc    : -49.2%
+  smalloc vs default     : -39.6%
+
+Multi-Threaded smalloc vs others:
+  smalloc vs rpmalloc    : -37.0%
+  smalloc vs mimalloc    : -82.5%
+  smalloc vs snmalloc    : -86.4%
+  smalloc vs jemalloc    : -94.7%
+  smalloc vs default     : -86.2%
+Detailed graph saved to: ./benchmark-results/AppleM4Max.darwin25/smalloc.graph-st.svg
+Singlethreaded benchmarks graph is in ./benchmark-results/AppleM4Max.darwin25/smalloc.graph-st.svg
+Detailed graph saved to: ./benchmark-results/AppleM4Max.darwin25/smalloc.graph-mt.svg
+Multithreaded benchmarks graph is in ./benchmark-results/AppleM4Max.darwin25/smalloc.graph-mt.svg
