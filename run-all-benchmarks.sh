@@ -53,7 +53,7 @@ run_loc_benchmark() {
 
     ../count-locs.sh ${SMALLOC_ONLY}
 
-    python3 "../locs-graph.py" \
+    python3 "../tools/locs-graph.py" \
         "loc-output.txt" \
         --graph "../$OUTPUT_DIR/locs.graph.svg" \
         "${METADATA_ARGS_TO_PASS_TO_PYTHON_SCRIPT[@]}" \
