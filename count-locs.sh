@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$0")/tools.sh"
+source "$(dirname "$0")/tools/tools.sh"
 
 if ! command -v tokei >/dev/null 2>&1; then
     echo "Need tokei installed to generate lines-of-code comparison. Install it with \"cargo install tokei\"."
@@ -53,6 +53,7 @@ for ALLOCATOR in "${ALLOCATOR_LIST[@]}"; do
     echo $ALLOCATOR | tee -a $OUTPUT_FILE
     pushd $ALLOCATOR
     gather_and_print_git_metadata | tee -a ../$OUTPUT_FILE
+    echo "smalloc version: $(get_smalloc_dep_version .)" 2>&1 | tee -a $RESF
     cd $subdir
 
     find . -name '*-noa.*' -print0 | xargs -0 rm -f

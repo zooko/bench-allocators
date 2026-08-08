@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source "$(dirname "$0")/tools.sh"
+source "$(dirname "$0")/tools/tools.sh"
 
 # Directories
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -68,6 +68,7 @@ run_loc_benchmark() {
 run_benchmark() {
     local name=$1
     local repo=$2
+    shift 2
     local dir="$WORK_DIR/$name"
 
     echo
@@ -87,8 +88,11 @@ run_benchmark() {
     fi
 
     # Run benchmark
-    ./bench-allocators.sh "${SMALLOC_ONLY}"
-
+    if [[ -n "$SMALLOC_ONLY" ]]; then
+        ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
+    else
+        ./tools/bench-allocators.sh "$@"
+    fi
     popd
 
     # Copy results (one txt, any number of svgs)
@@ -98,9 +102,9 @@ run_benchmark() {
 
 # Run benchmarks
 run_loc_benchmark
-run_benchmark "simd-json" "$SIMD_JSON_REPO"
-run_benchmark "rebar" "$REBAR_REPO"
-run_benchmark "smalloc" "$SMALLOC_REPO"
+run_benchmark "simd-json" "$SIMD_JSON_REPO" "${BENCHMARK_ARGS[@]}"
+run_benchmark "rebar" "$REBAR_REPO" "${BENCHMARK_ARGS[@]}"
+run_benchmark "smalloc" "$SMALLOC_REPO" "${BENCHMARK_ARGS[@]}"
 
 # Generate combined report
 REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
@@ -126,21 +130,13 @@ This report compares memory allocator performance across different workloads.
 
 ## Workloads
 
-- **Lines of Code**: Implementation size comparison (excluding debug assertions)
 - **simd-json**: High-performance JSON parser ([fork for benchmarking](https://github.com/zooko/simd-json))
 - **rebar**: Regex engine benchmark harness ([fork for benchmarking](https://github.com/zooko/rebar))
 - **smalloc bench**: Micro-benchmarks for malloc/free/realloc operations
+- **Lines of Code**: Implementation size comparison (excluding debug assertions)
 
 **CPU:** $CPU_TYPE_STR
 **OS:** $OS_TYPE_STR
-
----
-
-## Lines of Code Comparison
-
-![](locs.graph.svg)
-
-[View detailed LOC results](locs.result.txt)
 
 ---
 
@@ -171,6 +167,14 @@ This report compares memory allocator performance across different workloads.
 ![](smalloc.graph-mt.svg)
 
 [View detailed smalloc benchmark results](smalloc.result.txt)
+
+---
+
+## Lines of Code Comparison
+
+![](locs.graph.svg)
+
+[View detailed LOC results](locs.result.txt)
 
 ---
 
