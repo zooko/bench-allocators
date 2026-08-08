@@ -285,7 +285,7 @@ echo "========================================"
 echo "Allocator Benchmark Suite"
 echo "========================================"
 echo "timestamp: ${TIMESTAMP}"
-gather_and_print_git_metadata
+print_git_metadata
 print_machine_metadata
 echo "Work directory: $WORK_DIR"
 echo "Output directory: $OUTPUT_DIR"
