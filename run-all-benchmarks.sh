@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-source "$(dirname "$0")/tools/tools.sh"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+REPO_ROOT="$SCRIPT_DIR"
+
+cd "$REPO_ROOT"
+source "$SCRIPT_DIR/tools/tools.sh"
 
 # Directories
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -27,6 +31,11 @@ mkdir -p "$WORK_DIR"
 LOC_ALLOCATOR_METADATA_FILE="$PWD/$WORK_DIR/loc-allocator-metadata.txt"
 FULL_METADATA_FILE="$PWD/$WORK_DIR/full-run-metadata.txt"
 
+WORKLOAD_METADATA_DIR="$PWD/$WORK_DIR/workload-metadata"
+WORKLOAD_LOCK_METADATA_FILE="$PWD/$WORK_DIR/workload-lock-metadata.txt"
+
+mkdir -p "$WORKLOAD_METADATA_DIR"
+
 prepare_repo() {
     local name="$1"
     local repo="$2"
@@ -39,6 +48,60 @@ prepare_repo() {
         echo "Cloning $repo to $dir..."
         git clone "$repo" "$dir"
     fi
+}
+
+restore_workload_lockfiles() {
+    local workload
+
+    for workload in smalloc simd-json rebar; do
+        if git -C "$WORK_DIR/$workload" \
+            ls-files --error-unmatch Cargo.lock \
+            >/dev/null 2>&1
+        then
+            git -C "$WORK_DIR/$workload" restore -- Cargo.lock
+        fi
+    done
+}
+
+save_workload_git_statuses() {
+    local workload
+    local directory
+    local status
+
+    for workload in smalloc simd-json rebar; do
+        directory="$WORK_DIR/$workload"
+
+        if [[ -z "$(git -C "$directory" status --porcelain)" ]]; then
+            status=clean
+        else
+            status="dirty-$(
+                git -C "$directory" diff --binary HEAD |
+                b3sum --no-names
+            )"
+        fi
+
+        printf '%s\n' "$status" \
+            >"$WORKLOAD_METADATA_DIR/$workload.git-clean-status"
+    done
+}
+
+write_workload_lock_metadata() {
+    local workload
+    local lockfile
+
+    {
+        echo "Prepared workload lockfile metadata"
+        echo "==================================="
+
+        for workload in smalloc simd-json rebar; do
+            lockfile="$WORK_DIR/$workload/Cargo.lock"
+
+            echo
+            echo "workload: $workload"
+            echo "Cargo.lock: $PWD/$lockfile"
+            echo "Cargo.lock BLAKE3: $(b3sum --no-names "$lockfile")"
+        done
+    } >"$WORKLOAD_LOCK_METADATA_FILE"
 }
 
 restore_workload_lockfiles() {
@@ -302,6 +365,11 @@ run_benchmark() {
     local repo=$2
     shift 2
     local dir="$WORK_DIR/$name"
+    local original_git_status
+
+    original_git_status=$(
+        cat "$WORKLOAD_METADATA_DIR/$name.git-clean-status"
+    )
 
     echo
     echo "========================================"
@@ -312,6 +380,11 @@ run_benchmark() {
 
     # Run benchmark
     if [[ -n "$SMALLOC_ONLY" ]]; then
+        BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
+    else
+        BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$@"
+    fi
+    if [[ -n "$SMALLOC_ONLY" ]]; then
         ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
     else
         ./tools/bench-allocators.sh "$@"
@@ -320,6 +393,14 @@ run_benchmark() {
 
     # Copy results (one txt, any number of svgs)
     cp "$dir/${OUTPUT_DIR}/${name}.result.txt" "$OUTPUT_DIR/${name}.result.txt"
+    {
+        echo
+        echo "Prepared workload Cargo.lock"
+        echo "============================"
+        echo "Cargo.lock BLAKE3: $(
+            b3sum --no-names "$dir/Cargo.lock"
+        )"
+    } >>"$OUTPUT_DIR/${name}.result.txt"
     append_allocator_metadata "$OUTPUT_DIR/${name}.result.txt"
     cp $dir/${OUTPUT_DIR}/${name}.graph*.svg "$OUTPUT_DIR/"
 }
@@ -328,6 +409,15 @@ run_benchmark() {
 prepare_repo "smalloc" "$SMALLOC_REPO"
 prepare_repo "simd-json" "$SIMD_JSON_REPO"
 prepare_repo "rebar" "$REBAR_REPO"
+
+# Discard lockfile changes left by an earlier completed or failed run.
+restore_workload_lockfiles
+
+# Record source-tree cleanliness before intentionally preparing Cargo.lock.
+save_workload_git_statuses
+
+# Restore committed lockfiles again whenever this script exits.
+trap restore_workload_lockfiles EXIT INT TERM
 
 # Start from each repository's committed lockfile. Restore them again
 # when this script exits, including after an error or interruption.
@@ -349,6 +439,8 @@ for workload in smalloc simd-json rebar; do
     prepare_workload_allocator_versions "$WORK_DIR/$workload"
     verify_workload_allocator_versions "$WORK_DIR/$workload"
 done
+
+write_workload_lock_metadata
 
 # Run benchmarks
 run_loc_benchmark
@@ -379,6 +471,9 @@ REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
 
     echo
     cat "$ALLOCATOR_METADATA_FILE"
+
+    echo
+    cat "$WORKLOAD_LOCK_METADATA_FILE"
 
     echo
     cat "$LOC_ALLOCATOR_METADATA_FILE"
