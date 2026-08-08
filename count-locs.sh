@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "$(dirname "$0")/tools/tools.sh"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source "$SCRIPT_DIR/tools/tools.sh"
 
 if ! command -v tokei >/dev/null 2>&1; then
     echo "Need tokei installed to generate lines-of-code comparison. Install it with \"cargo install tokei\"."
@@ -47,14 +48,18 @@ for ALLOCATOR in "${ALLOCATOR_LIST[@]}"; do
             ;;
     esac
 
-    echo "Cloning allocator sources for LOC comparison..."
-    [ -d "$ALLOCATOR" ] || git clone --depth 1 --tags $url
+    if [[ -d "$ALLOCATOR/.git" ]]; then
+        echo "Updating allocator source for LOC comparison: $ALLOCATOR"
+        git -C "$ALLOCATOR" pull --ff-only
+    else
+        echo "Cloning allocator source for LOC comparison: $ALLOCATOR"
+        git clone --depth 1 --tags "$url" "$ALLOCATOR"
+    fi
 
     echo $ALLOCATOR | tee -a $OUTPUT_FILE
-    pushd $ALLOCATOR
-    gather_and_print_git_metadata | tee -a ../$OUTPUT_FILE
-    echo "smalloc version: $(get_smalloc_dep_version .)" 2>&1 | tee -a $RESF
-    cd $subdir
+    pushd "$ALLOCATOR"
+    print_current_git_metadata . | tee -a "../$OUTPUT_FILE"
+    cd "$subdir"
 
     find . -name '*-noa.*' -print0 | xargs -0 rm -f
     if [[ -n "${FILES_LIST[*]}" ]]; then
