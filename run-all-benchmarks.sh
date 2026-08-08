@@ -24,7 +24,199 @@ mkdir -p "$OUTPUT_DIR"
 # Create directories
 mkdir -p "$WORK_DIR"
 
-ARGS=$*
+LOC_ALLOCATOR_METADATA_FILE="$PWD/$WORK_DIR/loc-allocator-metadata.txt"
+FULL_METADATA_FILE="$PWD/$WORK_DIR/full-run-metadata.txt"
+
+prepare_repo() {
+    local name="$1"
+    local repo="$2"
+    local dir="$WORK_DIR/$name"
+
+    if [[ -d "$dir/.git" ]]; then
+        echo "Updating $dir..."
+        git -C "$dir" pull --ff-only
+    else
+        echo "Cloning $repo to $dir..."
+        git clone "$repo" "$dir"
+    fi
+}
+
+restore_workload_lockfiles() {
+    local workload
+
+    for workload in smalloc simd-json rebar; do
+        if git -C "$WORK_DIR/$workload" \
+            ls-files --error-unmatch Cargo.lock \
+            >/dev/null 2>&1
+        then
+            git -C "$WORK_DIR/$workload" restore -- Cargo.lock
+        fi
+    done
+}
+
+lock_contains_package() {
+    local lockfile="$1"
+    local wanted="$2"
+
+    awk -v wanted="$wanted" '
+        $0 == "[[" "package" "]]" {
+            in_package = 1
+            next
+        }
+        in_package && /^name = / {
+            name = $0
+            sub(/^name = "/, "", name)
+            sub(/"$/, "", name)
+
+            if (name == wanted) {
+                found = 1
+                exit
+            }
+        }
+
+        END {
+            exit !found
+        }
+    ' "$lockfile"
+}
+
+prepare_workload_allocator_versions() {
+    local directory="$1"
+
+    (
+        cd "$directory"
+
+        while IFS=$'\t' read -r package version manifest; do
+            if lock_contains_package Cargo.lock "$package"; then
+                cargo update \
+                    -p "$package" \
+                    --precise "$version"
+            fi
+        done < "$ALLOCATOR_PINS_FILE"
+
+        # Complete dependency resolution with every allocator feature
+        # enabled. This is allowed to update Cargo.lock. The subsequent
+        # verification and benchmark builds use --locked.
+        cargo metadata \
+            --format-version=1 \
+            --all-features \
+            >/dev/null
+    )
+}
+
+verify_workload_allocator_versions() {
+    local directory="$1"
+    local metadata_json
+
+    metadata_json=$(
+        cd "$directory"
+        cargo metadata \
+            --locked \
+            --format-version=1 \
+            --all-features
+    )
+
+    while IFS=$'\t' read -r package version expected_manifest; do
+        actual=$(
+            printf '%s' "$metadata_json" |
+            jq -r --arg package "$package" '
+                [
+                    .packages[]
+                    | select(.name == $package)
+                    | .manifest_path
+                ][0] // ""
+            '
+        )
+
+        # A workload need not use every allocator package.
+        if [[ -n "$actual" && "$actual" != "$expected_manifest" ]]; then
+            echo "Error: $directory resolves $package from the wrong source." >&2
+            echo "Expected: $expected_manifest" >&2
+            echo "Actual:   $actual" >&2
+            exit 1
+        fi
+    done < "$ALLOCATOR_PINS_FILE"
+}
+
+append_allocator_metadata() {
+    local result_file="$1"
+
+    {
+        echo
+        echo
+        cat "$ALLOCATOR_METADATA_FILE"
+    } >> "$result_file"
+}
+
+write_loc_allocator_metadata() {
+    local output_file="$1"
+
+    {
+        echo "LOC allocator Git-source metadata"
+        echo "================================="
+
+        for allocator in jemalloc mimalloc rpmalloc snmalloc smalloc; do
+            local directory="$allocator"
+
+            if [[ ! -d "$directory/.git" ]]; then
+                echo "Error: count-locs did not create a Git checkout at $PWD/$directory" >&2
+                return 1
+            fi
+
+            local source
+            local commit
+            local tree
+            local tag
+            local clean_status
+            local diff_hash
+            local source_hash
+
+            source=$(git -C "$directory" remote get-url origin)
+            commit=$(git -C "$directory" rev-parse HEAD)
+            tree=$(git -C "$directory" rev-parse 'HEAD^{tree}')
+            tag=$(git -C "$directory" describe --tags --exact-match 2>/dev/null || true)
+
+            if [[ -z "$(git -C "$directory" status --porcelain)" ]]; then
+                clean_status=clean
+            else
+                clean_status=dirty
+            fi
+
+            diff_hash=$(
+                git -C "$directory" diff --binary HEAD |
+                b3sum --no-names
+            )
+
+            source_hash=$(
+                git -C "$directory" archive --format=tar HEAD |
+                b3sum --no-names
+            )
+
+            echo
+            echo "allocator: $allocator"
+            echo "git source: $source"
+            echo "git commit: $commit"
+            echo "git tree: $tree"
+            echo "git tag: $tag"
+            echo "git clean status: $clean_status"
+            echo "git diff BLAKE3: $diff_hash"
+            echo "committed source-tree BLAKE3: $source_hash"
+        done
+
+        echo
+        echo "count-locs.sh BLAKE3: $(b3sum --no-names ../count-locs.sh)"
+    } >"$output_file"
+}
+
+append_loc_allocator_metadata() {
+    local result_file="$1"
+
+    {
+        echo
+        echo
+        cat "$LOC_ALLOCATOR_METADATA_FILE"
+    } >>"$result_file"
+}
 
 echo "========================================"
 echo "Allocator Benchmark Suite"
@@ -53,15 +245,55 @@ run_loc_benchmark() {
 
     ../count-locs.sh ${SMALLOC_ONLY}
 
+    # count-locs.sh uses Git checkouts rather than Cargo dependencies.
+    # Capture the exact Git sources that it actually counted.
+    write_loc_allocator_metadata "$LOC_ALLOCATOR_METADATA_FILE"
+
     python3 "../tools/locs-graph.py" \
         "loc-output.txt" \
         --graph "../$OUTPUT_DIR/locs.graph.svg" \
         "${METADATA_ARGS_TO_PASS_TO_PYTHON_SCRIPT[@]}" \
-        --smalloc-dep-version $(get_smalloc_dep_version "smalloc")
+        --smalloc-dep-version "$(get_smalloc_dep_version "smalloc")"
 
     cp "loc-output.txt" "../$OUTPUT_DIR/locs.result.txt"
+    append_loc_allocator_metadata "../$OUTPUT_DIR/locs.result.txt"
 
     popd
+}
+
+embed_metadata_in_svg() {
+    local svg_file="$1"
+    local metadata_file="$2"
+    local temporary="${svg_file}.tmp"
+
+    awk -v metadata_file="$metadata_file" '
+        /<\/svg>/ && !inserted {
+            print "  <!--"
+
+            while ((getline line < metadata_file) > 0) {
+                # XML comments may not contain "--".
+                gsub(/--/, "- -", line)
+                print "  " line
+            }
+
+            close(metadata_file)
+            print "  -->"
+            inserted = 1
+        }
+
+        {
+            print
+        }
+
+        END {
+            if (!inserted) {
+                print "Error: no </svg> element found" > "/dev/stderr"
+                exit 1
+            }
+        }
+    ' "$svg_file" >"$temporary"
+
+    mv "$temporary" "$svg_file"
 }
 
 # Function to run benchmark in simd-json, rebar, or smalloc repos
@@ -76,16 +308,7 @@ run_benchmark() {
     echo "Running $name benchmarks..."
     echo "========================================"
 
-    # Clone or update
-    if [ -d "$dir" ]; then
-        echo "Updating $dir..."
-        pushd "$dir"
-        git pull
-    else
-        echo "Cloning $repo to $dir..."
-        git clone "$repo" "$dir"
-        pushd "$dir"
-    fi
+    pushd "$dir"
 
     # Run benchmark
     if [[ -n "$SMALLOC_ONLY" ]]; then
@@ -97,8 +320,35 @@ run_benchmark() {
 
     # Copy results (one txt, any number of svgs)
     cp "$dir/${OUTPUT_DIR}/${name}.result.txt" "$OUTPUT_DIR/${name}.result.txt"
+    append_allocator_metadata "$OUTPUT_DIR/${name}.result.txt"
     cp $dir/${OUTPUT_DIR}/${name}.graph*.svg "$OUTPUT_DIR/"
 }
+
+# Prepare benchmark repositories first.
+prepare_repo "smalloc" "$SMALLOC_REPO"
+prepare_repo "simd-json" "$SIMD_JSON_REPO"
+prepare_repo "rebar" "$REBAR_REPO"
+
+# Start from each repository's committed lockfile. Restore them again
+# when this script exits, including after an error or interruption.
+restore_workload_lockfiles
+trap restore_workload_lockfiles EXIT INT TERM
+
+# The smalloc benchmark workspace's Cargo.lock is the canonical allocator
+# dependency resolution for this complete benchmark run.
+./tools/prepare-allocator-pins.py \
+    "$WORK_DIR/smalloc" \
+    "$WORK_DIR"
+
+export ALLOCATOR_PINS_FILE="$PWD/$WORK_DIR/allocator-pins.tsv"
+export ALLOCATOR_METADATA_FILE="$PWD/$WORK_DIR/allocator-metadata.txt"
+
+# Cargo automatically discovers benchmark-workspace/.cargo/config.toml
+# from every repository nested below benchmark-workspace.
+for workload in smalloc simd-json rebar; do
+    prepare_workload_allocator_versions "$WORK_DIR/$workload"
+    verify_workload_allocator_versions "$WORK_DIR/$workload"
+done
 
 # Run benchmarks
 run_loc_benchmark
@@ -108,6 +358,39 @@ run_benchmark "smalloc" "$SMALLOC_REPO" "${BENCHMARK_ARGS[@]}"
 
 # Generate combined report
 REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
+
+# Both metadata files now exist:
+#
+# - ALLOCATOR_METADATA_FILE describes the Cargo packages used by the
+#   runtime benchmarks.
+# - LOC_ALLOCATOR_METADATA_FILE describes the Git source trees counted
+#   by count-locs.sh.
+{
+    echo "Benchmark run metadata"
+    echo "======================"
+    echo "timestamp: $TIMESTAMP"
+    echo "git source: $GIT_SOURCE"
+    echo "git commit: $GIT_COMMIT"
+    echo "git tag: $GIT_TAG"
+    echo "git clean status: $GIT_CLEAN_STATUS"
+    echo "CPU type: $CPU_TYPE_STR"
+    echo "CPU count: $CPU_COUNT"
+    echo "OS type: $OS_TYPE_STR"
+
+    echo
+    cat "$ALLOCATOR_METADATA_FILE"
+
+    echo
+    cat "$LOC_ALLOCATOR_METADATA_FILE"
+} >"$FULL_METADATA_FILE"
+
+for svg_file in "$OUTPUT_DIR"/*.svg; do
+    [[ -f "$svg_file" ]] || continue
+
+    embed_metadata_in_svg \
+        "$svg_file" \
+        "$FULL_METADATA_FILE"
+done
 
 echo
 echo "========================================"
