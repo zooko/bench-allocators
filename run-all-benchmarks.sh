@@ -5,7 +5,6 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT="$SCRIPT_DIR"
 
 cd "$REPO_ROOT"
-source "$SCRIPT_DIR/tools/tools.sh"
 
 # Directories
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
@@ -23,6 +22,9 @@ OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
 
 git clean -fd "$OUTPUT_BASE_DIR"
 git restore "$OUTPUT_BASE_DIR"
+
+source "$SCRIPT_DIR/tools/tools.sh"
+
 mkdir -p "$OUTPUT_DIR"
 
 # Create directories
@@ -218,7 +220,7 @@ write_loc_allocator_metadata() {
         echo "LOC allocator Git-source metadata"
         echo "================================="
 
-        for allocator in jemalloc mimalloc rpmalloc snmalloc smalloc; do
+        for allocator in glibc jemalloc mimalloc rpmalloc snmalloc smalloc; do
             local directory="$allocator"
 
             if [[ ! -d "$directory/.git" ]]; then
@@ -383,11 +385,6 @@ run_benchmark() {
         BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
     else
         BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$@"
-    fi
-    if [[ -n "$SMALLOC_ONLY" ]]; then
-        ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
-    else
-        ./tools/bench-allocators.sh "$@"
     fi
     popd
 
