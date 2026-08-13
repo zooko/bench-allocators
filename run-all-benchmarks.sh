@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+set -o pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT="$SCRIPT_DIR"
@@ -10,59 +11,241 @@ cd "$REPO_ROOT"
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
+TANTIVY_REPO="https://github.com/zooko/tantivy"
 SMALLOC_REPO="https://github.com/zooko/smalloc"
 
 OUTPUT_BASE_DIR=./benchmark-results
 
-OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
-
-# THE FOLLOWING LINES BLOW AWAY ALL CONTENTS OF THE OUTPUT BASE DIR (${OUTPUT_BASE_DIR}). (This is
-# necessary to make multiple successive runs of this script show "git clean" instead of "git
-# uncommitted changes".)
-
+# THE FOLLOWING LINES BLOW AWAY ALL CONTENTS OF THE OUTPUT BASE DIR
+# (${OUTPUT_BASE_DIR}). This is necessary to make multiple successive runs
+# of this script show "git clean" instead of "git uncommitted changes".
+#
+# Do this before sourcing tools.sh so that the Git-clean metadata captured
+# by tools.sh does not include output from the preceding benchmark run.
 git clean -fd "$OUTPUT_BASE_DIR"
 git restore "$OUTPUT_BASE_DIR"
 
 source "$SCRIPT_DIR/tools/tools.sh"
 
+# CPUSTR_DOT_OSSTR is defined by tools.sh, so OUTPUT_DIR must not be
+# calculated until after tools.sh has been sourced.
+OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
+
 mkdir -p "$OUTPUT_DIR"
+OUTPUT_DIR_ABS=$(cd "$OUTPUT_DIR" && pwd)
 
-# Create directories
 mkdir -p "$WORK_DIR"
+WORK_DIR=$(cd "$WORK_DIR" && pwd)
 
-LOC_ALLOCATOR_METADATA_FILE="$PWD/$WORK_DIR/loc-allocator-metadata.txt"
-FULL_METADATA_FILE="$PWD/$WORK_DIR/full-run-metadata.txt"
+LOC_ALLOCATOR_METADATA_FILE="$WORK_DIR/loc-allocator-metadata.txt"
+FULL_METADATA_FILE="$WORK_DIR/full-run-metadata.txt"
 
-WORKLOAD_METADATA_DIR="$PWD/$WORK_DIR/workload-metadata"
-WORKLOAD_LOCK_METADATA_FILE="$PWD/$WORK_DIR/workload-lock-metadata.txt"
+WORKLOAD_METADATA_DIR="$WORK_DIR/workload-metadata"
+WORKLOAD_LOCK_METADATA_FILE="$WORK_DIR/workload-lock-metadata.txt"
 
 mkdir -p "$WORKLOAD_METADATA_DIR"
+
+# Rebar is deliberately omitted from PINNED_WORKLOADS. Its benchmark script
+# is treated as an opaque operation by this script. In particular, this
+# script does not inspect, modify, restore, prepare, verify, or report the
+# Cargo.lock files belonging to rebar's allocator-engine crates.
+WORKLOADS=(smalloc simd-json rebar tantivy)
+PINNED_WORKLOADS=(smalloc simd-json tantivy)
+
+# prepare-allocator-pins.py generates this ancestor Cargo configuration.
+# It must be hidden while rebar runs so that Cargo commands launched by
+# rebar do not inherit the cross-workload allocator patches.
+ALLOCATOR_PATCH_CONFIG="$WORK_DIR/.cargo/config.toml"
+ALLOCATOR_PATCH_CONFIG_DISABLED="${ALLOCATOR_PATCH_CONFIG}.disabled-for-rebar"
+
+# These flags distinguish changes made by this invocation from state that
+# may have existed before it started.
+ALLOCATOR_PATCH_CONFIG_HIDDEN=0
+PINNED_LOCKFILES_MAY_HAVE_BEEN_MODIFIED=0
+
+# One entry per PINNED_WORKLOADS element. Each entry records whether that
+# workload's root Cargo.lock was tracked or absent when this invocation
+# started. Pre-existing untracked lockfiles are rejected rather than
+# overwritten or cleaned up.
+PINNED_LOCKFILE_INITIAL_STATES=()
 
 prepare_repo() {
     local name="$1"
     local repo="$2"
-    local dir="$WORK_DIR/$name"
+    local directory="$WORK_DIR/$name"
 
-    if [[ -d "$dir/.git" ]]; then
-        echo "Updating $dir..."
-        git -C "$dir" pull --ff-only
+    if [[ -d "$directory/.git" ]]; then
+        echo "Updating $directory..."
+        git -C "$directory" pull --ff-only
+    elif [[ -e "$directory" ]]; then
+        echo "Error: repository destination exists but is not a Git checkout:" >&2
+        echo "  $directory" >&2
+        return 1
     else
-        echo "Cloning $repo to $dir..."
-        git clone "$repo" "$dir"
+        echo "Cloning $repo to $directory..."
+        git clone "$repo" "$directory"
     fi
 }
 
-restore_workload_lockfiles() {
-    local workload
+check_required_commands() {
+    local command
+    local missing=0
 
-    for workload in smalloc simd-json rebar; do
-        if git -C "$WORK_DIR/$workload" \
+    for command in \
+        awk \
+        b3sum \
+        cargo \
+        git \
+        jq \
+        python3 \
+        tokei
+    do
+        if ! command -v "$command" >/dev/null 2>&1; then
+            echo "Error: required command is not installed: $command" >&2
+            missing=1
+        fi
+    done
+
+    if [[ "$missing" == 1 ]]; then
+        return 1
+    fi
+}
+
+check_benchmark_scripts() {
+    local workload
+    local script
+
+    if [[ ! -x "$SCRIPT_DIR/count-locs.sh" ]]; then
+        echo "Error: missing or non-executable LOC benchmark script:" >&2
+        echo "  $SCRIPT_DIR/count-locs.sh" >&2
+        return 1
+    fi
+
+    if [[ ! -f "$SCRIPT_DIR/tools/locs-graph.py" ]]; then
+        echo "Error: missing LOC graph script:" >&2
+        echo "  $SCRIPT_DIR/tools/locs-graph.py" >&2
+        return 1
+    fi
+
+    if [[ ! -x "$SCRIPT_DIR/tools/prepare-allocator-pins.py" ]]; then
+        echo "Error: missing or non-executable allocator pin script:" >&2
+        echo "  $SCRIPT_DIR/tools/prepare-allocator-pins.py" >&2
+        return 1
+    fi
+
+    bash -n "$SCRIPT_DIR/count-locs.sh"
+
+    for workload in "${WORKLOADS[@]}"; do
+        script="$WORK_DIR/$workload/tools/bench-allocators.sh"
+
+        if [[ ! -x "$script" ]]; then
+            echo "Error: missing or non-executable benchmark script:" >&2
+            echo "  $script" >&2
+            return 1
+        fi
+
+        bash -n "$script"
+    done
+}
+
+# Before this script intentionally changes a pinned workload's root
+# Cargo.lock, record whether the lockfile was tracked or absent.
+#
+# Tracked lockfiles must be clean. An absent lockfile may be generated by
+# this invocation and will be removed by cleanup. A pre-existing untracked
+# lockfile is rejected because it may contain user data or state left by
+# another invocation.
+check_pinned_workload_lockfiles() {
+    local workload
+    local directory
+    local lockfile
+
+    PINNED_LOCKFILE_INITIAL_STATES=()
+
+    for workload in "${PINNED_WORKLOADS[@]}"; do
+        directory="$WORK_DIR/$workload"
+        lockfile="$directory/Cargo.lock"
+
+        if git -C "$directory" \
             ls-files --error-unmatch Cargo.lock \
             >/dev/null 2>&1
         then
-            git -C "$WORK_DIR/$workload" restore -- Cargo.lock
+            if [[ ! -f "$lockfile" ]]; then
+                echo "Error: tracked workload Cargo.lock is missing:" >&2
+                echo "  $lockfile" >&2
+                return 1
+            fi
+
+            if ! git -C "$directory" diff --quiet -- Cargo.lock; then
+                echo "Error: pinned workload Cargo.lock has pre-existing changes:" >&2
+                echo "  $lockfile" >&2
+                echo "Refusing to overwrite changes from before this run." >&2
+                return 1
+            fi
+
+            if ! git -C "$directory" diff --cached --quiet -- Cargo.lock; then
+                echo "Error: pinned workload Cargo.lock has staged changes:" >&2
+                echo "  $lockfile" >&2
+                echo "Refusing to overwrite changes from before this run." >&2
+                return 1
+            fi
+
+            PINNED_LOCKFILE_INITIAL_STATES+=(tracked)
+        elif [[ -e "$lockfile" ]]; then
+            echo "Error: pinned workload has a pre-existing untracked Cargo.lock:" >&2
+            echo "  $lockfile" >&2
+            echo "Refusing to overwrite or remove state from an earlier invocation." >&2
+            return 1
+        else
+            # Library repositories such as Tantivy may intentionally omit
+            # Cargo.lock. This invocation may generate one and will remove
+            # only the file that it generated.
+            PINNED_LOCKFILE_INITIAL_STATES+=(absent)
         fi
     done
+}
+
+# Restore only the root lockfiles this invocation was allowed to modify.
+# Rebar is intentionally excluded.
+restore_current_run_lockfiles() {
+    local index
+    local workload
+    local directory
+    local lockfile
+    local initial_state
+
+    if [[ "$PINNED_LOCKFILES_MAY_HAVE_BEEN_MODIFIED" != 1 ]]; then
+        return 0
+    fi
+
+    for index in "${!PINNED_WORKLOADS[@]}"; do
+        workload="${PINNED_WORKLOADS[$index]}"
+        initial_state="${PINNED_LOCKFILE_INITIAL_STATES[$index]}"
+        directory="$WORK_DIR/$workload"
+        lockfile="$directory/Cargo.lock"
+
+        case "$initial_state" in
+            tracked)
+                # Restore only a tracked lockfile that was verified clean
+                # before this invocation began modifying lockfiles.
+                git -C "$directory" restore -- Cargo.lock
+                ;;
+
+            absent)
+                # The path was verified absent before this invocation.
+                # Remove only the lockfile generated by this invocation.
+                rm -f -- "$lockfile"
+                ;;
+
+            *)
+                echo "Error: unknown initial Cargo.lock state for $workload:" >&2
+                echo "  $initial_state" >&2
+                return 1
+                ;;
+        esac
+    done
+
+    PINNED_LOCKFILES_MAY_HAVE_BEEN_MODIFIED=0
 }
 
 save_workload_git_statuses() {
@@ -70,15 +253,18 @@ save_workload_git_statuses() {
     local directory
     local status
 
-    for workload in smalloc simd-json rebar; do
+    for workload in "${WORKLOADS[@]}"; do
         directory="$WORK_DIR/$workload"
 
         if [[ -z "$(git -C "$directory" status --porcelain)" ]]; then
             status=clean
         else
             status="dirty-$(
-                git -C "$directory" diff --binary HEAD |
-                b3sum --no-names
+                {
+                    git -C "$directory" status --porcelain
+                    git -C "$directory" diff --binary HEAD
+                } |
+                    b3sum --no-names
             )"
         fi
 
@@ -95,28 +281,27 @@ write_workload_lock_metadata() {
         echo "Prepared workload lockfile metadata"
         echo "==================================="
 
-        for workload in smalloc simd-json rebar; do
+        for workload in "${PINNED_WORKLOADS[@]}"; do
             lockfile="$WORK_DIR/$workload/Cargo.lock"
+
+            if [[ ! -f "$lockfile" ]]; then
+                echo "Error: prepared workload lockfile disappeared: $lockfile" >&2
+                return 1
+            fi
 
             echo
             echo "workload: $workload"
-            echo "Cargo.lock: $PWD/$lockfile"
+            echo "cross-workload allocator pinning: enabled"
+            echo "Cargo.lock: $lockfile"
             echo "Cargo.lock BLAKE3: $(b3sum --no-names "$lockfile")"
         done
+
+        echo
+        echo "workload: rebar"
+        echo "cross-workload allocator pinning: disabled"
+        echo "Cargo lockfiles: not inspected by this script"
+        echo "allocator versions: not reported by this script"
     } >"$WORKLOAD_LOCK_METADATA_FILE"
-}
-
-restore_workload_lockfiles() {
-    local workload
-
-    for workload in smalloc simd-json rebar; do
-        if git -C "$WORK_DIR/$workload" \
-            ls-files --error-unmatch Cargo.lock \
-            >/dev/null 2>&1
-        then
-            git -C "$WORK_DIR/$workload" restore -- Cargo.lock
-        fi
-    done
 }
 
 lock_contains_package() {
@@ -128,6 +313,7 @@ lock_contains_package() {
             in_package = 1
             next
         }
+
         in_package && /^name = / {
             name = $0
             sub(/^name = "/, "", name)
@@ -147,17 +333,37 @@ lock_contains_package() {
 
 prepare_workload_allocator_versions() {
     local directory="$1"
+    local package
+    local version
+    local manifest
+    local had_lockfile=1
 
     (
         cd "$directory"
 
-        while IFS=$'\t' read -r package version manifest; do
-            if lock_contains_package Cargo.lock "$package"; then
-                cargo update \
-                    -p "$package" \
-                    --precise "$version"
-            fi
-        done < "$ALLOCATOR_PINS_FILE"
+        if [[ ! -f Cargo.lock ]]; then
+            had_lockfile=0
+
+            # Some library repositories intentionally do not commit a
+            # Cargo.lock. Generate the initial resolution with the allocator
+            # patch configuration active. The benchmark later uses --locked.
+            cargo metadata \
+                --format-version=1 \
+                --all-features \
+                >/dev/null
+        fi
+
+        if [[ "$had_lockfile" == 1 ]]; then
+            while IFS=$'\t' read -r package version manifest; do
+                [[ -n "$package" ]] || continue
+
+                if lock_contains_package Cargo.lock "$package"; then
+                    cargo update \
+                        -p "$package" \
+                        --precise "$version"
+                fi
+            done <"$ALLOCATOR_PINS_FILE"
+        fi
 
         # Complete dependency resolution with every allocator feature
         # enabled. This is allowed to update Cargo.lock. The subsequent
@@ -172,9 +378,14 @@ prepare_workload_allocator_versions() {
 verify_workload_allocator_versions() {
     local directory="$1"
     local metadata_json
+    local package
+    local version
+    local expected_manifest
+    local mismatches
 
     metadata_json=$(
         cd "$directory"
+
         cargo metadata \
             --locked \
             --format-version=1 \
@@ -182,25 +393,42 @@ verify_workload_allocator_versions() {
     )
 
     while IFS=$'\t' read -r package version expected_manifest; do
-        actual=$(
+        [[ -n "$package" ]] || continue
+
+        mismatches=$(
             printf '%s' "$metadata_json" |
-            jq -r --arg package "$package" '
-                [
-                    .packages[]
-                    | select(.name == $package)
-                    | .manifest_path
-                ][0] // ""
-            '
+                jq -r \
+                    --arg package "$package" \
+                    --arg version "$version" \
+                    --arg expected_manifest "$expected_manifest" '
+                        .packages[]
+                        | select(.name == $package)
+                        | select(
+                            .version != $version
+                            or .manifest_path != $expected_manifest
+                        )
+                        | "\(.version)\t\(.manifest_path)"
+                    '
         )
 
-        # A workload need not use every allocator package.
-        if [[ -n "$actual" && "$actual" != "$expected_manifest" ]]; then
-            echo "Error: $directory resolves $package from the wrong source." >&2
-            echo "Expected: $expected_manifest" >&2
-            echo "Actual:   $actual" >&2
-            exit 1
+        # A workload need not use every allocator package. If it does use
+        # one, every resolved package with that name must have the expected
+        # version and come from the expected prepared source.
+        if [[ -n "$mismatches" ]]; then
+            echo "Error: $directory resolves $package incorrectly." >&2
+            echo "Expected version:  $version" >&2
+            echo "Expected manifest: $expected_manifest" >&2
+            echo "Unexpected resolved packages:" >&2
+
+            while IFS=$'\t' read -r actual_version actual_manifest; do
+                [[ -n "$actual_version" || -n "$actual_manifest" ]] || continue
+                echo "  version:  $actual_version" >&2
+                echo "  manifest: $actual_manifest" >&2
+            done <<<"$mismatches"
+
+            return 1
         fi
-    done < "$ALLOCATOR_PINS_FILE"
+    done <"$ALLOCATOR_PINS_FILE"
 }
 
 append_allocator_metadata() {
@@ -210,36 +438,60 @@ append_allocator_metadata() {
         echo
         echo
         cat "$ALLOCATOR_METADATA_FILE"
-    } >> "$result_file"
+    } >>"$result_file"
 }
 
 write_loc_allocator_metadata() {
     local output_file="$1"
+    local allocators=()
+    local allocator
+    local directory
+    local source
+    local commit
+    local tree
+    local tag
+    local clean_status
+    local diff_hash
+    local source_hash
+
+    if [[ -n "$SMALLOC_ONLY" ]]; then
+        allocators=(glibc smalloc)
+    elif [[ "$OSTYPE" == "msys" ]]; then
+        allocators=(glibc mimalloc rpmalloc smalloc)
+    else
+        allocators=(
+            glibc
+            jemalloc
+            snmalloc
+            mimalloc
+            rpmalloc
+            smalloc
+        )
+    fi
 
     {
         echo "LOC allocator Git-source metadata"
         echo "================================="
 
-        for allocator in glibc jemalloc mimalloc rpmalloc snmalloc smalloc; do
-            local directory="$allocator"
+        for allocator in "${allocators[@]}"; do
+            directory="$allocator"
 
             if [[ ! -d "$directory/.git" ]]; then
-                echo "Error: count-locs did not create a Git checkout at $PWD/$directory" >&2
+                echo \
+                    "Error: count-locs did not create a Git checkout at $PWD/$directory" \
+                    >&2
                 return 1
             fi
-
-            local source
-            local commit
-            local tree
-            local tag
-            local clean_status
-            local diff_hash
-            local source_hash
 
             source=$(git -C "$directory" remote get-url origin)
             commit=$(git -C "$directory" rev-parse HEAD)
             tree=$(git -C "$directory" rev-parse 'HEAD^{tree}')
-            tag=$(git -C "$directory" describe --tags --exact-match 2>/dev/null || true)
+            tag=$(
+                git -C "$directory" \
+                    describe --tags --exact-match \
+                    2>/dev/null ||
+                    true
+            )
 
             if [[ -z "$(git -C "$directory" status --porcelain)" ]]; then
                 clean_status=clean
@@ -249,12 +501,12 @@ write_loc_allocator_metadata() {
 
             diff_hash=$(
                 git -C "$directory" diff --binary HEAD |
-                b3sum --no-names
+                    b3sum --no-names
             )
 
             source_hash=$(
                 git -C "$directory" archive --format=tar HEAD |
-                b3sum --no-names
+                    b3sum --no-names
             )
 
             echo
@@ -269,7 +521,9 @@ write_loc_allocator_metadata() {
         done
 
         echo
-        echo "count-locs.sh BLAKE3: $(b3sum --no-names ../count-locs.sh)"
+        echo "count-locs.sh BLAKE3: $(
+            b3sum --no-names "$SCRIPT_DIR/count-locs.sh"
+        )"
     } >"$output_file"
 }
 
@@ -283,6 +537,98 @@ append_loc_allocator_metadata() {
     } >>"$result_file"
 }
 
+hide_allocator_patch_config() {
+    if [[ "$ALLOCATOR_PATCH_CONFIG_HIDDEN" == 1 ]]; then
+        echo "Error: allocator patch config is already hidden by this process." >&2
+        return 1
+    fi
+
+    if [[ ! -f "$ALLOCATOR_PATCH_CONFIG" ]]; then
+        echo "Error: expected allocator patch config does not exist:" >&2
+        echo "  $ALLOCATOR_PATCH_CONFIG" >&2
+        return 1
+    fi
+
+    if [[ -e "$ALLOCATOR_PATCH_CONFIG_DISABLED" ]]; then
+        echo "Error: disabled allocator patch config already exists:" >&2
+        echo "  $ALLOCATOR_PATCH_CONFIG_DISABLED" >&2
+        echo "Refusing to modify state left by an earlier invocation." >&2
+        return 1
+    fi
+
+    mv \
+        "$ALLOCATOR_PATCH_CONFIG" \
+        "$ALLOCATOR_PATCH_CONFIG_DISABLED"
+
+    ALLOCATOR_PATCH_CONFIG_HIDDEN=1
+}
+
+restore_allocator_patch_config() {
+    if [[ "$ALLOCATOR_PATCH_CONFIG_HIDDEN" != 1 ]]; then
+        return 0
+    fi
+
+    if [[ -e "$ALLOCATOR_PATCH_CONFIG" ]]; then
+        echo "Error: allocator patch config reappeared while hidden:" >&2
+        echo "  $ALLOCATOR_PATCH_CONFIG" >&2
+        return 1
+    fi
+
+    if [[ ! -f "$ALLOCATOR_PATCH_CONFIG_DISABLED" ]]; then
+        echo "Error: hidden allocator patch config disappeared:" >&2
+        echo "  $ALLOCATOR_PATCH_CONFIG_DISABLED" >&2
+        return 1
+    fi
+
+    mv \
+        "$ALLOCATOR_PATCH_CONFIG_DISABLED" \
+        "$ALLOCATOR_PATCH_CONFIG"
+
+    ALLOCATOR_PATCH_CONFIG_HIDDEN=0
+}
+
+run_without_allocator_patch_config() {
+    local status
+
+    hide_allocator_patch_config
+
+    # The command must be used as the condition of an if statement.
+    # Otherwise set -e could terminate this shell before the generated
+    # Cargo configuration is restored.
+    if "$@"; then
+        status=0
+    else
+        status=$?
+    fi
+
+    if ! restore_allocator_patch_config; then
+        return 1
+    fi
+
+    return "$status"
+}
+
+cleanup() {
+    local status=$?
+
+    # Avoid recursively invoking cleanup if a cleanup command fails.
+    trap - EXIT INT TERM
+
+    # Restore only state changed by this invocation. Do not inspect or
+    # attempt to repair stale state from an earlier invocation.
+    if [[ "$ALLOCATOR_PATCH_CONFIG_HIDDEN" == 1 ]]; then
+        if ! restore_allocator_patch_config; then
+            status=1
+        fi
+    fi
+
+    if ! restore_current_run_lockfiles; then
+        status=1
+    fi
+
+    exit "$status"
+}
+
 echo "========================================"
 echo "Allocator Benchmark Suite"
 echo "========================================"
@@ -294,36 +640,56 @@ echo "Output directory: $OUTPUT_DIR"
 echo "========================================"
 echo
 
-if ! command -v cargo >/dev/null 2>&1; then
-    echo "Need cargo installed."
-    exit 1
-fi
+check_required_commands
 
 # Lines-of-code benchmark
 run_loc_benchmark() {
+    local loc_args=()
+
     echo
     echo "========================================"
     echo "Running lines-of-code comparison..."
     echo "========================================"
 
-    pushd "$WORK_DIR"
+    if [[ -n "$SMALLOC_ONLY" ]]; then
+        loc_args+=("$SMALLOC_ONLY")
+    fi
 
-    ../count-locs.sh ${SMALLOC_ONLY}
+    pushd "$WORK_DIR" >/dev/null
+
+    # count-locs.sh currently runs `rm loc-output.txt` without -f. Ensure
+    # that the file exists so a first run in a new workspace does not fail.
+    touch loc-output.txt
+
+    "$SCRIPT_DIR/count-locs.sh" "${loc_args[@]}"
+
+    if [[ ! -f "loc-output.txt" ]]; then
+        echo "Error: LOC benchmark did not produce loc-output.txt." >&2
+        popd >/dev/null
+        return 1
+    fi
 
     # count-locs.sh uses Git checkouts rather than Cargo dependencies.
     # Capture the exact Git sources that it actually counted.
     write_loc_allocator_metadata "$LOC_ALLOCATOR_METADATA_FILE"
 
-    python3 "../tools/locs-graph.py" \
+    python3 "$SCRIPT_DIR/tools/locs-graph.py" \
         "loc-output.txt" \
-        --graph "../$OUTPUT_DIR/locs.graph.svg" \
+        --graph "$OUTPUT_DIR_ABS/locs.graph.svg" \
         "${METADATA_ARGS_TO_PASS_TO_PYTHON_SCRIPT[@]}" \
         --smalloc-dep-version "$(get_smalloc_dep_version "smalloc")"
 
-    cp "loc-output.txt" "../$OUTPUT_DIR/locs.result.txt"
-    append_loc_allocator_metadata "../$OUTPUT_DIR/locs.result.txt"
+    if [[ ! -f "$OUTPUT_DIR_ABS/locs.graph.svg" ]]; then
+        echo "Error: LOC benchmark did not produce its expected graph:" >&2
+        echo "  $OUTPUT_DIR_ABS/locs.graph.svg" >&2
+        popd >/dev/null
+        return 1
+    fi
 
-    popd
+    cp "loc-output.txt" "$OUTPUT_DIR_ABS/locs.result.txt"
+    append_loc_allocator_metadata "$OUTPUT_DIR_ABS/locs.result.txt"
+
+    popd >/dev/null
 }
 
 embed_metadata_in_svg() {
@@ -361,13 +727,42 @@ embed_metadata_in_svg() {
     mv "$temporary" "$svg_file"
 }
 
-# Function to run benchmark in simd-json, rebar, or smalloc repos
-run_benchmark() {
-    local name=$1
-    local repo=$2
+invoke_workload_benchmark() {
+    local directory="$1"
+    local original_git_status="$2"
     shift 2
-    local dir="$WORK_DIR/$name"
+
+    (
+        cd "$directory"
+
+        if [[ -n "$SMALLOC_ONLY" ]]; then
+            BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" \
+                ./tools/bench-allocators.sh \
+                "$SMALLOC_ONLY" \
+                "$@"
+        else
+            BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" \
+                ./tools/bench-allocators.sh \
+                "$@"
+        fi
+    )
+}
+
+# Function to run a benchmark in a workload repository.
+run_benchmark() {
+    local name="$1"
+    local repo="$2"
+    shift 2
+
+    local directory="$WORK_DIR/$name"
     local original_git_status
+    local result_source
+    local result_destination
+    local graph_files=()
+
+    # The repository argument is retained to keep the call sites explicit,
+    # even though repository preparation happens before this function.
+    : "$repo"
 
     original_git_status=$(
         cat "$WORKLOAD_METADATA_DIR/$name.git-clean-status"
@@ -378,80 +773,187 @@ run_benchmark() {
     echo "Running $name benchmarks..."
     echo "========================================"
 
-    pushd "$dir"
+    if [[ "$name" == "rebar" ]]; then
+        echo "Cross-workload allocator pinning is disabled for rebar."
 
-    # Run benchmark
-    if [[ -n "$SMALLOC_ONLY" ]]; then
-        BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$SMALLOC_ONLY" "$@"
+        # Treat rebar's benchmark script as opaque. The outer script only
+        # hides its own generated ancestor Cargo configuration while the
+        # script runs.
+        run_without_allocator_patch_config \
+            invoke_workload_benchmark \
+            "$directory" \
+            "$original_git_status" \
+            "$@"
     else
-        BENCHMARK_GIT_CLEAN_STATUS_OVERRIDE="$original_git_status" ./tools/bench-allocators.sh "$@"
+        invoke_workload_benchmark \
+            "$directory" \
+            "$original_git_status" \
+            "$@"
     fi
-    popd
 
-    # Copy results (one txt, any number of svgs)
-    cp "$dir/${OUTPUT_DIR}/${name}.result.txt" "$OUTPUT_DIR/${name}.result.txt"
-    {
-        echo
-        echo "Prepared workload Cargo.lock"
-        echo "============================"
-        echo "Cargo.lock BLAKE3: $(
-            b3sum --no-names "$dir/Cargo.lock"
-        )"
-    } >>"$OUTPUT_DIR/${name}.result.txt"
-    append_allocator_metadata "$OUTPUT_DIR/${name}.result.txt"
-    cp $dir/${OUTPUT_DIR}/${name}.graph*.svg "$OUTPUT_DIR/"
+    result_source="$directory/${OUTPUT_DIR}/${name}.result.txt"
+    result_destination="$OUTPUT_DIR_ABS/${name}.result.txt"
+
+    if [[ ! -f "$result_source" ]]; then
+        echo "Error: $name did not produce its expected result file:" >&2
+        echo "  $result_source" >&2
+        return 1
+    fi
+
+    cp "$result_source" "$result_destination"
+
+    if [[ "$name" == "rebar" ]]; then
+        {
+            echo
+            echo
+            echo "Allocator dependency preparation"
+            echo "================================"
+            echo "Cross-workload allocator pinning: disabled"
+            echo "Rebar dependency files were not inspected by this script."
+            echo "Exact rebar allocator versions are not reported by this metadata."
+        } >>"$result_destination"
+    else
+        if [[ ! -f "$directory/Cargo.lock" ]]; then
+            echo "Error: prepared workload Cargo.lock is missing:" >&2
+            echo "  $directory/Cargo.lock" >&2
+            return 1
+        fi
+
+        {
+            echo
+            echo "Prepared workload Cargo.lock"
+            echo "============================"
+            echo "Cargo.lock BLAKE3: $(
+                b3sum --no-names "$directory/Cargo.lock"
+            )"
+        } >>"$result_destination"
+
+        append_allocator_metadata "$result_destination"
+    fi
+
+    # Expand the graph glob safely. Without nullglob, an unmatched glob
+    # would be passed literally to cp and produce a less useful error.
+    shopt -s nullglob
+    graph_files=(
+        "$directory/${OUTPUT_DIR}/${name}.graph"*.svg
+    )
+    shopt -u nullglob
+
+    if (( ${#graph_files[@]} == 0 )); then
+        echo "Error: $name did not produce an SVG graph in:" >&2
+        echo "  $directory/${OUTPUT_DIR}" >&2
+        return 1
+    fi
+
+    cp "${graph_files[@]}" "$OUTPUT_DIR_ABS/"
 }
 
 # Prepare benchmark repositories first.
 prepare_repo "smalloc" "$SMALLOC_REPO"
 prepare_repo "simd-json" "$SIMD_JSON_REPO"
 prepare_repo "rebar" "$REBAR_REPO"
+prepare_repo "tantivy" "$TANTIVY_REPO"
 
-# Discard lockfile changes left by an earlier completed or failed run.
-restore_workload_lockfiles
+# Perform inexpensive checks before changing lockfiles or starting any
+# long-running benchmark.
+check_benchmark_scripts
+check_pinned_workload_lockfiles
 
-# Record source-tree cleanliness before intentionally preparing Cargo.lock.
+# Record source-tree cleanliness before intentionally preparing the pinned
+# workload Cargo.lock files.
 save_workload_git_statuses
 
-# Restore committed lockfiles again whenever this script exits.
-trap restore_workload_lockfiles EXIT INT TERM
+# Restore only current-invocation changes after normal completion, errors,
+# or interruption.
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
-# Start from each repository's committed lockfile. Restore them again
-# when this script exits, including after an error or interruption.
-restore_workload_lockfiles
-trap restore_workload_lockfiles EXIT INT TERM
+# Do not remove or repair this path if it was left by another invocation.
+# Its existence means that we cannot safely determine which config should
+# be active.
+if [[ -e "$ALLOCATOR_PATCH_CONFIG_DISABLED" ]]; then
+    echo "Error: disabled allocator patch config already exists:" >&2
+    echo "  $ALLOCATOR_PATCH_CONFIG_DISABLED" >&2
+    echo "Refusing to modify state left by an earlier invocation." >&2
+    exit 1
+fi
+
+# From this point onward, allocator preparation may modify tracked
+# lockfiles or generate lockfiles that were absent when this run began.
+PINNED_LOCKFILES_MAY_HAVE_BEEN_MODIFIED=1
 
 # The smalloc benchmark workspace's Cargo.lock is the canonical allocator
-# dependency resolution for this complete benchmark run.
-./tools/prepare-allocator-pins.py \
+# dependency resolution for the pinned workloads in this benchmark run.
+"$SCRIPT_DIR/tools/prepare-allocator-pins.py" \
     "$WORK_DIR/smalloc" \
     "$WORK_DIR"
 
-export ALLOCATOR_PINS_FILE="$PWD/$WORK_DIR/allocator-pins.tsv"
-export ALLOCATOR_METADATA_FILE="$PWD/$WORK_DIR/allocator-metadata.txt"
+export ALLOCATOR_PINS_FILE="$WORK_DIR/allocator-pins.tsv"
+export ALLOCATOR_METADATA_FILE="$WORK_DIR/allocator-metadata.txt"
+
+if [[ ! -f "$ALLOCATOR_PINS_FILE" ]]; then
+    echo "Error: allocator pin preparation did not create:" >&2
+    echo "  $ALLOCATOR_PINS_FILE" >&2
+    exit 1
+fi
+
+if [[ ! -f "$ALLOCATOR_METADATA_FILE" ]]; then
+    echo "Error: allocator pin preparation did not create:" >&2
+    echo "  $ALLOCATOR_METADATA_FILE" >&2
+    exit 1
+fi
+
+if [[ ! -f "$ALLOCATOR_PATCH_CONFIG" ]]; then
+    echo "Error: allocator pin preparation did not create:" >&2
+    echo "  $ALLOCATOR_PATCH_CONFIG" >&2
+    exit 1
+fi
 
 # Cargo automatically discovers benchmark-workspace/.cargo/config.toml
-# from every repository nested below benchmark-workspace.
-for workload in smalloc simd-json rebar; do
+# from repositories nested below benchmark-workspace.
+#
+# Rebar is deliberately excluded. This script does not prepare or verify
+# rebar or any of rebar's allocator-engine crates.
+for workload in "${PINNED_WORKLOADS[@]}"; do
     prepare_workload_allocator_versions "$WORK_DIR/$workload"
     verify_workload_allocator_versions "$WORK_DIR/$workload"
 done
 
 write_workload_lock_metadata
 
-# Run benchmarks
-run_loc_benchmark
-run_benchmark "simd-json" "$SIMD_JSON_REPO" "${BENCHMARK_ARGS[@]}"
-run_benchmark "rebar" "$REBAR_REPO" "${BENCHMARK_ARGS[@]}"
-run_benchmark "smalloc" "$SMALLOC_REPO" "${BENCHMARK_ARGS[@]}"
+# Run rebar first. It is the workload with the unusual multi-crate setup,
+# so any remaining rebar-specific failure should happen before hours are
+# spent running the other benchmarks.
+run_benchmark \
+    "rebar" \
+    "$REBAR_REPO" \
+    "${BENCHMARK_ARGS[@]}"
 
-# Generate combined report
+run_loc_benchmark
+
+run_benchmark \
+    "simd-json" \
+    "$SIMD_JSON_REPO" \
+    "${BENCHMARK_ARGS[@]}"
+
+run_benchmark \
+    "tantivy" \
+    "$TANTIVY_REPO" \
+    "${BENCHMARK_ARGS[@]}"
+
+run_benchmark \
+    "smalloc" \
+    "$SMALLOC_REPO" \
+    "${BENCHMARK_ARGS[@]}"
+
+# Generate combined report.
 REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
 
-# Both metadata files now exist:
+# Both allocator metadata files now exist:
 #
-# - ALLOCATOR_METADATA_FILE describes the Cargo packages used by the
-#   runtime benchmarks.
+# - ALLOCATOR_METADATA_FILE describes the Cargo packages prepared for
+#   smalloc, simd-json, and tantivy. It does not describe rebar.
 # - LOC_ALLOCATOR_METADATA_FILE describes the Git source trees counted
 #   by count-locs.sh.
 {
@@ -465,6 +967,14 @@ REPORT_FILE="$OUTPUT_DIR/COMBINED-REPORT.md"
     echo "CPU type: $CPU_TYPE_STR"
     echo "CPU count: $CPU_COUNT"
     echo "OS type: $OS_TYPE_STR"
+
+    echo
+    echo "Canonical allocator metadata scope"
+    echo "=================================="
+    echo "Applies to: smalloc, simd-json, tantivy"
+    echo "Does not apply to: rebar"
+    echo "Rebar cross-workload allocator pinning: disabled"
+    echo "Rebar dependency files: not inspected by this script"
 
     echo
     cat "$ALLOCATOR_METADATA_FILE"
@@ -489,7 +999,7 @@ echo "========================================"
 echo "Generating combined report"
 echo "========================================"
 
-cat > "$REPORT_FILE" << EOF
+cat >"$REPORT_FILE" <<EOF
 # Allocator Performance Benchmarks
 
 This report compares memory allocator performance across different workloads.
@@ -507,6 +1017,7 @@ This report compares memory allocator performance across different workloads.
 
 - **simd-json**: High-performance JSON parser ([fork for benchmarking](https://github.com/zooko/simd-json))
 - **rebar**: Regex engine benchmark harness ([fork for benchmarking](https://github.com/zooko/rebar))
+- **tantivy**: Search engine ([fork for benchmarking](https://github.com/zooko/tantivy))
 - **smalloc bench**: Micro-benchmarks for malloc/free/realloc operations
 - **Lines of Code**: Implementation size comparison (excluding debug assertions)
 
@@ -525,9 +1036,20 @@ This report compares memory allocator performance across different workloads.
 
 ## rebar Results
 
+Cross-workload allocator pinning is disabled for rebar. Rebar's dependency
+files are not inspected or managed by the outer benchmark script.
+
 ![](rebar.graph.svg)
 
 [View detailed rebar results](rebar.result.txt)
+
+---
+
+## tantivy Results
+
+![](tantivy.graph.svg)
+
+[View detailed tantivy results](tantivy.result.txt)
 
 ---
 
@@ -555,14 +1077,17 @@ This report compares memory allocator performance across different workloads.
 
 ## Summary
 
-- **Lines of Code** compares implementation size (excluding debug assertions)
 - **simd-json** tests allocator performance during JSON parsing
-- **rebar** tests allocator performance during regex compilation and matching
+- **rebar** tests allocator performance during regex compilation
+- **tantivy** tests allocator performance in a search engine
 - **smalloc bench** tests raw malloc/free/realloc performance in single and multi-threaded scenarios
+- **Lines of Code** compares implementation size (excluding debug assertions)
 
 ### Methodology
 
-- Each allocator is tested using identical code with only the global allocator changed
+- Each allocator is tested using identical workload code with only the global allocator changed
+- Allocator dependencies are prepared and pinned across smalloc, simd-json, and tantivy
+- Rebar is deliberately excluded from cross-workload allocator pinning
 - Results show percentage differences from baseline (system allocator)
 - Lower percentages = better performance (less time)
 
