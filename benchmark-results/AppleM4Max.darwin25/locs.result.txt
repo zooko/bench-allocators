@@ -1,77 +1,137 @@
 jemalloc
 git source: https://github.com/jemalloc/jemalloc
-git commit: 6b245225459fd09132c877b83a91725cb56097da
+git commit: e36a0fa5bc1e1090362505ac4af4408466ba5163
 git tag: 
 git clean status: clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- C                        70        34956        26164         4613         4179
+ C                        70        34732        25923         4741         4068
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    70        34956        26164         4613         4179
+ Total                    70        34732        25923         4741         4068
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 snmalloc
 git source: https://github.com/microsoft/snmalloc
-git commit: f9b8ed25f61831a7be8e7589b64bb42e503c5e11
+git commit: 8924241e38eb4053c2cfe63e4ea19c38d1eba4c3
 git tag: 
-git clean status: clean
+git clean status: dirty-af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- C Header                135        21250        13121         5535         2594
+ C Header                135        21279        13148         5536         2595
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                   135        21250        13121         5535         2594
+ Total                   135        21279        13148         5536         2595
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 mimalloc
 git source: https://github.com/microsoft/mimalloc
-git commit: fef6b0dd70f9d7fa0750b0d0b9fbb471203b94cd
+git commit: fc1e2acbced0b3e893da1a1375e02ac159d0423f
 git tag: 
 git clean status: clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- C                        27        14321        10040         2405         1876
- C Header                  2         1022          462          431          129
+ C                        28        17798        12622         2912         2264
+ C Header                  2         1247          561          504          182
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    29        15343        10502         2836         2005
+ Total                    30        19045        13183         3416         2446
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 rpmalloc
 git source: https://github.com/mjansson/rpmalloc
-git commit: 262c698d701952553a59d7ef2a8f8ebb4e975572
+git commit: 5dacae8ba4ec31100dd2ed4bffd552abbd3cb29f
 git tag: 
 git clean status: clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- C                         2         2797         2230          292          275
- C Header                  2          520          283          158           79
+ C                         2         3806         2981          500          325
+ C Header                  2          533          279          174           80
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                     4         3317         2513          450          354
+ Total                     4         4339         3260          674          405
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 glibc
 git source: https://sourceware.org/git/glibc
-git commit: 7052455f0e85673abebad5d5814e73e22287c081
+git commit: bb213471bedc177b8efd3178584137fb81cc976a
 git tag: 
 git clean status: clean
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- C                        32        11636         6839         3215         1582
+ C                        32        11461         6791         3113         1557
  C Header                  5          954          449          363          142
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    37        12590         7288         3578         1724
+ Total                    37        12415         7240         3476         1699
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 smalloc
 git source: https://github.com/zooko/smalloc
-git commit: 9b4e999708317576d255d5b37b7a10b521e15731
-git tag: v7.6.9+b140dc6f0bfa37c175e5e7b315e8c59e1712808b
-git clean status: clean
+git commit: fb3acf3521441458861242a40fa963f1d974a116
+git tag: v7.6.10+c55d2f585a638d795a1d2927baa982712eed93ab
+git clean status: dirty-d36be049fec331d60b6a1e311468d1e719e6d6e7bf3d5c6988b972bd6e5af44f
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Rust                      2          723          400          166          157
- |- Markdown               1           46            6           31            9
- (Total)                              769          406          197          166
+ Rust                      2          772          425          175          172
+ |- Markdown               1           27            6           16            5
+ (Total)                              799          431          191          177
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                     2          769          406          197          166
+ Total                     2          799          431          191          177
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+LOC allocator Git-source metadata
+=================================
+
+allocator: glibc
+git source: https://sourceware.org/git/glibc.git
+git commit: bb213471bedc177b8efd3178584137fb81cc976a
+git tree: 1c020ffe29e5fe739cdda9e0fb5602ec210452fc
+git tag: 
+git clean status: clean
+git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+committed source-tree BLAKE3: 35b2241135a229c7599ce3844256432e6e7517135b4f2723bf658062cb061165
+
+allocator: jemalloc
+git source: https://github.com/jemalloc/jemalloc
+git commit: e36a0fa5bc1e1090362505ac4af4408466ba5163
+git tree: 37164acf7a5a55d3488da31b72f04a10abf7dc41
+git tag: 
+git clean status: clean
+git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+committed source-tree BLAKE3: f24b53d5513b7354eb4dd7953bff5c3e7989d917880870bbd10b5a8c8942d56a
+
+allocator: snmalloc
+git source: https://github.com/microsoft/snmalloc
+git commit: 8924241e38eb4053c2cfe63e4ea19c38d1eba4c3
+git tree: b4715d177018078e39008dc99fac60815821c777
+git tag: 
+git clean status: dirty
+git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+committed source-tree BLAKE3: 4c9dc3401bb64a4820b3cc09ab22e5dbfa48f6c70ce643a22a02bfd0116a04cf
+
+allocator: mimalloc
+git source: https://github.com/microsoft/mimalloc
+git commit: fc1e2acbced0b3e893da1a1375e02ac159d0423f
+git tree: 6e0f9b786def4bacae8f50e5e1265bdbac4548a6
+git tag: 
+git clean status: clean
+git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+committed source-tree BLAKE3: 1bfc014a229207c2de25e9e622e5344da4740656fd7189465d22228c589ced7b
+
+allocator: rpmalloc
+git source: https://github.com/mjansson/rpmalloc
+git commit: 5dacae8ba4ec31100dd2ed4bffd552abbd3cb29f
+git tree: c05cb5169e210e5454f843c8d53ac891d829f844
+git tag: 
+git clean status: clean
+git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+committed source-tree BLAKE3: b015377b6eca3e639d670c41a574371addfe5e843bd66ae3a4e9702b6a95f7ad
+
+allocator: smalloc
+git source: https://github.com/zooko/smalloc
+git commit: fb3acf3521441458861242a40fa963f1d974a116
+git tree: 5848192374446984e28f5a063b3e729515f03edf
+git tag: 
+git clean status: dirty
+git diff BLAKE3: d36be049fec331d60b6a1e311468d1e719e6d6e7bf3d5c6988b972bd6e5af44f
+committed source-tree BLAKE3: e368b957ac9ad44fde67cc3a3b7d4252e420dbd88760f9db2b1453672ec7aac3
+
+count-locs.sh BLAKE3: 9713f84ae941408601817ddfdecc0099c291e8a31e20728d10bb9d15ebfb72b6

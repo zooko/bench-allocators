@@ -12,7 +12,7 @@
     .grid-line { stroke: #cccccc; stroke-width: 0.5; }
   </style>
   <text x="400.0" y="35" class="title" text-anchor="middle">Performance of simd-json with different allocators—time (lower is better)</text>
-  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 178.38ms)</text>
+  <text x="20" y="205.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 205.0)">Time vs Baseline (%, baseline = 176.44ms)</text>
   <line x1="80" y1="350.0" x2="760" y2="350.0" class="grid-line"/>
   <text x="70" y="354.0" class="tick-label" text-anchor="end">0%</text>
   <line x1="80" y1="299.5652173913044" x2="760" y2="299.5652173913044" class="grid-line"/>
@@ -25,38 +25,234 @@
   <text x="70" y="152.2608695652174" class="tick-label" text-anchor="end">80%</text>
   <line x1="80" y1="97.82608695652175" x2="760" y2="97.82608695652175" class="grid-line"/>
   <text x="70" y="101.82608695652175" class="tick-label" text-anchor="end">100%</text>
-  <path d="M 97.0 350.0 L 176.33333333333331 350.0 L 176.33333333333331 156.1518738078817 A 8 8 0 0 0 168.33333333333331 148.1518738078817 L 105.0 148.1518738078817 A 8 8 0 0 0 97.0 156.1518738078817 Z" fill="#42a5f5"/>
+  <path d="M 97.0 350.0 L 176.33333333333331 350.0 L 176.33333333333331 155.9394652334258 A 8 8 0 0 0 168.33333333333331 147.9394652334258 L 105.0 147.9394652334258 A 8 8 0 0 0 97.0 155.9394652334258 Z" fill="#42a5f5"/>
   <text x="136.66666666666666" y="370" class="bar-label-name" text-anchor="middle">smalloc</text>
-  <text x="136.66666666666666" y="140.1518738078817" class="bar-label-value" text-anchor="middle">142.78ms</text>
-  <text x="136.66666666666666" y="166.1518738078817" class="bar-label-pct" text-anchor="middle">-20%</text>
-  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 152.70500668031045 A 8 8 0 0 0 281.66666666666663 144.70500668031045 L 218.33333333333331 144.70500668031045 A 8 8 0 0 0 210.33333333333331 152.70500668031045 Z" fill="#d98567"/>
+  <text x="136.66666666666666" y="139.9394652334258" class="bar-label-value" text-anchor="middle">141.38ms</text>
+  <text x="136.66666666666666" y="165.9394652334258" class="bar-label-pct" text-anchor="middle">-20%</text>
+  <path d="M 210.33333333333331 350.0 L 289.66666666666663 350.0 L 289.66666666666663 154.40076057491058 A 8 8 0 0 0 281.66666666666663 146.40076057491058 L 218.33333333333331 146.40076057491058 A 8 8 0 0 0 210.33333333333331 154.40076057491058 Z" fill="#d98567"/>
   <text x="249.99999999999997" y="370" class="bar-label-name" text-anchor="middle">rpmalloc</text>
-  <text x="249.99999999999997" y="136.70500668031045" class="bar-label-value" text-anchor="middle">145.22ms</text>
-  <text x="249.99999999999997" y="162.70500668031045" class="bar-label-pct" text-anchor="middle">-19%</text>
-  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 146.00692758489868 A 8 8 0 0 0 394.99999999999994 138.00692758489868 L 331.66666666666663 138.00692758489868 A 8 8 0 0 0 323.66666666666663 146.00692758489868 Z" fill="#e0bd5e"/>
+  <text x="249.99999999999997" y="138.40076057491058" class="bar-label-value" text-anchor="middle">142.45ms</text>
+  <text x="249.99999999999997" y="164.40076057491058" class="bar-label-pct" text-anchor="middle">-19%</text>
+  <path d="M 323.66666666666663 350.0 L 402.99999999999994 350.0 L 402.99999999999994 144.81722888513946 A 8 8 0 0 0 394.99999999999994 136.81722888513946 L 331.66666666666663 136.81722888513946 A 8 8 0 0 0 323.66666666666663 144.81722888513946 Z" fill="#e0bd5e"/>
   <text x="363.3333333333333" y="370" class="bar-label-name" text-anchor="middle">mimalloc</text>
-  <text x="363.3333333333333" y="130.00692758489868" class="bar-label-value" text-anchor="middle">149.96ms</text>
-  <text x="363.3333333333333" y="156.00692758489868" class="bar-label-pct" text-anchor="middle">-16%</text>
-  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 137.52858445300484 A 8 8 0 0 0 508.33333333333337 129.52858445300484 L 445.0 129.52858445300484 A 8 8 0 0 0 437.0 137.52858445300484 Z" fill="#a06bab"/>
+  <text x="363.3333333333333" y="128.81722888513946" class="bar-label-value" text-anchor="middle">149.16ms</text>
+  <text x="363.3333333333333" y="154.81722888513946" class="bar-label-pct" text-anchor="middle">-15%</text>
+  <path d="M 437.0 350.0 L 516.3333333333334 350.0 L 516.3333333333334 137.07282514871903 A 8 8 0 0 0 508.33333333333337 129.07282514871903 L 445.0 129.07282514871903 A 8 8 0 0 0 437.0 137.07282514871903 Z" fill="#a06bab"/>
   <text x="476.6666666666667" y="370" class="bar-label-name" text-anchor="middle">snmalloc</text>
-  <text x="476.6666666666667" y="121.52858445300484" class="bar-label-value" text-anchor="middle">155.95ms</text>
-  <text x="476.6666666666667" y="147.52858445300484" class="bar-label-pct" text-anchor="middle">-13%</text>
-  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 113.78334271936345 A 8 8 0 0 0 621.6666666666666 105.78334271936345 L 558.3333333333333 105.78334271936345 A 8 8 0 0 0 550.3333333333333 113.78334271936345 Z" fill="#7faa82"/>
+  <text x="476.6666666666667" y="121.07282514871903" class="bar-label-value" text-anchor="middle">154.58ms</text>
+  <text x="476.6666666666667" y="147.07282514871903" class="bar-label-pct" text-anchor="middle">-12%</text>
+  <path d="M 550.3333333333333 350.0 L 629.6666666666666 350.0 L 629.6666666666666 112.80242466704033 A 8 8 0 0 0 621.6666666666666 104.80242466704033 L 558.3333333333333 104.80242466704033 A 8 8 0 0 0 550.3333333333333 112.80242466704033 Z" fill="#7faa82"/>
   <text x="589.9999999999999" y="370" class="bar-label-name" text-anchor="middle">jemalloc</text>
-  <text x="589.9999999999999" y="97.78334271936345" class="bar-label-value" text-anchor="middle">172.75ms</text>
-  <text x="589.9999999999999" y="123.78334271936345" class="bar-label-pct" text-anchor="middle">-3%</text>
+  <text x="589.9999999999999" y="96.80242466704033" class="bar-label-value" text-anchor="middle">171.56ms</text>
+  <text x="589.9999999999999" y="122.80242466704033" class="bar-label-pct" text-anchor="middle">-3%</text>
   <path d="M 663.6666666666666 350.0 L 743.0 350.0 L 743.0 105.82608695652175 A 8 8 0 0 0 735.0 97.82608695652175 L 671.6666666666666 97.82608695652175 A 8 8 0 0 0 663.6666666666666 105.82608695652175 Z" fill="#8a969e"/>
   <text x="703.3333333333333" y="370" class="bar-label-name" text-anchor="middle">default</text>
-  <text x="703.3333333333333" y="89.82608695652175" class="bar-label-value" text-anchor="middle">178.38ms</text>
+  <text x="703.3333333333333" y="89.82608695652175" class="bar-label-value" text-anchor="middle">176.44ms</text>
   <text x="703.3333333333333" y="115.82608695652175" class="bar-label-pct" text-anchor="middle">baseline</text>
-  <text x="400.0" y="386" class="metadata" text-anchor="middle">Timestamp: 2026-05-31 23:53:45 UTC</text>
+  <!--
 
-  <text x="400.0" y="400" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: e51760f3ab08e70ffa41925184367a44cd5d715c · Tag: v0.16.0</text>
+  Benchmark metadata
 
-  <text x="400.0" y="414" class="metadata" text-anchor="middle">Git Clean Status: dirty</text>
+  timestamp: 2026-08-13 06:28:18 UTC
+
+  git source: https://github.com/zooko/simd-json
+
+  git commit: a925ba4b279f1fd71fe44f20100781ccc5ac7189
+
+  git tag: v0.16.0
+
+  git clean status: clean
+
+  CPU: AppleM4Max
+
+  OS: darwin25
+
+  CPU count: 16
+
+  smalloc version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+
+  -->
+
+  <text x="400.0" y="386" class="metadata" text-anchor="middle">Timestamp: 2026-08-13 06:28:18 UTC</text>
+
+  <text x="400.0" y="400" class="metadata" text-anchor="middle">Source: https://github.com/zooko/simd-json · Commit: a925ba4b279f1fd71fe44f20100781ccc5ac7189 · Tag: v0.16.0</text>
+
+  <text x="400.0" y="414" class="metadata" text-anchor="middle">Git Clean Status: clean</text>
 
   <text x="400.0" y="428" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25 · CPU count: 16</text>
 
-  <text x="400.0" y="442" class="metadata" text-anchor="middle">smalloc version: 7.6.9+b140dc6f0bfa37c175e5e7b315e8c59e1712808b</text>
+  <text x="400.0" y="442" class="metadata" text-anchor="middle">smalloc version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3</text>
 
+  <!--
+  Benchmark run metadata
+  ======================
+  timestamp: 2026-08-13 06:20:05 UTC
+  git source: https://github.com/zooko/bench-allocators
+  git commit: ae79a4f6fed176a9956871578313ee6e17efca33
+  git tag: 
+  git clean status: dirty-495bef650cf989b0dc10af9969ca1f756125bb5220bbfb3c7216922adfb49466
+  CPU type: AppleM4Max
+  CPU count: 16
+  OS type: darwin25
+  
+  Canonical allocator metadata scope
+  ==================================
+  Applies to: smalloc, simd-json, tantivy
+  Does not apply to: rebar
+  Rebar cross-workload allocator pinning: disabled
+  Rebar dependency files: not inspected by this script
+  
+  Allocator source metadata
+  =========================
+  canonical Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/Cargo.lock
+  canonical Cargo.lock BLAKE3: 8a8f18706892034405f926e24afff868b54f2aabddcd9b9c28e9effd27db8627
+  Cargo patch config BLAKE3: f2a352e98964a458994f2f8b34b96ca076375b9d97437eadbc6aa82f622d3093
+  rustc: rustc 1.98.0-nightly (f428d123a 2026-06-19)
+  cargo: cargo 1.98.0-nightly (598ab48ec 2026-06-17)
+  C++ compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
+  
+  package: libmimalloc-sys
+  version: 0.1.44
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libmimalloc-sys-0.1.44/Cargo.toml
+  source-tree BLAKE3: 633641986bc99f483c3578140b8efba991a43f8c9dffa5494621c70c62474e3a
+  crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+  
+  package: mimalloc
+  version: 0.1.48
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/mimalloc-0.1.48/Cargo.toml
+  source-tree BLAKE3: 2cbd6f0afb4dae72dc2976a2f8b24ea073f874ade82ed07094250f570491838f
+  crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+  
+  package: rpmalloc
+  version: 0.2.2
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-0.2.2/Cargo.toml
+  source-tree BLAKE3: 3b79b9781a88aee66cd3cfc2b6ffc3de3c5d36d94abade4e441077850fee16ef
+  crate publication git commit: 532cf875266d08c245ce2ab558d53307d1ee47bc
+  
+  package: rpmalloc-sys
+  version: 0.2.3+b097fd0
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-sys-0.2.3+b097fd0/Cargo.toml
+  source-tree BLAKE3: 2990d599015b1fa411fc8049964b6f909260180938bc3316fc87b04481e8f5f7
+  crate publication git commit: ffd0ef7ac62393d091380b97ca55eafe53a0633e
+  
+  package: smmalloc
+  version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+  source: local path
+  manifest: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/smalloc/Cargo.toml
+  source-tree BLAKE3: 9b585ea7e23c278600b4f9a467718bef06123b800c7ae3ad07c583f0934d2675
+  
+  package: snmalloc-rs
+  version: 0.3.8
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-rs-0.3.8/Cargo.toml
+  source-tree BLAKE3: 4e969106d8dbafd07b47f013e8ca31ec95ea3d39adcccf6e9eb39c95115d770d
+  crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+  
+  package: snmalloc-sys
+  version: 0.3.8
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-sys-0.3.8/Cargo.toml
+  source-tree BLAKE3: fa33a4e8d62c2e6f71feb0e46f0a575731b6d66f542ea34df89b49068f348410
+  crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+  
+  package: tikv-jemalloc-sys
+  version: 0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemalloc-sys-0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7/Cargo.toml
+  source-tree BLAKE3: 130378ded21679af8979ada11c44da97dec775259c4724eebe12fec5a9980f76
+  crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
+  
+  package: tikv-jemallocator
+  version: 0.6.1
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemallocator-0.6.1/Cargo.toml
+  source-tree BLAKE3: 4d5f1f833029b9377da311e27a6ee669a508deb583acc0e50f011abc0a057f66
+  crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
+  
+  Prepared workload lockfile metadata
+  ===================================
+  
+  workload: smalloc
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/Cargo.lock
+  Cargo.lock BLAKE3: 7d17cdfcd6b40d52231fc215515768dc3180c477997f93fa8ee5243725fdad4e
+  
+  workload: simd-json
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/simd-json/Cargo.lock
+  Cargo.lock BLAKE3: 84778cef475f51e0ae296d7b308b79d80535b1fe7140ed539225eae02110c5e6
+  
+  workload: tantivy
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/tantivy/Cargo.lock
+  Cargo.lock BLAKE3: 5490970b0eb5fd0a52b0c723450a87bb91a37b3cc475ed1cb6c285fa770bf763
+  
+  workload: rebar
+  cross-workload allocator pinning: disabled
+  Cargo lockfiles: not inspected by this script
+  allocator versions: not reported by this script
+  
+  LOC allocator Git-source metadata
+  =================================
+  
+  allocator: glibc
+  git source: https://sourceware.org/git/glibc.git
+  git commit: bb213471bedc177b8efd3178584137fb81cc976a
+  git tree: 1c020ffe29e5fe739cdda9e0fb5602ec210452fc
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 35b2241135a229c7599ce3844256432e6e7517135b4f2723bf658062cb061165
+  
+  allocator: jemalloc
+  git source: https://github.com/jemalloc/jemalloc
+  git commit: e36a0fa5bc1e1090362505ac4af4408466ba5163
+  git tree: 37164acf7a5a55d3488da31b72f04a10abf7dc41
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: f24b53d5513b7354eb4dd7953bff5c3e7989d917880870bbd10b5a8c8942d56a
+  
+  allocator: snmalloc
+  git source: https://github.com/microsoft/snmalloc
+  git commit: 8924241e38eb4053c2cfe63e4ea19c38d1eba4c3
+  git tree: b4715d177018078e39008dc99fac60815821c777
+  git tag: 
+  git clean status: dirty
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 4c9dc3401bb64a4820b3cc09ab22e5dbfa48f6c70ce643a22a02bfd0116a04cf
+  
+  allocator: mimalloc
+  git source: https://github.com/microsoft/mimalloc
+  git commit: fc1e2acbced0b3e893da1a1375e02ac159d0423f
+  git tree: 6e0f9b786def4bacae8f50e5e1265bdbac4548a6
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 1bfc014a229207c2de25e9e622e5344da4740656fd7189465d22228c589ced7b
+  
+  allocator: rpmalloc
+  git source: https://github.com/mjansson/rpmalloc
+  git commit: 5dacae8ba4ec31100dd2ed4bffd552abbd3cb29f
+  git tree: c05cb5169e210e5454f843c8d53ac891d829f844
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: b015377b6eca3e639d670c41a574371addfe5e843bd66ae3a4e9702b6a95f7ad
+  
+  allocator: smalloc
+  git source: https://github.com/zooko/smalloc
+  git commit: fb3acf3521441458861242a40fa963f1d974a116
+  git tree: 5848192374446984e28f5a063b3e729515f03edf
+  git tag: 
+  git clean status: dirty
+  git diff BLAKE3: d36be049fec331d60b6a1e311468d1e719e6d6e7bf3d5c6988b972bd6e5af44f
+  committed source-tree BLAKE3: e368b957ac9ad44fde67cc3a3b7d4252e420dbd88760f9db2b1453672ec7aac3
+  
+  count-locs.sh BLAKE3: 9713f84ae941408601817ddfdecc0099c291e8a31e20728d10bb9d15ebfb72b6
+  -->
 </svg>

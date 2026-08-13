@@ -20,72 +20,74 @@
   <text x="20" y="245.0" class="axis-label" text-anchor="middle" transform="rotate(-90 20 245.0)">Time vs Baseline (%, linear scale)</text>
   <line x1="80" y1="410.0" x2="820" y2="410.0" class="grid-line-major"/>
   <text x="72" y="413.0" class="tick-label" text-anchor="end">0%</text>
-  <line x1="80" y1="344.0" x2="820" y2="344.0" class="grid-line-major"/>
-  <text x="72" y="347.0" class="tick-label" text-anchor="end">50%</text>
-  <line x1="80" y1="278.0" x2="820" y2="278.0" class="grid-line-major"/>
-  <text x="72" y="281.0" class="tick-label" text-anchor="end">100%</text>
-  <line x1="80" y1="212.0" x2="820" y2="212.0" class="grid-line-major"/>
-  <text x="72" y="215.0" class="tick-label" text-anchor="end">150%</text>
-  <line x1="80" y1="146.0" x2="820" y2="146.0" class="grid-line-major"/>
-  <text x="72" y="149.0" class="tick-label" text-anchor="end">200%</text>
+  <line x1="80" y1="355.0" x2="820" y2="355.0" class="grid-line-major"/>
+  <text x="72" y="358.0" class="tick-label" text-anchor="end">50%</text>
+  <line x1="80" y1="300.0" x2="820" y2="300.0" class="grid-line-major"/>
+  <text x="72" y="303.0" class="tick-label" text-anchor="end">100%</text>
+  <line x1="80" y1="245.0" x2="820" y2="245.0" class="grid-line-major"/>
+  <text x="72" y="248.0" class="tick-label" text-anchor="end">150%</text>
+  <line x1="80" y1="190.0" x2="820" y2="190.0" class="grid-line-major"/>
+  <text x="72" y="193.0" class="tick-label" text-anchor="end">200%</text>
+  <line x1="80" y1="135.0" x2="820" y2="135.0" class="grid-line-major"/>
+  <text x="72" y="138.0" class="tick-label" text-anchor="end">250%</text>
   <line x1="80" y1="80.0" x2="820" y2="80.0" class="grid-line-major"/>
-  <text x="72" y="83.0" class="tick-label" text-anchor="end">250%</text>
-  <line x1="80" y1="278.0" x2="820" y2="278.0" class="grid-line-major"/>
+  <text x="72" y="83.0" class="tick-label" text-anchor="end">300%</text>
+  <line x1="80" y1="300.0" x2="820" y2="300.0" class="grid-line-major"/>
   <line x1="80" y1="410" x2="820" y2="410" stroke="#333333" stroke-width="1"/>
-  <path d="M 104.66666666666667 410.0 L 136.55555555555557 410.0 L 136.55555555555557 347.0 A 3 3 0 0 0 133.55555555555557 344.0 L 107.66666666666667 344.0 A 3 3 0 0 0 104.66666666666667 347.0 Z" fill="#42a5f5"/>
-  <text x="120.61111111111111" y="339.0" class="bar-label-value" text-anchor="middle">9ns</text>
-  <text x="120.61111111111111" y="358.0" class="bar-label-pct" text-anchor="middle">-50%</text>
-  <path d="M 137.55555555555557 410.0 L 169.44444444444446 410.0 L 169.44444444444446 336.35483870967744 A 3 3 0 0 0 166.44444444444446 333.35483870967744 L 140.55555555555557 333.35483870967744 A 3 3 0 0 0 137.55555555555557 336.35483870967744 Z" fill="#d98567"/>
-  <text x="153.50000000000003" y="328.35483870967744" class="bar-label-value" text-anchor="middle">10ns</text>
-  <text x="153.50000000000003" y="347.35483870967744" class="bar-label-pct" text-anchor="middle">-42%</text>
-  <path d="M 170.44444444444446 410.0 L 202.33333333333334 410.0 L 202.33333333333334 300.1612903225807 A 3 3 0 0 0 199.33333333333334 297.1612903225807 L 173.44444444444446 297.1612903225807 A 3 3 0 0 0 170.44444444444446 300.1612903225807 Z" fill="#e0bd5e"/>
-  <text x="186.3888888888889" y="292.1612903225807" class="bar-label-value" text-anchor="middle">15ns</text>
-  <text x="186.3888888888889" y="311.1612903225807" class="bar-label-pct" text-anchor="middle">-15%</text>
-  <path d="M 203.33333333333337 410.0 L 235.22222222222226 410.0 L 235.22222222222226 332.8064516129032 A 3 3 0 0 0 232.22222222222226 329.8064516129032 L 206.33333333333337 329.8064516129032 A 3 3 0 0 0 203.33333333333337 332.8064516129032 Z" fill="#a06bab"/>
-  <text x="219.27777777777783" y="324.8064516129032" class="bar-label-value" text-anchor="middle">11ns</text>
-  <text x="219.27777777777783" y="343.8064516129032" class="bar-label-pct" text-anchor="middle">-39%</text>
-  <path d="M 236.22222222222223 410.0 L 268.11111111111114 410.0 L 268.11111111111114 302.2903225806452 A 3 3 0 0 0 265.11111111111114 299.2903225806452 L 239.22222222222223 299.2903225806452 A 3 3 0 0 0 236.22222222222223 302.2903225806452 Z" fill="#7faa82"/>
-  <text x="252.16666666666669" y="294.2903225806452" class="bar-label-value" text-anchor="middle">15ns</text>
-  <text x="252.16666666666669" y="313.2903225806452" class="bar-label-pct" text-anchor="middle">-16%</text>
-  <path d="M 269.11111111111114 410.0 L 301.00000000000006 410.0 L 301.00000000000006 281.0 A 3 3 0 0 0 298.00000000000006 278.0 L 272.11111111111114 278.0 A 3 3 0 0 0 269.11111111111114 281.0 Z" fill="#8a969e"/>
-  <text x="285.0555555555556" y="273.0" class="bar-label-value" text-anchor="middle">18ns</text>
-  <text x="203.33333333333337" y="430" class="test-label" text-anchor="middle">adrww-1</text>
-  <path d="M 351.3333333333333 410.0 L 383.22222222222223 410.0 L 383.22222222222223 333.48192771084337 A 3 3 0 0 0 380.22222222222223 330.48192771084337 L 354.3333333333333 330.48192771084337 A 3 3 0 0 0 351.3333333333333 333.48192771084337 Z" fill="#42a5f5"/>
-  <text x="367.27777777777777" y="325.48192771084337" class="bar-label-value" text-anchor="middle">10ns</text>
-  <text x="367.27777777777777" y="344.48192771084337" class="bar-label-pct" text-anchor="middle">-40%</text>
-  <path d="M 384.22222222222223 410.0 L 416.11111111111114 410.0 L 416.11111111111114 326.3253012048193 A 3 3 0 0 0 413.11111111111114 323.3253012048193 L 387.22222222222223 323.3253012048193 A 3 3 0 0 0 384.22222222222223 326.3253012048193 Z" fill="#d98567"/>
-  <text x="400.1666666666667" y="318.3253012048193" class="bar-label-value" text-anchor="middle">10ns</text>
-  <text x="400.1666666666667" y="337.3253012048193" class="bar-label-pct" text-anchor="middle">-34%</text>
-  <path d="M 417.1111111111111 410.0 L 449.0 410.0 L 449.0 296.10843373493975 A 3 3 0 0 0 446.0 293.10843373493975 L 420.1111111111111 293.10843373493975 A 3 3 0 0 0 417.1111111111111 296.10843373493975 Z" fill="#e0bd5e"/>
-  <text x="433.05555555555554" y="288.10843373493975" class="bar-label-value" text-anchor="middle">14ns</text>
-  <text x="433.05555555555554" y="307.10843373493975" class="bar-label-pct" text-anchor="middle">-11%</text>
-  <path d="M 450.0 410.0 L 481.8888888888889 410.0 L 481.8888888888889 313.60240963855426 A 3 3 0 0 0 478.8888888888889 310.60240963855426 L 453.0 310.60240963855426 A 3 3 0 0 0 450.0 313.60240963855426 Z" fill="#a06bab"/>
-  <text x="465.94444444444446" y="305.60240963855426" class="bar-label-value" text-anchor="middle">12ns</text>
-  <text x="465.94444444444446" y="324.60240963855426" class="bar-label-pct" text-anchor="middle">-25%</text>
-  <path d="M 482.8888888888889 410.0 L 514.7777777777778 410.0 L 514.7777777777778 302.46987951807233 A 3 3 0 0 0 511.7777777777778 299.46987951807233 L 485.8888888888889 299.46987951807233 A 3 3 0 0 0 482.8888888888889 302.46987951807233 Z" fill="#7faa82"/>
-  <text x="498.83333333333337" y="294.46987951807233" class="bar-label-value" text-anchor="middle">13ns</text>
-  <text x="498.83333333333337" y="313.46987951807233" class="bar-label-pct" text-anchor="middle">-16%</text>
-  <path d="M 515.7777777777778 410.0 L 547.6666666666667 410.0 L 547.6666666666667 281.0 A 3 3 0 0 0 544.6666666666667 278.0 L 518.7777777777778 278.0 A 3 3 0 0 0 515.7777777777778 281.0 Z" fill="#8a969e"/>
-  <text x="531.7222222222223" y="273.0" class="bar-label-value" text-anchor="middle">16ns</text>
-  <text x="450.0" y="430" class="test-label" text-anchor="middle">adww-1</text>
-  <path d="M 597.9999999999999 410.0 L 629.8888888888888 410.0 L 629.8888888888888 319.16867469879514 A 3 3 0 0 0 626.8888888888888 316.16867469879514 L 600.9999999999999 316.16867469879514 A 3 3 0 0 0 597.9999999999999 319.16867469879514 Z" fill="#42a5f5"/>
-  <text x="613.9444444444443" y="311.16867469879514" class="bar-label-value" text-anchor="middle">5ns</text>
-  <text x="613.9444444444443" y="330.16867469879514" class="bar-label-pct" text-anchor="middle">-29%</text>
-  <path d="M 630.8888888888888 410.0 L 662.7777777777777 410.0 L 662.7777777777777 333.48192771084337 A 3 3 0 0 0 659.7777777777777 330.48192771084337 L 633.8888888888888 330.48192771084337 A 3 3 0 0 0 630.8888888888888 333.48192771084337 Z" fill="#d98567"/>
-  <text x="646.8333333333333" y="325.48192771084337" class="bar-label-value" text-anchor="middle">5ns</text>
-  <text x="646.8333333333333" y="344.48192771084337" class="bar-label-pct" text-anchor="middle">-40%</text>
-  <path d="M 663.7777777777777 410.0 L 695.6666666666666 410.0 L 695.6666666666666 201.48192771084337 A 3 3 0 0 0 692.6666666666666 198.48192771084337 L 666.7777777777777 198.48192771084337 A 3 3 0 0 0 663.7777777777777 201.48192771084337 Z" fill="#e0bd5e"/>
-  <text x="679.7222222222222" y="193.48192771084337" class="bar-label-value" text-anchor="middle">13ns</text>
-  <text x="679.7222222222222" y="212.48192771084337" class="bar-label-pct" text-anchor="middle">+60%</text>
-  <path d="M 696.6666666666665 410.0 L 728.5555555555554 410.0 L 728.5555555555554 193.53012048192772 A 3 3 0 0 0 725.5555555555554 190.53012048192772 L 699.6666666666665 190.53012048192772 A 3 3 0 0 0 696.6666666666665 193.53012048192772 Z" fill="#a06bab"/>
-  <text x="712.611111111111" y="185.53012048192772" class="bar-label-value" text-anchor="middle">13ns</text>
-  <text x="712.611111111111" y="204.53012048192772" class="bar-label-pct" text-anchor="middle">+66%</text>
-  <path d="M 729.5555555555554 410.0 L 761.4444444444443 410.0 L 761.4444444444443 163.31325301204822 A 3 3 0 0 0 758.4444444444443 160.31325301204822 L 732.5555555555554 160.31325301204822 A 3 3 0 0 0 729.5555555555554 163.31325301204822 Z" fill="#7faa82"/>
-  <text x="745.4999999999999" y="155.31325301204822" class="bar-label-value" text-anchor="middle">15ns</text>
-  <text x="745.4999999999999" y="174.31325301204822" class="bar-label-pct" text-anchor="middle">+89%</text>
-  <path d="M 762.4444444444443 410.0 L 794.3333333333333 410.0 L 794.3333333333333 281.0 A 3 3 0 0 0 791.3333333333333 278.0 L 765.4444444444443 278.0 A 3 3 0 0 0 762.4444444444443 281.0 Z" fill="#8a969e"/>
-  <text x="778.3888888888888" y="273.0" class="bar-label-value" text-anchor="middle">8ns</text>
-  <text x="696.6666666666665" y="430" class="test-label" text-anchor="middle">aww-1</text>
+  <path d="M 104.66666666666667 410.0 L 136.55555555555557 410.0 L 136.55555555555557 362.8343565077977 A 3 3 0 0 0 133.55555555555557 359.8343565077977 L 107.66666666666667 359.8343565077977 A 3 3 0 0 0 104.66666666666667 362.8343565077977 Z" fill="#42a5f5"/>
+  <text x="120.61111111111111" y="354.8343565077977" class="bar-label-value" text-anchor="middle">8ns</text>
+  <text x="120.61111111111111" y="373.8343565077977" class="bar-label-pct" text-anchor="middle">-54%</text>
+  <path d="M 137.55555555555557 410.0 L 169.44444444444446 410.0 L 169.44444444444446 349.9626807143204 A 3 3 0 0 0 166.44444444444446 346.9626807143204 L 140.55555555555557 346.9626807143204 A 3 3 0 0 0 137.55555555555557 349.9626807143204 Z" fill="#d98567"/>
+  <text x="153.50000000000003" y="341.9626807143204" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="153.50000000000003" y="360.9626807143204" class="bar-label-pct" text-anchor="middle">-43%</text>
+  <path d="M 170.44444444444446 410.0 L 202.33333333333334 410.0 L 202.33333333333334 334.8706144460408 A 3 3 0 0 0 199.33333333333334 331.8706144460408 L 173.44444444444446 331.8706144460408 A 3 3 0 0 0 170.44444444444446 334.8706144460408 Z" fill="#e0bd5e"/>
+  <text x="186.3888888888889" y="326.8706144460408" class="bar-label-value" text-anchor="middle">12ns</text>
+  <text x="186.3888888888889" y="345.8706144460408" class="bar-label-pct" text-anchor="middle">-29%</text>
+  <path d="M 203.33333333333337 410.0 L 235.22222222222226 410.0 L 235.22222222222226 348.47927901666424 A 3 3 0 0 0 232.22222222222226 345.47927901666424 L 206.33333333333337 345.47927901666424 A 3 3 0 0 0 203.33333333333337 348.47927901666424 Z" fill="#a06bab"/>
+  <text x="219.27777777777783" y="340.47927901666424" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="219.27777777777783" y="359.47927901666424" class="bar-label-pct" text-anchor="middle">-41%</text>
+  <path d="M 236.22222222222223 410.0 L 268.11111111111114 410.0 L 268.11111111111114 322.1009918032218 A 3 3 0 0 0 265.11111111111114 319.1009918032218 L 239.22222222222223 319.1009918032218 A 3 3 0 0 0 236.22222222222223 322.1009918032218 Z" fill="#7faa82"/>
+  <text x="252.16666666666669" y="314.1009918032218" class="bar-label-value" text-anchor="middle">14ns</text>
+  <text x="252.16666666666669" y="333.1009918032218" class="bar-label-pct" text-anchor="middle">-17%</text>
+  <path d="M 269.11111111111114 410.0 L 301.00000000000006 410.0 L 301.00000000000006 303.0 A 3 3 0 0 0 298.00000000000006 300.0 L 272.11111111111114 300.0 A 3 3 0 0 0 269.11111111111114 303.0 Z" fill="#8a969e"/>
+  <text x="285.0555555555556" y="295.0" class="bar-label-value" text-anchor="middle">18ns</text>
+  <text x="203.33333333333337" y="430" class="test-label" text-anchor="middle">adrww</text>
+  <path d="M 351.3333333333333 410.0 L 383.22222222222223 410.0 L 383.22222222222223 354.0737192741172 A 3 3 0 0 0 380.22222222222223 351.0737192741172 L 354.3333333333333 351.0737192741172 A 3 3 0 0 0 351.3333333333333 354.0737192741172 Z" fill="#42a5f5"/>
+  <text x="367.27777777777777" y="346.0737192741172" class="bar-label-value" text-anchor="middle">8ns</text>
+  <text x="367.27777777777777" y="365.0737192741172" class="bar-label-pct" text-anchor="middle">-46%</text>
+  <path d="M 384.22222222222223 410.0 L 416.11111111111114 410.0 L 416.11111111111114 344.93222314102997 A 3 3 0 0 0 413.11111111111114 341.93222314102997 L 387.22222222222223 341.93222314102997 A 3 3 0 0 0 384.22222222222223 344.93222314102997 Z" fill="#d98567"/>
+  <text x="400.1666666666667" y="336.93222314102997" class="bar-label-value" text-anchor="middle">10ns</text>
+  <text x="400.1666666666667" y="355.93222314102997" class="bar-label-pct" text-anchor="middle">-38%</text>
+  <path d="M 417.1111111111111 410.0 L 449.0 410.0 L 449.0 321.19143902760527 A 3 3 0 0 0 446.0 318.19143902760527 L 420.1111111111111 318.19143902760527 A 3 3 0 0 0 417.1111111111111 321.19143902760527 Z" fill="#e0bd5e"/>
+  <text x="433.05555555555554" y="313.19143902760527" class="bar-label-value" text-anchor="middle">13ns</text>
+  <text x="433.05555555555554" y="332.19143902760527" class="bar-label-pct" text-anchor="middle">-17%</text>
+  <path d="M 450.0 410.0 L 481.8888888888889 410.0 L 481.8888888888889 336.204510557337 A 3 3 0 0 0 478.8888888888889 333.204510557337 L 453.0 333.204510557337 A 3 3 0 0 0 450.0 336.204510557337 Z" fill="#a06bab"/>
+  <text x="465.94444444444446" y="328.204510557337" class="bar-label-value" text-anchor="middle">11ns</text>
+  <text x="465.94444444444446" y="347.204510557337" class="bar-label-pct" text-anchor="middle">-30%</text>
+  <path d="M 482.8888888888889 410.0 L 514.7777777777778 410.0 L 514.7777777777778 325.9317010128236 A 3 3 0 0 0 511.7777777777778 322.9317010128236 L 485.8888888888889 322.9317010128236 A 3 3 0 0 0 482.8888888888889 325.9317010128236 Z" fill="#7faa82"/>
+  <text x="498.83333333333337" y="317.9317010128236" class="bar-label-value" text-anchor="middle">12ns</text>
+  <text x="498.83333333333337" y="336.9317010128236" class="bar-label-pct" text-anchor="middle">-21%</text>
+  <path d="M 515.7777777777778 410.0 L 547.6666666666667 410.0 L 547.6666666666667 303.0 A 3 3 0 0 0 544.6666666666667 300.0 L 518.7777777777778 300.0 A 3 3 0 0 0 515.7777777777778 303.0 Z" fill="#8a969e"/>
+  <text x="531.7222222222223" y="295.0" class="bar-label-value" text-anchor="middle">16ns</text>
+  <text x="450.0" y="430" class="test-label" text-anchor="middle">adww</text>
+  <path d="M 597.9999999999999 410.0 L 629.8888888888888 410.0 L 629.8888888888888 364.8760811448341 A 3 3 0 0 0 626.8888888888888 361.8760811448341 L 600.9999999999999 361.8760811448341 A 3 3 0 0 0 597.9999999999999 364.8760811448341 Z" fill="#42a5f5"/>
+  <text x="613.9444444444443" y="356.8760811448341" class="bar-label-value" text-anchor="middle">3ns</text>
+  <text x="613.9444444444443" y="375.8760811448341" class="bar-label-pct" text-anchor="middle">-56%</text>
+  <path d="M 630.8888888888888 410.0 L 662.7777777777777 410.0 L 662.7777777777777 347.6868762625957 A 3 3 0 0 0 659.7777777777777 344.6868762625957 L 633.8888888888888 344.6868762625957 A 3 3 0 0 0 630.8888888888888 347.6868762625957 Z" fill="#d98567"/>
+  <text x="646.8333333333333" y="339.6868762625957" class="bar-label-value" text-anchor="middle">4ns</text>
+  <text x="646.8333333333333" y="358.6868762625957" class="bar-label-pct" text-anchor="middle">-41%</text>
+  <path d="M 663.7777777777777 410.0 L 695.6666666666666 410.0 L 695.6666666666666 217.06329006737877 A 3 3 0 0 0 692.6666666666666 214.06329006737877 L 666.7777777777777 214.06329006737877 A 3 3 0 0 0 663.7777777777777 217.06329006737877 Z" fill="#e0bd5e"/>
+  <text x="679.7222222222222" y="209.06329006737877" class="bar-label-value" text-anchor="middle">14ns</text>
+  <text x="679.7222222222222" y="228.06329006737877" class="bar-label-pct" text-anchor="middle">+78%</text>
+  <path d="M 696.6666666666665 410.0 L 728.5555555555554 410.0 L 728.5555555555554 140.82960552578413 A 3 3 0 0 0 725.5555555555554 137.82960552578413 L 699.6666666666665 137.82960552578413 A 3 3 0 0 0 696.6666666666665 140.82960552578413 Z" fill="#a06bab"/>
+  <text x="712.611111111111" y="132.82960552578413" class="bar-label-value" text-anchor="middle">20ns</text>
+  <text x="712.611111111111" y="151.82960552578413" class="bar-label-pct" text-anchor="middle">+147%</text>
+  <path d="M 729.5555555555554 410.0 L 761.4444444444443 410.0 L 761.4444444444443 237.52187692791563 A 3 3 0 0 0 758.4444444444443 234.52187692791563 L 732.5555555555554 234.52187692791563 A 3 3 0 0 0 729.5555555555554 237.52187692791563 Z" fill="#7faa82"/>
+  <text x="745.4999999999999" y="229.52187692791563" class="bar-label-value" text-anchor="middle">13ns</text>
+  <text x="745.4999999999999" y="248.52187692791563" class="bar-label-pct" text-anchor="middle">+60%</text>
+  <path d="M 762.4444444444443 410.0 L 794.3333333333333 410.0 L 794.3333333333333 303.0 A 3 3 0 0 0 791.3333333333333 300.0 L 765.4444444444443 300.0 A 3 3 0 0 0 762.4444444444443 303.0 Z" fill="#8a969e"/>
+  <text x="778.3888888888888" y="295.0" class="bar-label-value" text-anchor="middle">8ns</text>
+  <text x="696.6666666666665" y="430" class="test-label" text-anchor="middle">aww</text>
   <rect x="840" y="90" width="12" height="12" fill="#42a5f5" rx="2"/>
   <text x="858" y="100" class="legend-text">smalloc</text>
   <rect x="840" y="110" width="12" height="12" fill="#d98567" rx="2"/>
@@ -99,8 +101,191 @@
   <rect x="840" y="190" width="12" height="12" fill="#8a969e" rx="2"/>
   <text x="858" y="200" class="legend-text">default</text>
   <text x="500.0" y="460" class="key-text" text-anchor="middle">Tests: adrww=alloc/dealloc/realloc and write, adww=alloc/dealloc and write, aww=alloc and write</text>
-  <text x="500.0" y="486" class="metadata" text-anchor="middle">Timestamp: 2026-06-01 00:50:21 UTC</text>
-  <text x="500.0" y="500" class="metadata" text-anchor="middle">Source: https://github.com/zooko/smalloc · Commit: 9b4e999708317576d255d5b37b7a10b521e15731 · Tag: v7.6.9+b140dc6f0bfa37c175e5e7b315e8c59e1712808b</text>
+  <!--
+  Benchmark metadata
+  timestamp: 2026-08-13 08:00:46 UTC
+  git source: https://github.com/zooko/smalloc
+  git commit: fb3acf3521441458861242a40fa963f1d974a116
+  git tag: v7.6.10+c55d2f585a638d795a1d2927baa982712eed93ab
+  git clean status: clean
+  CPU: AppleM4Max
+  OS: darwin25
+  CPU count: 16
+  -->
+  <text x="500.0" y="486" class="metadata" text-anchor="middle">Timestamp: 2026-08-13 08:00:46 UTC</text>
+  <text x="500.0" y="500" class="metadata" text-anchor="middle">Source: https://github.com/zooko/smalloc · Commit: fb3acf3521441458861242a40fa963f1d974a116 · Tag: v7.6.10+c55d2f585a638d795a1d2927baa982712eed93ab</text>
   <text x="500.0" y="514" class="metadata" text-anchor="middle">Git Clean Status: clean</text>
   <text x="500.0" y="528" class="metadata" text-anchor="middle">CPU: AppleM4Max · OS: darwin25 · CPU count: 16</text>
+  <!--
+  Benchmark run metadata
+  ======================
+  timestamp: 2026-08-13 06:20:05 UTC
+  git source: https://github.com/zooko/bench-allocators
+  git commit: ae79a4f6fed176a9956871578313ee6e17efca33
+  git tag: 
+  git clean status: dirty-495bef650cf989b0dc10af9969ca1f756125bb5220bbfb3c7216922adfb49466
+  CPU type: AppleM4Max
+  CPU count: 16
+  OS type: darwin25
+  
+  Canonical allocator metadata scope
+  ==================================
+  Applies to: smalloc, simd-json, tantivy
+  Does not apply to: rebar
+  Rebar cross-workload allocator pinning: disabled
+  Rebar dependency files: not inspected by this script
+  
+  Allocator source metadata
+  =========================
+  canonical Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/Cargo.lock
+  canonical Cargo.lock BLAKE3: 8a8f18706892034405f926e24afff868b54f2aabddcd9b9c28e9effd27db8627
+  Cargo patch config BLAKE3: f2a352e98964a458994f2f8b34b96ca076375b9d97437eadbc6aa82f622d3093
+  rustc: rustc 1.98.0-nightly (f428d123a 2026-06-19)
+  cargo: cargo 1.98.0-nightly (598ab48ec 2026-06-17)
+  C++ compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
+  
+  package: libmimalloc-sys
+  version: 0.1.44
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libmimalloc-sys-0.1.44/Cargo.toml
+  source-tree BLAKE3: 633641986bc99f483c3578140b8efba991a43f8c9dffa5494621c70c62474e3a
+  crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+  
+  package: mimalloc
+  version: 0.1.48
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/mimalloc-0.1.48/Cargo.toml
+  source-tree BLAKE3: 2cbd6f0afb4dae72dc2976a2f8b24ea073f874ade82ed07094250f570491838f
+  crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+  
+  package: rpmalloc
+  version: 0.2.2
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-0.2.2/Cargo.toml
+  source-tree BLAKE3: 3b79b9781a88aee66cd3cfc2b6ffc3de3c5d36d94abade4e441077850fee16ef
+  crate publication git commit: 532cf875266d08c245ce2ab558d53307d1ee47bc
+  
+  package: rpmalloc-sys
+  version: 0.2.3+b097fd0
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-sys-0.2.3+b097fd0/Cargo.toml
+  source-tree BLAKE3: 2990d599015b1fa411fc8049964b6f909260180938bc3316fc87b04481e8f5f7
+  crate publication git commit: ffd0ef7ac62393d091380b97ca55eafe53a0633e
+  
+  package: smmalloc
+  version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+  source: local path
+  manifest: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/smalloc/Cargo.toml
+  source-tree BLAKE3: 9b585ea7e23c278600b4f9a467718bef06123b800c7ae3ad07c583f0934d2675
+  
+  package: snmalloc-rs
+  version: 0.3.8
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-rs-0.3.8/Cargo.toml
+  source-tree BLAKE3: 4e969106d8dbafd07b47f013e8ca31ec95ea3d39adcccf6e9eb39c95115d770d
+  crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+  
+  package: snmalloc-sys
+  version: 0.3.8
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-sys-0.3.8/Cargo.toml
+  source-tree BLAKE3: fa33a4e8d62c2e6f71feb0e46f0a575731b6d66f542ea34df89b49068f348410
+  crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+  
+  package: tikv-jemalloc-sys
+  version: 0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemalloc-sys-0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7/Cargo.toml
+  source-tree BLAKE3: 130378ded21679af8979ada11c44da97dec775259c4724eebe12fec5a9980f76
+  crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
+  
+  package: tikv-jemallocator
+  version: 0.6.1
+  source: registry+https://github.com/rust-lang/crates.io-index
+  manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemallocator-0.6.1/Cargo.toml
+  source-tree BLAKE3: 4d5f1f833029b9377da311e27a6ee669a508deb583acc0e50f011abc0a057f66
+  crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
+  
+  Prepared workload lockfile metadata
+  ===================================
+  
+  workload: smalloc
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/Cargo.lock
+  Cargo.lock BLAKE3: 7d17cdfcd6b40d52231fc215515768dc3180c477997f93fa8ee5243725fdad4e
+  
+  workload: simd-json
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/simd-json/Cargo.lock
+  Cargo.lock BLAKE3: 84778cef475f51e0ae296d7b308b79d80535b1fe7140ed539225eae02110c5e6
+  
+  workload: tantivy
+  cross-workload allocator pinning: enabled
+  Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/tantivy/Cargo.lock
+  Cargo.lock BLAKE3: 5490970b0eb5fd0a52b0c723450a87bb91a37b3cc475ed1cb6c285fa770bf763
+  
+  workload: rebar
+  cross-workload allocator pinning: disabled
+  Cargo lockfiles: not inspected by this script
+  allocator versions: not reported by this script
+  
+  LOC allocator Git-source metadata
+  =================================
+  
+  allocator: glibc
+  git source: https://sourceware.org/git/glibc.git
+  git commit: bb213471bedc177b8efd3178584137fb81cc976a
+  git tree: 1c020ffe29e5fe739cdda9e0fb5602ec210452fc
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 35b2241135a229c7599ce3844256432e6e7517135b4f2723bf658062cb061165
+  
+  allocator: jemalloc
+  git source: https://github.com/jemalloc/jemalloc
+  git commit: e36a0fa5bc1e1090362505ac4af4408466ba5163
+  git tree: 37164acf7a5a55d3488da31b72f04a10abf7dc41
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: f24b53d5513b7354eb4dd7953bff5c3e7989d917880870bbd10b5a8c8942d56a
+  
+  allocator: snmalloc
+  git source: https://github.com/microsoft/snmalloc
+  git commit: 8924241e38eb4053c2cfe63e4ea19c38d1eba4c3
+  git tree: b4715d177018078e39008dc99fac60815821c777
+  git tag: 
+  git clean status: dirty
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 4c9dc3401bb64a4820b3cc09ab22e5dbfa48f6c70ce643a22a02bfd0116a04cf
+  
+  allocator: mimalloc
+  git source: https://github.com/microsoft/mimalloc
+  git commit: fc1e2acbced0b3e893da1a1375e02ac159d0423f
+  git tree: 6e0f9b786def4bacae8f50e5e1265bdbac4548a6
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: 1bfc014a229207c2de25e9e622e5344da4740656fd7189465d22228c589ced7b
+  
+  allocator: rpmalloc
+  git source: https://github.com/mjansson/rpmalloc
+  git commit: 5dacae8ba4ec31100dd2ed4bffd552abbd3cb29f
+  git tree: c05cb5169e210e5454f843c8d53ac891d829f844
+  git tag: 
+  git clean status: clean
+  git diff BLAKE3: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
+  committed source-tree BLAKE3: b015377b6eca3e639d670c41a574371addfe5e843bd66ae3a4e9702b6a95f7ad
+  
+  allocator: smalloc
+  git source: https://github.com/zooko/smalloc
+  git commit: fb3acf3521441458861242a40fa963f1d974a116
+  git tree: 5848192374446984e28f5a063b3e729515f03edf
+  git tag: 
+  git clean status: dirty
+  git diff BLAKE3: d36be049fec331d60b6a1e311468d1e719e6d6e7bf3d5c6988b972bd6e5af44f
+  committed source-tree BLAKE3: e368b957ac9ad44fde67cc3a3b7d4252e420dbd88760f9db2b1453672ec7aac3
+  
+  count-locs.sh BLAKE3: 9713f84ae941408601817ddfdecc0099c291e8a31e20728d10bb9d15ebfb72b6
+  -->
 </svg>

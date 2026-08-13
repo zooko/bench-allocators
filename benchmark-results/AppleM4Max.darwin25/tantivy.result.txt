@@ -1,0 +1,114 @@
+TIMESTAMP: 2026-08-13 07:20:04 UTC
+git source: https://github.com/zooko/tantivy
+git commit: 14678034e8c17f599ddfc88c6013881013d4f67a
+git tag: 
+git clean status: clean
+CPU type: AppleM4Max
+CPU count: 16
+OS type: darwin25
+smalloc version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+TIMESTAMP: 2026-08-13 07:20:04 UTC
+git source: https://github.com/zooko/tantivy
+git commit: 14678034e8c17f599ddfc88c6013881013d4f67a
+git tag: 
+git clean status: clean
+CPU type: AppleM4Max
+CPU count: 16
+OS type: darwin25
+smalloc version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+
+=========================================================
+TANTIVY ALLOCATOR BENCHMARK SUMMARY
+=========================================================
+
+Median of per-test time ratios; lower is better.
+Each benchmark is compared with default before taking the median.
+
+Allocator      Tests    Median ratio      vs default
+----------------------------------------------------
+smalloc          125         0.9955x           -0.5%
+rpmalloc         125         0.9936x           -0.6%
+mimalloc         125         0.9973x           -0.3%
+snmalloc         125         0.9977x           -0.2%
+jemalloc         125         0.9986x           -0.1%
+default          125         1.0000x        baseline
+
+Tests compared: 125
+
+Graph saved to: ./benchmark-results/AppleM4Max.darwin25/tantivy.graph.svg
+
+Prepared workload Cargo.lock
+============================
+Cargo.lock BLAKE3: 5490970b0eb5fd0a52b0c723450a87bb91a37b3cc475ed1cb6c285fa770bf763
+
+
+Allocator source metadata
+=========================
+canonical Cargo.lock: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/Cargo.lock
+canonical Cargo.lock BLAKE3: 8a8f18706892034405f926e24afff868b54f2aabddcd9b9c28e9effd27db8627
+Cargo patch config BLAKE3: f2a352e98964a458994f2f8b34b96ca076375b9d97437eadbc6aa82f622d3093
+rustc: rustc 1.98.0-nightly (f428d123a 2026-06-19)
+cargo: cargo 1.98.0-nightly (598ab48ec 2026-06-17)
+C++ compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
+
+package: libmimalloc-sys
+version: 0.1.44
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libmimalloc-sys-0.1.44/Cargo.toml
+source-tree BLAKE3: 633641986bc99f483c3578140b8efba991a43f8c9dffa5494621c70c62474e3a
+crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+
+package: mimalloc
+version: 0.1.48
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/mimalloc-0.1.48/Cargo.toml
+source-tree BLAKE3: 2cbd6f0afb4dae72dc2976a2f8b24ea073f874ade82ed07094250f570491838f
+crate publication git commit: a5a76fd2c5a3a7c7b24d4765d53c71e41b32df74
+
+package: rpmalloc
+version: 0.2.2
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-0.2.2/Cargo.toml
+source-tree BLAKE3: 3b79b9781a88aee66cd3cfc2b6ffc3de3c5d36d94abade4e441077850fee16ef
+crate publication git commit: 532cf875266d08c245ce2ab558d53307d1ee47bc
+
+package: rpmalloc-sys
+version: 0.2.3+b097fd0
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rpmalloc-sys-0.2.3+b097fd0/Cargo.toml
+source-tree BLAKE3: 2990d599015b1fa411fc8049964b6f909260180938bc3316fc87b04481e8f5f7
+crate publication git commit: ffd0ef7ac62393d091380b97ca55eafe53a0633e
+
+package: smmalloc
+version: 7.6.13+59fa8012bfa1f62b849e83515f1be695230c3fd3
+source: local path
+manifest: /Users/donaldturnworth/playground/bench-allocators/benchmark-workspace/smalloc/smalloc/Cargo.toml
+source-tree BLAKE3: 9b585ea7e23c278600b4f9a467718bef06123b800c7ae3ad07c583f0934d2675
+
+package: snmalloc-rs
+version: 0.3.8
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-rs-0.3.8/Cargo.toml
+source-tree BLAKE3: 4e969106d8dbafd07b47f013e8ca31ec95ea3d39adcccf6e9eb39c95115d770d
+crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+
+package: snmalloc-sys
+version: 0.3.8
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/snmalloc-sys-0.3.8/Cargo.toml
+source-tree BLAKE3: fa33a4e8d62c2e6f71feb0e46f0a575731b6d66f542ea34df89b49068f348410
+crate publication git commit: ed3a6c9c19f3819e4810df1f010073c10c699894
+
+package: tikv-jemalloc-sys
+version: 0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemalloc-sys-0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7/Cargo.toml
+source-tree BLAKE3: 130378ded21679af8979ada11c44da97dec775259c4724eebe12fec5a9980f76
+crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
+
+package: tikv-jemallocator
+version: 0.6.1
+source: registry+https://github.com/rust-lang/crates.io-index
+manifest: /Users/donaldturnworth/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tikv-jemallocator-0.6.1/Cargo.toml
+source-tree BLAKE3: 4d5f1f833029b9377da311e27a6ee669a508deb583acc0e50f011abc0a057f66
+crate publication git commit: df5934f67d7b462b431f7fe9658952178c2bf2f4
