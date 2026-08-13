@@ -12,7 +12,7 @@ ALLOCATOR_LIST+=("glibc")
 ALLOCATOR_LIST+=("smalloc")
 
 OUTPUT_FILE="loc-output.txt"
-rm $OUTPUT_FILE
+rm -f $OUTPUT_FILE
 
 for ALLOCATOR in "${ALLOCATOR_LIST[@]}"; do
     case "$ALLOCATOR" in
@@ -56,12 +56,13 @@ for ALLOCATOR in "${ALLOCATOR_LIST[@]}"; do
         git clone --depth 1 --tags "$url" "$ALLOCATOR"
     fi
 
+    find . -name '*-noa.*' -print0 | xargs -0 rm -f
+
     echo $ALLOCATOR | tee -a $OUTPUT_FILE
     pushd "$ALLOCATOR"
     print_current_git_metadata . | tee -a "../$OUTPUT_FILE"
     cd "$subdir"
 
-    find . -name '*-noa.*' -print0 | xargs -0 rm -f
     if [[ -n "${FILES_LIST[*]}" ]]; then
         FILES=${FILES_LIST[*]}
     else

@@ -657,10 +657,6 @@ run_loc_benchmark() {
 
     pushd "$WORK_DIR" >/dev/null
 
-    # count-locs.sh currently runs `rm loc-output.txt` without -f. Ensure
-    # that the file exists so a first run in a new workspace does not fail.
-    touch loc-output.txt
-
     "$SCRIPT_DIR/count-locs.sh" "${loc_args[@]}"
 
     if [[ ! -f "loc-output.txt" ]]; then
