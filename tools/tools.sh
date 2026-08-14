@@ -113,9 +113,9 @@ print_machine_metadata() {
 get_smalloc_dep_version() {
     local subdir=$1
     pushd $subdir >/dev/null
-    RESULT=$(cargo --offline metadata --format-version 1 --features smalloc 2>/dev/null | jq -r '.packages[] | select(.name == "smmalloc") | .version' 2>/dev/null)
+    RESULT=$(cargo --offline metadata --locked --format-version 1 --features smalloc 2>/dev/null | jq -r '.packages[] | select(.name == "smmalloc") | .version' 2>/dev/null)
     if [[ -z "${RESULT}" ]]; then
-        RESULT=$(cargo --offline metadata --format-version 1 2>/dev/null | jq -r '.packages[] | select(.name == "smmalloc") | .version' 2>/dev/null)
+        RESULT=$(cargo --offline metadata --locked --format-version 1 2>/dev/null | jq -r '.packages[] | select(.name == "smmalloc") | .version' 2>/dev/null)
     fi
     popd >/dev/null
     echo "${RESULT}"

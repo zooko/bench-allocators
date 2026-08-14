@@ -9,6 +9,7 @@ cd "$REPO_ROOT"
 
 # Directories
 WORK_DIR="${WORK_DIR:-./benchmark-workspace}"
+LOC_WORK_DIR="${LOC_WORK_DIR:-./loc-workspace}"
 SIMD_JSON_REPO="https://github.com/zooko/simd-json"
 REBAR_REPO="https://github.com/zooko/rebar"
 TANTIVY_REPO="https://github.com/zooko/tantivy"
@@ -32,10 +33,13 @@ source "$SCRIPT_DIR/tools/tools.sh"
 OUTPUT_DIR="${OUTPUT_BASE_DIR}/${CPUSTR_DOT_OSSTR}"
 
 mkdir -p "$OUTPUT_DIR"
-OUTPUT_DIR_ABS=$(cd "$OUTPUT_DIR" && pwd)
+OUTPUT_DIR_ABS=$(cd "$OUTPUT_DIR" && pwd -P)
 
 mkdir -p "$WORK_DIR"
-WORK_DIR=$(cd "$WORK_DIR" && pwd)
+WORK_DIR=$(cd "$WORK_DIR" && pwd -P)
+
+mkdir -p "$LOC_WORK_DIR"
+LOC_WORK_DIR=$(cd "$LOC_WORK_DIR" && pwd -P)
 
 LOC_ALLOCATOR_METADATA_FILE="$WORK_DIR/loc-allocator-metadata.txt"
 FULL_METADATA_FILE="$WORK_DIR/full-run-metadata.txt"
@@ -655,7 +659,7 @@ run_loc_benchmark() {
         loc_args+=("$SMALLOC_ONLY")
     fi
 
-    pushd "$WORK_DIR" >/dev/null
+    pushd "$LOC_WORK_DIR" >/dev/null
 
     "$SCRIPT_DIR/count-locs.sh" "${loc_args[@]}"
 

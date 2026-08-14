@@ -56,10 +56,10 @@ for ALLOCATOR in "${ALLOCATOR_LIST[@]}"; do
         git clone --depth 1 --tags "$url" "$ALLOCATOR"
     fi
 
-    find . -name '*-noa.*' -print0 | xargs -0 rm -f
-
     echo $ALLOCATOR | tee -a $OUTPUT_FILE
     pushd "$ALLOCATOR"
+    find . -name '*-noa.*' -print0 | xargs -0 rm -f
+
     print_current_git_metadata . | tee -a "../$OUTPUT_FILE"
     cd "$subdir"
 
